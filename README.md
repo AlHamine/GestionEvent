@@ -1,2 +1,2 @@
-# GestionEvent
+# GestionEvent Partie front
 C'est une platement qui permet de gerer l'organisation d'un evenement par le biais de recrutements de pretataires ou autres services...
