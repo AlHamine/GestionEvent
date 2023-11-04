@@ -1,7 +1,11 @@
 package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Prestataire;
+import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +14,8 @@ import java.util.Optional;
 
 @Service
 public class PrestataireService {
+    @Autowired
+    private UserService userService;
     private final PrestataireRepository prestataireRepository;
 
     @Autowired
@@ -25,7 +31,15 @@ public class PrestataireService {
         return prestataireRepository.findById(id);
     }
 
-    public Prestataire createPrestataire(Prestataire prestataire) {
+    @Transactional
+    public Prestataire createPrestataire(String nom, String prenom, String service, String password, String mail,
+            String photo) throws Exception {
+        // Créez un nouvel utilisateur en utilisant le service UserService
+        User user = userService.createUser(mail, password, photo, "prestataire");
+
+        // Créez un prestataire et associez-le à l'utilisateur
+        Prestataire prestataire = new Prestataire(nom, prenom, service, password, mail, photo);
+        // Enregistrez le prestataire en base de données
         return prestataireRepository.save(prestataire);
     }
 

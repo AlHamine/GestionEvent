@@ -1,10 +1,12 @@
 package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Client;
-
-
+import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,10 @@ import java.util.Optional;
 
 @Service
 public class ClientService {
-    private final ClientRepository clientRepository;
+    @Autowired
+    private ClientRepository clientRepository;
+    @Autowired
+    private UserService userService;
 
     @Autowired
     public ClientService(ClientRepository clientRepository) {
@@ -28,7 +33,22 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-    public Client createClient(Client client) {
+  
+    @Transactional
+    public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
+        // Créez un nouvel utilisateur en utilisant le service UserService
+        User user = userService.createUser(mail, password, photo, "client");
+
+        // Créez un client et associez-le à l'utilisateur
+        Client client = new Client();
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setMail(mail);
+        client.setPhoto(photo);
+        // Assurez-vous que l'utilisateur est correctement associé au client si
+        // nécessaire.
+
+        // Enregistrez le client en base de données
         return clientRepository.save(client);
     }
 
@@ -56,4 +76,5 @@ public class ClientService {
         }
         return false;
     }
+
 }

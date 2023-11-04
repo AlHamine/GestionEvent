@@ -27,15 +27,17 @@ public class User implements UserDetails{
 
 	@Column(nullable=false)
 	private String role;
+	private String photo;
 
 	public User() {
 		
 	}
 
-	public User(String username, String password, String role) {
+	public User(String mail, String password, String tof,String role) {
 		super();
-		this.mail = username;
+		this.mail = mail;
 		this.password = password;
+		this.photo = tof;
 		this.role = role;
 		
 	}
@@ -102,4 +104,20 @@ public class User implements UserDetails{
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'isEnabled'");
     }
+
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 }
