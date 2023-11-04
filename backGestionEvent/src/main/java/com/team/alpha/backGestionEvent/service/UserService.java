@@ -37,6 +37,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(password));
         user.setPhoto(photo);
         user.setRole(role);
+        // jjhj
 
         // Enregistrez le nouvel utilisateur en base de données
         return userRepository.save(user);
