@@ -9,5 +9,5 @@ import com.team.alpha.backGestionEvent.model.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByUsername(String username);
+    Optional<User> findByMail(String mail);
 }
