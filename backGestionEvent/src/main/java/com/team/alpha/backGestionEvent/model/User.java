@@ -20,7 +20,7 @@ public class User implements UserDetails{
 	private Long id;
 
 	@Column(nullable=false, unique=true)
-	private String username;
+	private String mail;
 	 
 	@Column(nullable=false)
 	private String password;
@@ -34,7 +34,7 @@ public class User implements UserDetails{
 
 	public User(String username, String password, String role) {
 		super();
-		this.username = username;
+		this.mail = username;
 		this.password = password;
 		this.role = role;
 		
@@ -49,11 +49,11 @@ public class User implements UserDetails{
 	}
 
 	public String getUsername() {
-		return username;
+		return mail;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.mail = username;
 	}
 
 	public String getPassword() {
