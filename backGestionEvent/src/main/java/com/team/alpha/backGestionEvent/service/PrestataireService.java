@@ -51,7 +51,7 @@ public class PrestataireService {
             prestataire.setNom(updatedPrestataire.getNom());
             prestataire.setPrenom(updatedPrestataire.getPrenom());
             prestataire.setService(updatedPrestataire.getService());
-            // Vous pouvez ajouter d'autres champs ici
+            
             return prestataireRepository.save(prestataire);
         } else {
             // Le prestataire avec l'ID spécifié n'a pas été trouvé
