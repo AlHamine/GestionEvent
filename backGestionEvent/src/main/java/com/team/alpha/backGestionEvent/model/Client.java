@@ -1,8 +1,12 @@
 package com.team.alpha.backGestionEvent.model;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -22,7 +26,9 @@ public class Client {
     private long id;
     private String nom;
     private String prenom;
+    private String password;
     private String mail;
+    private String photo;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organisateur")
     private List<Evenement> events;
@@ -32,15 +38,19 @@ public class Client {
 
     }
 
-    public Client(String nom, String prenom, String mail) {
-        super();
+    // @Autowired
+    // private UserService userService; // Injectez le service UserService.
+
+    public Client(String nom, String prenom, String password, String mail, String photo) throws Exception {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
-        this.events = new ArrayList<Evenement>();
+        this.photo = photo;
+        this.password = password;
+
+        // User user = userService.createUser(mail, password, photo, "client");
+
     }
-
-
 
     public long getId() {
         return id;
@@ -80,6 +90,22 @@ public class Client {
 
     public void setEvents(List<Evenement> events) {
         this.events = events;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
 }

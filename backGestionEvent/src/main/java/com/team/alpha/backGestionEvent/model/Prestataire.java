@@ -1,6 +1,9 @@
 package com.team.alpha.backGestionEvent.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -23,23 +26,32 @@ public class Prestataire {
     private String nom;
     private String prenom;
     private String service;
+    private String password;
+    private String mail;
+    private String photo;
+
     // @ManyToOne
     // @JoinColumn(name = "evenement")
     @ManyToOne
     @JoinColumn(name = "evenement_id")
-    private Evenement evenement ;
+    private Evenement evenement;
 
     // private Evenement event=null;
     public Prestataire() {
 
     }
 
-    public Prestataire(String nom, String prenom, String service) {
+    public Prestataire(String nom, String prenom, String service, String password, String mail, String photo) throws Exception {
         super();
         this.nom = nom;
         this.prenom = prenom;
         this.service = service;
+        this.password = password;
+        this.mail = mail;
+        this.photo = photo;
         // this.evenement = event;
+      
+        //   User user = userService.createUser(mail, password, photo, "prestataire");
     }
 
     public long getId() {
@@ -80,6 +92,38 @@ public class Prestataire {
 
     public void setEventActuel(Evenement eventActuel) {
         this.evenement = eventActuel;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Evenement getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
     }
 
 }
