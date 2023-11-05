@@ -2,20 +2,22 @@ package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
-import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ClientService {
+
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Autowired
     private ClientRepository clientRepository;
     @Autowired
@@ -48,6 +50,7 @@ public class ClientService {
         client.setPrenom(prenom);
         client.setMail(mail);
         client.setPhoto(photo);
+        client.setPassword(passwordEncoder.encode(password));
         // Assurez-vous que l'utilisateur est correctement associé au client si
         // nécessaire.
 
