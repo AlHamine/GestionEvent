@@ -6,7 +6,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,17 +40,16 @@ public class Prestataire {
 
     }
 
-    public Prestataire(String nom, String prenom, String service, String password, String mail, String photo) throws Exception {
-        super();
+    public Prestataire(String nom, String prenom, String service, String mail, String photo)
+            throws Exception {
         this.nom = nom;
         this.prenom = prenom;
         this.service = service;
-        this.password = password;
         this.mail = mail;
         this.photo = photo;
         // this.evenement = event;
-      
-        //   User user = userService.createUser(mail, password, photo, "prestataire");
+
+        // User user = userService.createUser(mail, password, photo, "prestataire");
     }
 
     public long getId() {

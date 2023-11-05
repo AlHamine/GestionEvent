@@ -9,8 +9,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
-import com.team.alpha.backGestionEvent.repository.ClientRepository;
+
 import com.team.alpha.backGestionEvent.service.ClientService;
+
 //Pour les controller 
 @RestController
 @RequestMapping("/client")
