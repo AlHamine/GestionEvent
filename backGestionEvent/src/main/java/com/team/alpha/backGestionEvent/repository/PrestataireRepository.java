@@ -7,7 +7,6 @@ import com.team.alpha.backGestionEvent.model.Prestataire;
 /**
  * ClientRepository
  */
-public interface PrestataireRepository extends CrudRepository<Prestataire,Long> {
+public interface PrestataireRepository extends CrudRepository<Prestataire, Long> {
 
-    
-} 
+}
