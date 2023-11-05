@@ -43,6 +43,7 @@ public class PrestataireService {
 
         // Créez un prestataire et associez-le à l'utilisateur
         Prestataire prestataire = new Prestataire(nom, prenom, service, mail, photo);
+        prestataire.setPassword(passwordEncoder.encode(password));
         // Enregistrez le prestataire en base de données
         return prestataireRepository.save(prestataire);
     }
@@ -57,7 +58,7 @@ public class PrestataireService {
             prestataire.setPrenom(updatedPrestataire.getPrenom());
             prestataire.setService(updatedPrestataire.getService());
             prestataire.setMail(updatedPrestataire.getMail());
-            prestataire.setPassword(passwordEncoder.encode(updatedPrestataire.getPassword()));
+            prestataire.setPassword(updatedPrestataire.getPassword());
             prestataire.setPhoto(updatedPrestataire.getPhoto());
 
             Optional<User> updatedUser = userRepository.findByMail(prestataire.getMail());

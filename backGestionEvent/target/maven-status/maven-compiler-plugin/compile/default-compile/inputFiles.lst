@@ -16,6 +16,7 @@
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/LoginController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/PrestataireRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/UserService.java
+/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/PrestataireController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Prestataire.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Client.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/SecurityConfig.java
