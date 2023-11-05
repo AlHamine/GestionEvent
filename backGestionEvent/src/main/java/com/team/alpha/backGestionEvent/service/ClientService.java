@@ -4,6 +4,7 @@ import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
+    @Autowired
+    private UserRepository userRepository;
+
     @Autowired
     private UserService userService;
 
@@ -33,7 +37,6 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
-  
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService
@@ -60,6 +63,9 @@ public class ClientService {
             client.setNom(updatedClient.getNom());
             client.setPrenom(updatedClient.getPrenom());
             client.setMail(updatedClient.getMail());
+            Optional<User> updatedUser = userRepository.findByMail(client.getMail());
+            userService.updateUser(id, null, null, null, null)(updatedUser.get().getId());
+
             // Vous pouvez ajouter d'autres champs ici
             return clientRepository.save(client);
         } else {
@@ -71,6 +77,8 @@ public class ClientService {
     public boolean deleteClient(Long id) {
         Optional<Client> client = clientRepository.findById(id);
         if (client.isPresent()) {
+            Optional<User> deletedUser = userRepository.findByMail(client.get().getMail());
+            userService.deleteUser(deletedUser.get().getId());
             clientRepository.deleteById(id);
             return true;
         }
