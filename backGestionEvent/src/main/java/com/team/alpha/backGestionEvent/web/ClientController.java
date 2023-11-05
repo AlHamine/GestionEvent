@@ -6,31 +6,43 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
 import com.team.alpha.backGestionEvent.service.ClientService;
-
-// @RestController
-// public class ClientController {
-//     @Autowired
-//     private ClientRepository cRepository;
-
-//     @RequestMapping("/client")
-//     public Iterable<Client> getClients() {
-//         return cRepository.findAll();
-//     }
 //Pour les controller 
 @RestController
 @RequestMapping("/client")
 public class ClientController {
-
     @Autowired
     private ClientService clientService;
+
+    @GetMapping
+    public Iterable<Client> getAllClients() {
+        return clientService.getAllClients();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Client> getClientById(@PathVariable Long id) {
+        return clientService.getClientById(id);
+    }
+
+    @PostMapping
+    public Client createClient(@RequestParam String nom, @RequestParam String prenom, @RequestParam String mail,
+            @RequestParam String photo, @RequestParam String password) throws Exception {
+        return clientService.createClient(nom, prenom, mail, photo, password);
+    }
+
+    @PutMapping("/{id}")
+    public Client updateClient(@PathVariable Long id, @RequestBody Client updatedClient) {
+        return clientService.updateClient(id, updatedClient);
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean deleteClient(@PathVariable Long id) {
+        return clientService.deleteClient(id);
+    }
 
     @GetMapping("/profile")
     public ResponseEntity<Client> getClientProfile(@AuthenticationPrincipal User user) {
