@@ -1,0 +1,22 @@
+{
+    "sourceFile": "src/main/java/com/team/alpha/backGestionEvent/model/Prestataire.java",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1699306315711,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1699306362445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,9 +24,9 @@\n     private String service;\n     private String password;\n     private String mail;\n     private String photo;\n-    // Pour pouvoir ajouter la note a prestataire\n+    //Pour pouvoir ajouter la note a prestataire\n     // **************************************************\n     private Integer note;\n     // **************************************************\n \n"
+                }
+            ],
+            "date": 1699306315711,
+            "name": "Commit-0",
+            "content": "package com.team.alpha.backGestionEvent.model;\n\nimport com.fasterxml.jackson.annotation.JsonIgnoreProperties;\n\nimport jakarta.persistence.Entity;\nimport jakarta.persistence.GeneratedValue;\nimport jakarta.persistence.GenerationType;\nimport jakarta.persistence.Id;\nimport jakarta.persistence.JoinColumn;\nimport jakarta.persistence.ManyToOne;\n\n/**\n * Prestataire\n */\n@JsonIgnoreProperties({ \"hibernateLazyInitializer\", \"handler\" })\n\n@Entity\npublic class Prestataire {\n    @Id\n    @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private long id;\n    private String nom;\n    private String prenom;\n    private String service;\n    private String password;\n    private String mail;\n    private String photo;\n    //Pour pouvoir ajouter la note a prestataire\n    // **************************************************\n    private Integer note;\n    // **************************************************\n\n    // @ManyToOne\n    // @JoinColumn(name = \"evenement\")\n    @ManyToOne\n    @JoinColumn(name = \"evenement_id\")\n    private Evenement evenement;\n\n    // private Evenement event=null;\n    public Prestataire() {\n\n    }\n\n    public Prestataire(String nom, String prenom, String service, String mail, String photo)\n            throws Exception {\n        this.nom = nom;\n        this.prenom = prenom;\n        this.service = service;\n        this.mail = mail;\n        this.photo = photo;\n        // this.evenement = event;\n\n        // User user = userService.createUser(mail, password, photo, \"prestataire\");\n    }\n\n    public long getId() {\n        return id;\n    }\n\n    public void setId(long id) {\n        this.id = id;\n    }\n\n    public String getNom() {\n        return nom;\n    }\n\n    public void setNom(String nom) {\n        this.nom = nom;\n    }\n\n    public String getPrenom() {\n        return prenom;\n    }\n\n    public void setPrenom(String prenom) {\n        this.prenom = prenom;\n    }\n\n    public String getService() {\n        return service;\n    }\n\n    public void setService(String service) {\n        this.service = service;\n    }\n\n    public Evenement getEventActuel() {\n        return evenement;\n    }\n\n    public void setEventActuel(Evenement eventActuel) {\n        this.evenement = eventActuel;\n    }\n\n    public String getPassword() {\n        return password;\n    }\n\n    public void setPassword(String password) {\n        this.password = password;\n    }\n\n    public String getMail() {\n        return mail;\n    }\n\n    public void setMail(String mail) {\n        this.mail = mail;\n    }\n\n    public String getPhoto() {\n        return photo;\n    }\n\n    public void setPhoto(String photo) {\n        this.photo = photo;\n    }\n\n    public Evenement getEvenement() {\n        return evenement;\n    }\n\n    public void setEvenement(Evenement evenement) {\n        this.evenement = evenement;\n    }\n\n    public Integer getNote() {\n        return note;\n    }\n\n    public void setRating(Integer note) {\n        this.note = note;\n    }\n\n}"
+        }
+    ]
+}

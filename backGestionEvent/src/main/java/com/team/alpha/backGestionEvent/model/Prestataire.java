@@ -1,9 +1,6 @@
 package com.team.alpha.backGestionEvent.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +25,10 @@ public class Prestataire {
     private String password;
     private String mail;
     private String photo;
+    // Pour pouvoir ajouter la note a prestataire
+    // **************************************************
+    private Integer note;
+    // **************************************************
 
     // @ManyToOne
     // @JoinColumn(name = "evenement")
@@ -122,6 +123,14 @@ public class Prestataire {
 
     public void setEvenement(Evenement evenement) {
         this.evenement = evenement;
+    }
+
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setRating(Integer note) {
+        this.note = note;
     }
 
 }
