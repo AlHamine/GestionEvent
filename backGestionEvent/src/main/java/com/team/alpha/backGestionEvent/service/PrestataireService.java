@@ -61,7 +61,7 @@ public class PrestataireService {
             prestataire.setPassword(updatedPrestataire.getPassword());
             prestataire.setPhoto(updatedPrestataire.getPhoto());
 
-            Optional<User> updatedUser = userRepository.findByMail(prestataire.getMail());
+            Optional<User> updatedUser = userRepository.findByMail(existingPrestataire.get().getMail());
             User user = userService.updateUser(id, prestataire.getMail(), prestataire.getPassword(),
                     prestataire.getPhoto(),
                     "prestataire");

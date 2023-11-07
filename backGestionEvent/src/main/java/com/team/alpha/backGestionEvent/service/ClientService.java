@@ -68,7 +68,7 @@ public class ClientService {
             client.setPhoto(updatedClient.getPhoto());
             client.setPassword(updatedClient.getPassword());
             client.setMail(updatedClient.getMail());
-            Optional<User> updatedUser = userRepository.findByMail(client.getMail());
+            Optional<User> updatedUser = userRepository.findByMail(existingClient.get().getMail());
             User user = userService.updateUser(id, client.getMail(), client.getPassword(), client.getPhoto(), "client");
             // Vous pouvez ajouter d'autres champs ici
             return clientRepository.save(client);
