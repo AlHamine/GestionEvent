@@ -59,7 +59,7 @@ public class GestionEventApplication implements CommandLineRunner {
 				null);
 		Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
 				"keba@gmail.com", null);
-		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "Receptrice", "123",
+		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
 				"nagato@gmail.com",
 				null);
 		prepository.saveAll(Arrays.asList(p1, p2, p3));
