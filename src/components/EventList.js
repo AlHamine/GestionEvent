@@ -10,7 +10,7 @@ import AddEvent from "./AddEvent.js";
 
 function EventList() {
   const [events, setEvents] = useState([]);
-  // const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchEvents();
@@ -40,6 +40,37 @@ function EventList() {
         }
       })
       .catch((err) => console.error(err));
+  };
+
+  const updateEvent = (event, link) => {
+    fetch(link, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(event),
+    })
+      .then((response) => {
+        if (response.ok) {
+          fetchEvents();
+        } else {
+          alert("Something went wrong !");
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  const onDelClick = (url) => {
+    if (window.confirm("Are you sure to delete ?")) {
+      fetch(url, { method: "DELETE" })
+        .then((response) => {
+          if (response.ok) {
+            fetchEvents();
+            setOpen(true);
+          } else {
+            alert("Quelque chose s'est mal passé !");
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   return (
