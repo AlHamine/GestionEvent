@@ -1,15 +1,16 @@
 import { Button, Stack, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SERVER_URL } from "../constants";
 import EventList from "./EventList.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
 import About from "./About.js";
+import ChatComponent from "./Chat.js";
 
 // Exportez la fonction logout
 // export { logout };
 
-function Login() {
+function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -20,6 +21,19 @@ function Login() {
   };
 
   const [open, setOpen] = useState(false);
+  // Fonction de rappel pour mettre à jour estAuthentifie dans le composant parent
+  const setEstAuthentifieCallback = (newValue) => {
+    setAuth(newValue);
+    // Mettez à jour estAuthentifie dans le composant parent
+    setEstAuthentifie(newValue);
+  };
+
+  // Lorsque isAuthenticated change, appelez la fonction de rappel
+  useEffect(() => {
+    setEstAuthentifieCallback(isAuthenticated);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticated]);
+
   const login = () => {
     fetch(SERVER_URL + "login", {
       method: "POST",
@@ -37,7 +51,7 @@ function Login() {
       })
       .catch((err) => console.error(err));
   };
-  const logout = () => {
+  const onLogout = () => {
     sessionStorage.removeItem("jwt");
     setAuth(false);
   };
@@ -48,7 +62,8 @@ function Login() {
         <ResponsiveAppBar />
         <EventList />
         <About />
-        <Button onClick={logout}>Click me ?</Button>
+        <Button onClick={onLogout}>Click me ?</Button>
+        <ChatComponent />
       </div>
     );
   } else {

@@ -1,33 +1,21 @@
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import { SERVER_URL } from "../constants";
-import Login from "./Login";
-
-function Logout() {
-  const [isAuthenticated, setAuth] = useState(false);
-
-  const logout = ({ autho }) => {
-    fetch(SERVER_URL + "login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(user),
-    })
-      .then((res) => {
-        const jwtToken = res.headers.get("Authorization");
-        if (jwtToken != null) {
-          //   sessionStorage.setItem("jwt", jwtToken);
-          sessionStorage.removeItem("jwt");
-          setAuth(false);
-          <Login />;
-        }
-      })
-      .catch((err) => console.error(err));
+import React from "react";
+import { Logout } from "@mui/icons-material";
+function Logouter() {
+  // Fonction de déconnexion
+  const handleLogout = () => {
+    // Supprimez le jeton JWT du stockage local
+    localStorage.removeItem("jwtToken");
+    // Redirigez l'utilisateur vers la page de connexion
+    window.location.href = "/"; // Vous pouvez utiliser React Router pour la navigation
   };
+
   return (
-    <Button color="inherit" onClick={logout}>
-      Logout
-    </Button>
+    <div>
+      <button onClick={handleLogout}>
+        <Logout color="warning"  ></Logout>
+        Déconnexion</button>
+    </div>
   );
 }
 
-export default Logout;
+export default Logouter;

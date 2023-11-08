@@ -24,6 +24,7 @@ function EventList() {
       .then((response) => response.json())
       .then((data) => setEvents(data._embedded.evenements))
       .catch((err) => console.error(err));
+    console.log(token);
   };
 
   const addEvent = (event) => {
@@ -76,6 +77,7 @@ function EventList() {
           </Card>
         ))}
       </div>
+    
     </React.Fragment>
   );
 }
