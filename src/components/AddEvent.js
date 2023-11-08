@@ -17,11 +17,10 @@ function AddEvent(props) {
   const [open, setOpen] = useState(false);
   const [event, setEvent] = useState({
     nom: "",
-    categorie: "",
-    lieu: "",
     date: "",
-    year: "",
-    price: "",
+    desciption: "",
+    lieu: "",
+    organisateur: "",
   });
 
   const handleClickOpen = () => {
@@ -97,10 +96,17 @@ function AddEvent(props) {
               onChange={handleChange}
             />
             <TextField
-              label="Categorie"
-              name="eventCategorie"
+              label="Date"
+              name="date"
               variant="standard"
-              value={event.categorie}
+              value={event.date}
+              // onChange={handleChange}
+            />
+            <TextField
+              label="desciption"
+              name="eventDesciption"
+              variant="standard"
+              value={event.desciption}
               onChange={handleChange}
             />
             <TextField
@@ -110,25 +116,12 @@ function AddEvent(props) {
               value={event.lieu}
               onChange={handleChange}
             />
+
             <TextField
-              label="Date"
-              name="date"
+              label="Organisateur"
+              name="organisateur"
               variant="standard"
-              value={event.date}
-              // onChange={handleChange}
-            />
-            <TextField
-              label="Year"
-              name="year"
-              variant="standard"
-              value={event.year}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Price"
-              name="price"
-              variant="standard"
-              value={event.price}
+              value={event.organisateur}
               onChange={handleChange}
             />
           </Stack>

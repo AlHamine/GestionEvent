@@ -20,6 +20,8 @@ import AirlinesIcon from "@mui/icons-material/Airlines";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 
+import Logout from "./Logout";
+
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -207,6 +209,21 @@ function ResponsiveAppBar() {
                     <Typography textAlign="center">{setting}</Typography>
                   </MenuItem>
                 ))} */}
+                {/* {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleProfileClick}>
+                    {setting === "Profile" ? (
+                      <Link
+                        to="/profile"
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        Profile
+                      </Link>
+                    ) : (
+                      <Typography textAlign="center">{setting}</Typography>
+                    )}
+                  </MenuItem>
+                ))} */}
+
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleProfileClick}>
                     {setting === "Profile" ? (
@@ -216,6 +233,8 @@ function ResponsiveAppBar() {
                       >
                         Profile
                       </Link>
+                    ) : setting === "Logout" ? (
+                      <Logout /> // Add the Logout component here
                     ) : (
                       <Typography textAlign="center">{setting}</Typography>
                     )}
