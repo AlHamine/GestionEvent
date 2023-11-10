@@ -64,9 +64,10 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-		// http.csrf().disable().cors().and()
-		// .authorizeHttpRequests().anyRequest().permitAll();
+		http.csrf().disable().cors().and()
+				.authorizeHttpRequests().anyRequest().permitAll();
 		return http
+<<<<<<< HEAD
 				.csrf(csrf -> csrf.disable())
 				.cors(withDefaults())
 				.sessionManagement(management -> management
@@ -111,6 +112,21 @@ public class SecurityConfig {
 				.addFilterBefore(authenticationFilter,
 						UsernamePasswordAuthenticationFilter.class)
 				.httpBasic(withDefaults())
+=======
+				// .csrf(csrf -> csrf.disable())
+				// .cors(withDefaults())
+				// .sessionManagement(management -> management
+				// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				// .authorizeRequests(authorizeRequests -> authorizeRequests
+				// .requestMatchers(HttpMethod.POST, "/login").permitAll()
+				// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+				// .requestMatchers(HttpMethod.POST, "/client").permitAll()
+				// .anyRequest().authenticated())
+				// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+				// .addFilterBefore(authenticationFilter,
+				// UsernamePasswordAuthenticationFilter.class)
+				// .httpBasic(withDefaults())
+>>>>>>> 4e71276 (Mettre a niveau mon repertoire avant le prochain pull)
 				.build();
 	}
 <<<<<<< HEAD

@@ -19,7 +19,7 @@ import com.team.alpha.backGestionEvent.model.User;
 <<<<<<< HEAD
 =======
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
-import com.team.alpha.backGestionEvent.repository.ReviwRepository;
+// import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 >>>>>>> 3145185 (Revision de la structure du backend)
 import com.team.alpha.backGestionEvent.service.PrestataireService;
@@ -38,8 +38,8 @@ public class PrestataireController {
     @Autowired
     private PrestataireRepository prestataireRepository;
 
-    @Autowired
-    private ReviwRepository reviwRepository;
+    // @Autowired
+    // private ReviwRepository reviwRepository;
 
 >>>>>>> 3145185 (Revision de la structure du backend)
     @GetMapping
@@ -81,4 +81,8 @@ public class PrestataireController {
         Optional<Prestataire> prestataire = prestataireService.getPrestataireById(user.getId());
         return new ResponseEntity<>(prestataire.get(), HttpStatus.OK);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4e71276 (Mettre a niveau mon repertoire avant le prochain pull)
 }
