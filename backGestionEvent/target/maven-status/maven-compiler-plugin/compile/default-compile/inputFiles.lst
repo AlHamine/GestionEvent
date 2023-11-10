@@ -1,12 +1,12 @@
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Evenement.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/EmailController.java
-/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ReviwRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/PrestataireChatController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ClientRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/ClientService.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/UserDetailsServiceImpl.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/LoginController.java
+/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ReviewController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/PrestataireRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientChatController.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/UserService.java
@@ -20,6 +20,7 @@
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/User.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/JwtService.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthenticationFilter.java
+/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ReviewRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/PrestataireService.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/ChatMessage.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/CustomUserDetailsService.java
