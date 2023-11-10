@@ -74,8 +74,10 @@ public class GestionEventApplication implements CommandLineRunner {
 
 		// Envoyer l-email
 
-		emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com", "atinkindjeeri999@gmail.com",
-				"Réponse a votre demande de prestatation",
-				"Bonjour .\n J e vous remercie pour votre demande. \n Votre événement sera assuré par un service de qualite.\n Cordialement,Monsieur|Madame.");
+		// emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com",
+		// "atinkindjeeri999@gmail.com",
+		// "Réponse a votre demande de prestatation",
+		// "Bonjour .\n J e vous remercie pour votre demande. \n Votre événement sera
+		// assuré par un service de qualite.\n Cordialement,Monsieur|Madame.");
 	}
 }

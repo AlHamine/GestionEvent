@@ -1,4 +1,5 @@
 package com.team.alpha.backGestionEvent.security;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 import java.util.Arrays;
@@ -25,42 +26,62 @@ import com.team.alpha.backGestionEvent.security.*;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig{
-	
+public class SecurityConfig {
+
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
-	
+
 	@Autowired
 	private AuthEntryPoint exceptionHandler;
-	
+
 	@Autowired
 	private AuthenticationFilter authenticationFilter;
-	
+
 	@Bean
-	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) 
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-	
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// 	return http
-	// 			.csrf(csrf -> csrf.disable())
-	// 			.cors(withDefaults())
-	// 			.sessionManagement(management -> management
-	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
-	// 					.requestMatchers(HttpMethod.POST, "/login").permitAll()
-	// 					.anyRequest().authenticated())
-	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// 			.addFilterBefore(authenticationFilter,
-	// 					UsernamePasswordAuthenticationFilter.class)
-	// 			.httpBasic(withDefaults())
-	// 			.build();
-	// }
 
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return
+	// .csrf(csrf -> csrf.disable())
+	// .cors(withDefaults())
+	// .sessionManagement(management -> management
+	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	// .authorizeRequests(authorizeRequests -> authorizeRequests
+	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
+	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
+	// .anyRequest().authenticated())
+	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+	// .addFilterBefore(authenticationFilter,
+	// UsernamePasswordAuthenticationFilter.class)
+	// .httpBasic(withDefaults())
+	// http.build();
 
-	
+	@Bean
+	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+		// http.csrf().disable().cors().and()
+		// .authorizeHttpRequests().anyRequest().permitAll();
+		return http
+				.csrf(csrf -> csrf.disable())
+				.cors(withDefaults())
+				.sessionManagement(management -> management
+						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeRequests(authorizeRequests -> authorizeRequests
+						.requestMatchers(HttpMethod.POST, "/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+						.anyRequest().authenticated())
+				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+				.addFilterBefore(authenticationFilter,
+						UsernamePasswordAuthenticationFilter.class)
+				.httpBasic(withDefaults())
+				.build();
+	}
+
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -74,14 +95,12 @@ public class SecurityConfig{
 		source.registerCorsConfiguration("/**", config);
 		return source;
 	}
-	
+
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
-			throws Exception  {
+			throws Exception {
 		auth.userDetailsService(userDetailsService)
-		.passwordEncoder(new BCryptPasswordEncoder());
+				.passwordEncoder(new BCryptPasswordEncoder());
 	}
-	
-	
-	
+
 }

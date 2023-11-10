@@ -6,11 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+<<<<<<< HEAD
+=======
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+>>>>>>> 3145185 (Revision de la structure du backend)
 import org.springframework.web.bind.annotation.*;
 
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.User;
+<<<<<<< HEAD
+=======
+import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
+import com.team.alpha.backGestionEvent.repository.ReviwRepository;
+import com.team.alpha.backGestionEvent.repository.UserRepository;
+>>>>>>> 3145185 (Revision de la structure du backend)
 import com.team.alpha.backGestionEvent.service.PrestataireService;
 
 //Pour les controller
@@ -20,6 +31,17 @@ public class PrestataireController {
     @Autowired
     private PrestataireService prestataireService;
 
+<<<<<<< HEAD
+=======
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PrestataireRepository prestataireRepository;
+
+    @Autowired
+    private ReviwRepository reviwRepository;
+
+>>>>>>> 3145185 (Revision de la structure du backend)
     @GetMapping
     public Iterable<Prestataire> getAllClients() {
         return prestataireService.getAllPrestataires();
@@ -30,12 +52,13 @@ public class PrestataireController {
         return prestataireService.getPrestataireById(id);
     }
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @PostMapping
-    public Prestataire createPrestataire(@RequestParam String nom, @RequestParam String prenom,
-            @RequestParam String mail,
-            @RequestParam String photo, @RequestParam String password) throws Exception {
-        return prestataireService.createPrestataire(nom, prenom, prenom, password,
-                mail, photo);
+    public Prestataire createPrestataire(@RequestBody Prestataire p) throws Exception {
+        User user = new User(p.getMail(), passwordEncoder.encode(p.getPassword()), p.getPhoto(), "prestataire");
+        userRepository.save(user);
+        return prestataireService.createPrestataire(p);
 
     }
 

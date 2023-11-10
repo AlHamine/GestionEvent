@@ -22,17 +22,22 @@ public class PrestataireService {
     private UserRepository userRepository;
     private final PrestataireRepository prestataireRepository;
 
-    @Autowired
     public PrestataireService(PrestataireRepository prestataireRepository) {
         this.prestataireRepository = prestataireRepository;
     }
 
+    // @GetMapping
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
     }
 
     public Optional<Prestataire> getPrestataireById(Long id) {
         return prestataireRepository.findById(id);
+    }
+
+    public Prestataire createPrestataire(Prestataire p) {
+        p.setPassword(passwordEncoder.encode(p.getPassword()));
+        return prestataireRepository.save(p);
     }
 
     @Transactional
@@ -42,8 +47,7 @@ public class PrestataireService {
         User user = userService.createUser(mail, password, photo, "prestataire");
 
         // Créez un prestataire et associez-le à l'utilisateur
-        Prestataire prestataire = new Prestataire(nom, prenom, service, mail, photo);
-        prestataire.setPassword(passwordEncoder.encode(password));
+        Prestataire prestataire = new Prestataire(nom, prenom, service, mail, photo, passwordEncoder.encode(password));
         // Enregistrez le prestataire en base de données
         return prestataireRepository.save(prestataire);
     }
@@ -83,3 +87,8 @@ public class PrestataireService {
         return false;
     }
 }
+/*
+ * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"
+ * mail="mamadoudia@gmail.com" service="Presentation" password="123456789"
+ * Content-Type:application/json
+ */

@@ -1,7 +1,6 @@
 package com.team.alpha.backGestionEvent.service;
 
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,33 +13,34 @@ public class UserService {
     private final UserRepository userRepository;
 
     // @Autowired
-    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); //injection d'un encodeur de mot de passe.
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // injection d'un encodeur de mot de
+                                                                                 // passe.
 
-    @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-     @Transactional
-     public User createUser(String mail, String password, String photo, String role) {
-         // Vérifiez si un utilisateur avec la même adresse e-mail existe déjà
-         // User existingUser = userRepository.findByMail(mail).get();
+    @Transactional
+    public User createUser(String mail, String password, String photo, String role) {
+        // Vérifiez si un utilisateur avec la même adresse e-mail existe déjà
+        // User existingUser = userRepository.findByMail(mail).get();
 
-         if (userRepository.findByMail(mail).isPresent()) {
-             // L'utilisateur avec cette adresse e-mail existe déjà, renvoyez une erreur.
-             throw new RuntimeException("L'utilisateur avec cette adresse e-mail existe déjà.");
-         }
+        if (userRepository.findByMail(mail).isPresent()) {
+            // L'utilisateur avec cette adresse e-mail existe déjà, renvoyez une erreur.
+            throw new RuntimeException("L'utilisateur avec cette adresse e-mail existe déjà.");
+        }
 
-         // Créez un nouvel utilisateur
-         User user = new User();
-         user.setMail(mail);
-         user.setPassword(passwordEncoder.encode(password));
-         user.setPhoto(photo);
-         user.setRole(role);
+        // Créez un nouvel utilisateur
+        User user = new User();
+        user.setMail(mail);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setPhoto(photo);
+        user.setRole(role);
 
-         // Enregistrez le nouvel utilisateur en base de données
-         return userRepository.save(user);
-     }
+        // Enregistrez le nouvel utilisateur en base de données
+        return userRepository.save(user);
+    }
+
     @Transactional
     public User updateUser(Long userId, String newMail, String newPassword, String newPhoto, String newRole) {
         // Recherchez l'utilisateur existant par son ID
@@ -62,7 +62,8 @@ public class UserService {
             throw new RuntimeException("L'utilisateur n'a pas été trouvé.");
         }
     }
-     @Transactional
+
+    @Transactional
     public void deleteUser(Long userId) {
         // Recherchez l'utilisateur existant par son ID
         Optional<User> existingUser = userRepository.findById(userId);
