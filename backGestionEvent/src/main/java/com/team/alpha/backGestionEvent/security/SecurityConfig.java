@@ -73,7 +73,7 @@ public class SecurityConfig {
 				.authorizeRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(HttpMethod.POST, "/login").permitAll()
 						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client").permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
