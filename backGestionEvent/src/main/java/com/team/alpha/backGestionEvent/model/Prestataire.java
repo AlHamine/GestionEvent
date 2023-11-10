@@ -2,12 +2,16 @@ package com.team.alpha.backGestionEvent.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 <<<<<<< HEAD
 import com.team.alpha.backGestionEvent.service.UserService;
 
 =======
 >>>>>>> 3145185 (Revision de la structure du backend)
+=======
+import jakarta.persistence.Column;
+>>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +33,9 @@ public class Prestataire {
     private String prenom;
     private String service;
     private String password;
-    private String mail;
+    @Column(nullable=false, unique=true)
+	private String mail;
+	
     private String photo;
 
     // @ManyToOne

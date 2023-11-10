@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,10 +20,11 @@ import jakarta.persistence.OneToMany;
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idc;
     private String nom;
     private String prenom;
     private String password;
+    @Column(nullable = false, unique = true)
     private String mail;
     private String photo;
     @JsonIgnore
@@ -37,6 +39,17 @@ public class Client {
     // @Autowired
     // private UserService userService; // Injectez le service UserService.
 
+    public Client(long idc, String nom, String prenom, String mail) {
+        this.idc = idc;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.mail = mail;
+    }
+
+    public Client(long idc) {
+        this.idc = idc;
+    }
+
     public Client(String nom, String prenom, String password, String mail, String photo) throws Exception {
         this.nom = nom;
         this.prenom = prenom;
@@ -48,13 +61,13 @@ public class Client {
 
     }
 
-    public long getId() {
-        return id;
-    }
+    // public long getId() {
+    // return id;
+    // }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    // public void setId(long id) {
+    // this.id = id;
+    // }
 
     public String getNom() {
         return nom;
@@ -102,6 +115,18 @@ public class Client {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Client orElseThrow(Object object) {
+        return null;
+    }
+
+    public long getIdc() {
+        return idc;
+    }
+
+    public void setIdc(long idc) {
+        this.idc = idc;
     }
 
 }

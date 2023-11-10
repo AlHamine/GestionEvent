@@ -24,8 +24,8 @@ import java.util.Date;
 public class Evenement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    private String nom;
+    private long idEvent;
+    private String nomEvent;
     private Date date;
     private String desciption;
     private String lieu;
@@ -43,7 +43,7 @@ public class Evenement {
     }
 
     public Evenement(String nom, Date date, String desciption, String lieu, Client organisateur) {
-        this.nom = nom;
+        this.nomEvent = nom;
         this.date = date;
         this.desciption = desciption;
         this.lieu = lieu;
@@ -51,23 +51,9 @@ public class Evenement {
         this.prestataires = new ArrayList<Prestataire>();
     }
 
-    
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
+   
     public String getDesciption() {
         return desciption;
     }
@@ -109,6 +95,22 @@ public class Evenement {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getNomEvent() {
+        return nomEvent;
+    }
+
+    public void setNomEvent(String nomEvent) {
+        this.nomEvent = nomEvent;
+    }
+
+    public long getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(long idEvent) {
+        this.idEvent = idEvent;
     }
 
 }

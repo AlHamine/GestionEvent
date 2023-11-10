@@ -65,9 +65,12 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/PrestataireService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/LoginController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Client.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/EventService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/UserService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/JwtService.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/EventController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/WebSocketConfig.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/Valid.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientChatController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ReviwRepository.java
@@ -79,7 +82,9 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthenticationFilter.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/UserRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/EvenementRepository.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/ClientDetailsServiceImpl.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthEntryPoint.java
+<<<<<<< HEAD
 >>>>>>> 50a1b6e (Supression des fichiers explicatifs non necessaire)
 =======
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/WebSocketConfig.java
@@ -87,3 +92,6 @@
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Prestataire.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/SecurityConfig.java
 >>>>>>> 65c6d69 (Remise a jour du github)
+=======
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ChatController.java
+>>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)

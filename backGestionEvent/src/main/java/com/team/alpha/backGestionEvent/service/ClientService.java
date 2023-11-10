@@ -25,9 +25,19 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
+<<<<<<< HEAD
 
+=======
+// Nouveau service provider
+    @Autowired
+>>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    public Client getClientByMail(String mail) {
+       return clientRepository.findByMail(mail).get();
+
     }
 
     public Iterable<Client> getAllClients() {
