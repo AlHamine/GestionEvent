@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Dialog,
   DialogActions,
@@ -17,7 +17,6 @@ function AddEvent(props) {
   const [open, setOpen] = useState(false);
   const [event, setEvent] = useState({
     nom: "",
-    date: "",
     desciption: "",
     lieu: "",
     organisateur: "",
@@ -111,7 +110,7 @@ function AddEvent(props) {
               name="date"
               variant="standard"
               value={event.date}
-              // onChange={handleChange}
+              onChange={handleChange}
             />
             <TextField
               label="Desciption"
