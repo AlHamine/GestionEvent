@@ -1,7 +1,6 @@
 package com.team.alpha.backGestionEvent.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -41,13 +40,15 @@ public class Prestataire {
 
     }
 
-    public Prestataire(String nom, String prenom, String service, String mail, String photo)
+    public Prestataire(String nom, String prenom, String service, String mail, String photo, String password)
             throws Exception {
+        // final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         this.nom = nom;
         this.prenom = prenom;
         this.service = service;
         this.mail = mail;
         this.photo = photo;
+        this.password = password;
         // this.evenement = event;
 
         // User user = userService.createUser(mail, password, photo, "prestataire");
@@ -99,6 +100,7 @@ public class Prestataire {
 
     public void setPassword(String password) {
         this.password = password;
+
     }
 
     public String getMail() {
