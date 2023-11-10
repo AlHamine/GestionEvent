@@ -28,6 +28,11 @@ public class ClientController {
     public Optional<Client> getClientById(@PathVariable Long id) {
         return clientService.getClientById(id);
     }
+// Nouveau Controller
+    @GetMapping("/mail")
+    public Client getClientByMail(@RequestParam String mail) {
+        return clientService.getClientByMail(mail);
+    }
 
     @PostMapping
     public Client createClient(@RequestParam String nom, @RequestParam String prenom, @RequestParam String mail,

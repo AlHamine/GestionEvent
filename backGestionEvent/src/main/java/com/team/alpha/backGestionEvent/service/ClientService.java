@@ -25,10 +25,15 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
-
+// Nouveau service provider
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
+    }
+
+    public Client getClientByMail(String mail) {
+       return clientRepository.findByMail(mail).get();
+
     }
 
     public Iterable<Client> getAllClients() {

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.team.alpha.backGestionEvent.model.User;
 
-// @Repository
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByMail(String mail);
 }

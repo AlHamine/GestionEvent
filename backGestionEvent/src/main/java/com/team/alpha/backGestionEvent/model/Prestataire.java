@@ -2,6 +2,7 @@ package com.team.alpha.backGestionEvent.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,9 @@ public class Prestataire {
     private String prenom;
     private String service;
     private String password;
-    private String mail;
+    @Column(nullable=false, unique=true)
+	private String mail;
+	
     private String photo;
     // Pour pouvoir ajouter la note a prestataire
     // **************************************************

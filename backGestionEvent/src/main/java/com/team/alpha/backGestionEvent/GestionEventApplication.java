@@ -51,31 +51,32 @@ public class GestionEventApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Client c1 = clientService.createClient("NDIAYE", "Al Hamine", "oriontheroot@gmail.com", null, "123");
-		Client c2 = clientService.createClient("NDIAYE", "Mouhamadou", "smah.n@univ.zig.sn", null, "123");
-		crepository.saveAll(Arrays.asList(c1, c2));
+	// 	Client c1 = clientService.createClient("NDIAYE", "Al Hamine", "oriontheroot@gmail.com", null, "123");
+	// 	Client c2 = clientService.createClient("NDIAYE", "Mouhamadou", "smah.n@univ.zig.sn", null, "123");
+	// 	crepository.saveAll(Arrays.asList(c1, c2));
 
-		Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
-				null);
-		Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
-				"keba@gmail.com", null);
-		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
-				"nagato@gmail.com",
-				null);
-		prepository.saveAll(Arrays.asList(p1, p2, p3));
+	// 	Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
+	// 			null);
+	// 	Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
+	// 			"keba@gmail.com", null);
+	// 	Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
+	// 			"nagato@gmail.com",
+	// 			null);
+	// 	prepository.saveAll(Arrays.asList(p1, p2, p3));
 
-		Evenement ev1 = new Evenement("Bapteme", new Date(),
-				"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);
+	// 	Evenement ev1 = new Evenement("Bapteme", new Date(),
+	// 			"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);
 
-		Evenement ev2 = new Evenement("Fineraille", new Date(),
-				"Il s'agit d'inhumer un corps humain afin de lui rendre à Dieu", "Yoff", c2);
-		Evenement ev3 = new Evenement("Thiante", new Date(), "Il s'agit de donner de dire louage à Dieu", "Madina Baye",
-				c1);
-		Evenement ev4 = new Evenement("Gamou", new Date(),
-				"Il s'agit de célébrer la naissance du prophète Seydina Mouhamadou Al Hamine", "Madina Baye", c2);
+	// 	Evenement ev2 = new Evenement("Fineraille", new Date(),
+	// 			"Il s'agit d'inhumer un corps humain afin de lui rendre à Dieu", "Yoff", c2);
+	// 	Evenement ev3 = new Evenement("Thiante", new Date(), "Il s'agit de donner de dire louage à Dieu", "Madina Baye",
+	// 			c1);
+	// 	Evenement ev4 = new Evenement("Gamou", new Date(),
+	// 			"Il s'agit de célébrer la naissance du prophète Seydina Mouhamadou Al Hamine", "Madina Baye", c2);
 
-		// ev1.ajouterPrestataire(p2); // Ajouter le Prestataire p2 à l'Evenement ev1
-		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
+	// 	// ev1.ajouterPrestataire(p2); // Ajouter le Prestataire p2 à l'Evenement ev1
+	// 	erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
 
 	}
+	
 }
