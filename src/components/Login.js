@@ -7,9 +7,6 @@ import Snackbar from "@mui/material/Snackbar";
 import About from "./About.js";
 import ChatComponent from "./Chat.js";
 
-// Exportez la fonction logout
-// export { logout };
-
 function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
     username: "",
@@ -51,10 +48,6 @@ function Login({ setEstAuthentifie }) {
       })
       .catch((err) => console.error(err));
   };
-  const onLogout = () => {
-    sessionStorage.removeItem("jwt");
-    setAuth(false);
-  };
 
   if (isAuthenticated) {
     return (
@@ -62,7 +55,6 @@ function Login({ setEstAuthentifie }) {
         <ResponsiveAppBar />
         <EventList />
         <About />
-        <Button onClick={onLogout}>Click me ?</Button>
         <ChatComponent />
       </div>
     );

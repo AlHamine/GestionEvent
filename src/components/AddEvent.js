@@ -8,10 +8,10 @@ import {
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
-import Input from "@mui/material/Input";
-import Box from "@mui/material/Box";
-import Select from "@mui/joy/Select";
-import Option from "@mui/joy/Option";
+// import Input from "@mui/material/Input";
+// import Box from "@mui/material/Box";
+// import Select from "@mui/joy/Select";
+// import Option from "@mui/joy/Option";
 
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
@@ -46,14 +46,14 @@ function AddEvent(props) {
 
   return (
     <div>
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
         }}
-      >
-        <Input
+      > */}
+      {/* <Input
           color="primary"
           disabled={false}
           placeholder="Rechercher un événement"
@@ -71,17 +71,28 @@ function AddEvent(props) {
         >
           <Option value="dahira">Dahira</Option>
           <Option value="meting">Meting</Option>
-        </Select>
+        </Select> */}
 
+      {/* <Button
+        variant="contained"
+        disableElevation
+        sx={{ margin: "0 16px" }}
+        onClick={handleClickOpen}
+      >
+        Créer un événement
+      </Button> */}
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
           variant="contained"
           disableElevation
-          sx={{ margin: "0 16px" }}
           onClick={handleClickOpen}
+          style={{ marginRight: "10px" }}
         >
           Créer un événement
         </Button>
-      </Box>
+      </div>
+
+      {/* </Box> */}
 
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Nouvel événement</DialogTitle>
@@ -103,15 +114,15 @@ function AddEvent(props) {
               // onChange={handleChange}
             />
             <TextField
-              label="desciption"
-              name="eventDesciption"
+              label="Desciption"
+              name="desciption"
               variant="standard"
               value={event.desciption}
               onChange={handleChange}
             />
             <TextField
-              label="lieu"
-              name="eventLieu"
+              label="Lieu"
+              name="lieu"
               variant="standard"
               value={event.lieu}
               onChange={handleChange}

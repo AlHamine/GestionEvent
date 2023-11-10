@@ -10,16 +10,16 @@ import Logouter from "./components/Logout";
 
 function App() {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
-    // const onLogout = () => {
-      
-    //   setEstAuthentifie(false);
-    // };
-  
+  // const onLogout = () => {
+
+  //   setEstAuthentifie(false);
+  // };
+
   const handleLogout = () => {
-   sessionStorage.removeItem("jwt");
-   // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
-   setEstAuthentifie(false);
- };
+    sessionStorage.removeItem("jwt");
+    // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
+    setEstAuthentifie(false);
+  };
   return (
     <Router>
       <Routes>

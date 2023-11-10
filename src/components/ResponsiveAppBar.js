@@ -21,6 +21,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 
 import Logout from "./Logout";
+import Login from "./Login";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -52,6 +53,10 @@ function ResponsiveAppBar() {
     handleCloseUserMenu();
   };
 
+  const handleDesc = () => {
+    return <Login />;
+  };
+
   return (
     <div>
       <AppBar position="static">
@@ -74,7 +79,7 @@ function ResponsiveAppBar() {
               //     textDecoration: "none",
               //   }}
             >
-              <Button
+              {/* <Button
                 variant="text"
                 sx={{
                   mr: 2,
@@ -89,7 +94,26 @@ function ResponsiveAppBar() {
                 <DataArrayIcon />
                 EVENT-PRO
                 <AirlinesIcon />
-              </Button>
+              </Button> */}
+              <Link href="/" passHref>
+                <Button
+                  as="a"
+                  variant="text"
+                  sx={{
+                    mr: 2,
+                    display: { xs: "none", md: "flex" },
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
+                >
+                  <DataArrayIcon />
+                  EVENT-PRO
+                  <AirlinesIcon />
+                </Button>
+              </Link>
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

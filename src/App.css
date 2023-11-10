@@ -69,3 +69,16 @@
 .social-buttons a:hover {
   background-color: #0056b3; /* Hover background color */
 }
+
+/* add */
+.my-stack {
+  display: flex;
+  flex-direction: column;
+  gap: -20px; /* Espace entre les éléments dans la pile */
+}
+
+.search-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
