@@ -2,10 +2,7 @@ package com.team.alpha.backGestionEvent;
 
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
-import java.util.ArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,13 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
-import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
-import com.team.alpha.backGestionEvent.repository.UserRepository;
 import com.team.alpha.backGestionEvent.service.ClientService;
 import com.team.alpha.backGestionEvent.service.PrestataireService;
+import com.team.alpha.backGestionEvent.web.EmailController;
 
 @SpringBootApplication
 public class GestionEventApplication implements CommandLineRunner {
@@ -34,8 +30,7 @@ public class GestionEventApplication implements CommandLineRunner {
 	PrestataireService prestataireService;
 
 	@Autowired
-	private UserRepository urepository;
-
+	private EmailController emailController;
 	@Autowired
 	private EvenementRepository erepository;
 
@@ -55,6 +50,7 @@ public class GestionEventApplication implements CommandLineRunner {
 	// 	Client c2 = clientService.createClient("NDIAYE", "Mouhamadou", "smah.n@univ.zig.sn", null, "123");
 	// 	crepository.saveAll(Arrays.asList(c1, c2));
 
+<<<<<<< HEAD
 	// 	Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
 	// 			null);
 	// 	Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
@@ -63,6 +59,16 @@ public class GestionEventApplication implements CommandLineRunner {
 	// 			"nagato@gmail.com",
 	// 			null);
 	// 	prepository.saveAll(Arrays.asList(p1, p2, p3));
+=======
+		Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
+				null);
+		Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
+				"keba@gmail.com", null);
+		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "Receptrice", "123",
+				"nagato@gmail.com",
+				null);
+		prepository.saveAll(Arrays.asList(p1, p2, p3));
+>>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 
 	// 	Evenement ev1 = new Evenement("Bapteme", new Date(),
 	// 			"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);
@@ -77,6 +83,13 @@ public class GestionEventApplication implements CommandLineRunner {
 	// 	// ev1.ajouterPrestataire(p2); // Ajouter le Prestataire p2 à l'Evenement ev1
 	// 	erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
 
+		// Envoyer l-email
+
+		// emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com",
+		// "atinkindjeeri999@gmail.com",
+		// "Réponse a votre demande de prestatation",
+		// "Bonjour .\n J e vous remercie pour votre demande. \n Votre événement sera
+		// assuré par un service de qualite.\n Cordialement,Monsieur|Madame.");
 	}
 	
 }

@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
-
+import com.team.alpha.backGestionEvent.repository.UserRepository;
 import com.team.alpha.backGestionEvent.service.ClientService;
 
 //Pour les controller 
@@ -18,6 +19,9 @@ import com.team.alpha.backGestionEvent.service.ClientService;
 public class ClientController {
     @Autowired
     private ClientService clientService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public Iterable<Client> getAllClients() {
@@ -34,10 +38,13 @@ public class ClientController {
         return clientService.getClientByMail(mail);
     }
 
+    private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @PostMapping
-    public Client createClient(@RequestParam String nom, @RequestParam String prenom, @RequestParam String mail,
-            @RequestParam String photo, @RequestParam String password) throws Exception {
-        return clientService.createClient(nom, prenom, mail, photo, password);
+    public Client createClient(@RequestBody Client c) throws Exception {
+        User user = new User(c.getMail(), passwordEncoder.encode(c.getPassword()), c.getPhoto(), "client");
+        userRepository.save(user);
+        return clientService.createClient(c);
     }
 
     @PutMapping("/{id}")

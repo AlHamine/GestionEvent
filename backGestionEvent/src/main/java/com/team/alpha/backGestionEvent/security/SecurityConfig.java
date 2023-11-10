@@ -42,6 +42,7 @@ public class SecurityConfig {
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
+<<<<<<< HEAD
 
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
@@ -71,6 +72,40 @@ public class SecurityConfig {
 				.authorizeRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*").permitAll()
 						.requestMatchers(HttpMethod.POST, "/event").permitAll()
+=======
+
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return
+	// .csrf(csrf -> csrf.disable())
+	// .cors(withDefaults())
+	// .sessionManagement(management -> management
+	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	// .authorizeRequests(authorizeRequests -> authorizeRequests
+	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
+	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
+	// .anyRequest().authenticated())
+	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+	// .addFilterBefore(authenticationFilter,
+	// UsernamePasswordAuthenticationFilter.class)
+	// .httpBasic(withDefaults())
+	// http.build();
+
+	@Bean
+	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+		// http.csrf().disable().cors().and()
+		// .authorizeHttpRequests().anyRequest().permitAll();
+		return http
+				.csrf(csrf -> csrf.disable())
+				.cors(withDefaults())
+				.sessionManagement(management -> management
+						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeRequests(authorizeRequests -> authorizeRequests
+						.requestMatchers(HttpMethod.POST, "/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client").permitAll()
+>>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
@@ -78,6 +113,7 @@ public class SecurityConfig {
 				.httpBasic(withDefaults())
 				.build();
 	}
+<<<<<<< HEAD
 
 	// Moins de security
 	// @Bean
@@ -104,6 +140,9 @@ public class SecurityConfig {
 
 	
 	
+=======
+
+>>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 	@Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -116,6 +155,7 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
+<<<<<<< HEAD
 	
 	
 	
@@ -135,6 +175,9 @@ public class SecurityConfig {
 	// 			.logout(logout -> logout.logoutSuccessUrl("/"));
 	// 	return http.build();
 	// }
+=======
+
+>>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {

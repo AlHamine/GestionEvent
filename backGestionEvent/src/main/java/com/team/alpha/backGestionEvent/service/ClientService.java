@@ -25,8 +25,12 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
+<<<<<<< HEAD
 // Nouveau service provider
     @Autowired
+=======
+
+>>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
@@ -44,18 +48,20 @@ public class ClientService {
         return clientRepository.findById(id);
     }
 
+    public Client createClient(Client client) {
+        client.setPassword(passwordEncoder.encode(client.getPassword()));
+        return clientRepository.save(client);
+
+    }
+
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService
+        // User user = userService.createUser(mail, password, photo, "client");
         User user = userService.createUser(mail, password, photo, "client");
-
         // Créez un client et associez-le à l'utilisateur
-        Client client = new Client();
-        client.setNom(nom);
-        client.setPrenom(prenom);
-        client.setMail(mail);
-        client.setPhoto(photo);
-        client.setPassword(passwordEncoder.encode(password));
+        Client client = new Client(nom, prenom, passwordEncoder.encode(password), mail, photo);
+
         // Assurez-vous que l'utilisateur est correctement associé au client si
         // nécessaire.
 

@@ -2,11 +2,7 @@ package com.team.alpha.backGestionEvent.model;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
