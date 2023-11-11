@@ -25,15 +25,16 @@ function About() {
                 </p>
               </th>
               <th>
+                <h2>À propos de nous</h2>
                 <p>
                   Our mission is to make your life better by offering
                   high-quality products and exceptional customer service.
                 </p>
               </th>
               <th>
+                <h2>Social Network</h2>
                 <div className="about-us-bar">
                   <div className="social-network-bar">
-                    <h2>Social Network</h2>
                     <div className="social-buttons">
                       <a href="https://www.instagram.com">
                         <InstagramIcon />
@@ -50,12 +51,13 @@ function About() {
               </th>
             </tr>
           </table>
-          {/* <table>
+          <table>
             <thead>
               <tr>
                 <th>Colonne 1</th>
                 <th>Colonne 2</th>
                 <th>Colonne 3</th>
+                <th>Colonne 4</th>
               </tr>
             </thead>
             <tbody>
@@ -63,14 +65,16 @@ function About() {
                 <td>Ligne 1, Colonne 1</td>
                 <td>Ligne 1, Colonne 2</td>
                 <td>Ligne 1, Colonne 3</td>
+                <td>Ligne 1, Colonne 3</td>
               </tr>
               <tr>
                 <td>Ligne 2, Colonne 1</td>
                 <td>Ligne 2, Colonne 2</td>
                 <td>Ligne 2, Colonne 3</td>
+                <td>Ligne 2, Colonne 4</td>
               </tr>
             </tbody>
-          </table> */}
+          </table>
         </Container>
       </AppBar>
     </div>
