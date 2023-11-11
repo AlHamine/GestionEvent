@@ -18,11 +18,6 @@ function App() {
   const handleLogout = () => {
     sessionStorage.removeItem("jwt");
     sessionStorage.removetItem("isLoggedIn");
-<<<<<<< HEAD
-   
-=======
-
->>>>>>> 0404346798f04c5e55680df26ed48735d2cf67bc
     // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
     setEstAuthentifie(false);
   };
