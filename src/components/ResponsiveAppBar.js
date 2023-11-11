@@ -21,7 +21,6 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 
 import Logout from "./Logout";
-import Login from "./Login";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -46,15 +45,7 @@ function ResponsiveAppBar() {
   };
 
   const handleProfileClick = () => {
-    // Check if "Profile" was clicked
-    // if (setting === "Profile") {
-    //   <Profile />;
-    // }
     handleCloseUserMenu();
-  };
-
-  const handleDesc = () => {
-    return <Login />;
   };
 
   return (
@@ -62,39 +53,12 @@ function ResponsiveAppBar() {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            {/* <AdbIcon sx={{ display: { xs: "none", md: "flex" }, mr: 1 }} /> */}
-
             <Typography
               variant="h6"
               noWrap
               component="a"
               href="#app-bar-with-responsive-menu"
-              //   sx={{
-              //     mr: 2,
-              //     display: { xs: "none", md: "flex" },
-              //     fontFamily: "monospace",
-              //     fontWeight: 700,
-              //     letterSpacing: ".3rem",
-              //     color: "inherit",
-              //     textDecoration: "none",
-              //   }}
             >
-              {/* <Button
-                variant="text"
-                sx={{
-                  mr: 2,
-                  display: { xs: "none", md: "flex" },
-                  fontFamily: "monospace",
-                  fontWeight: 700,
-                  letterSpacing: ".3rem",
-                  color: "inherit",
-                  textDecoration: "none",
-                }}
-              >
-                <DataArrayIcon />
-                EVENT-PRO
-                <AirlinesIcon />
-              </Button> */}
               <Link href="/" passHref>
                 <Button
                   as="a"
@@ -225,29 +189,6 @@ function ResponsiveAppBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {/* {settings.map((setting) => (
-                  <MenuItem
-                    key={setting}
-                    onClick={() => handleProfileClick(setting)}
-                  >
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))} */}
-                {/* {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleProfileClick}>
-                    {setting === "Profile" ? (
-                      <Link
-                        to="/profile"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        Profile
-                      </Link>
-                    ) : (
-                      <Typography textAlign="center">{setting}</Typography>
-                    )}
-                  </MenuItem>
-                ))} */}
-
                 {settings.map((setting) => (
                   <MenuItem key={setting} onClick={handleProfileClick}>
                     {setting === "Profile" ? (
@@ -258,7 +199,7 @@ function ResponsiveAppBar() {
                         Profile
                       </Link>
                     ) : setting === "Logout" ? (
-                      <Logout /> // Add the Logout component here
+                      <Logout />
                     ) : (
                       <Typography textAlign="center">{setting}</Typography>
                     )}
