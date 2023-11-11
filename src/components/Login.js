@@ -6,6 +6,10 @@ import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
 import About from "./About.js";
 import ChatComponent from "./Chat.js";
+import CreatePrestataire from "./CreatePrestataire.jsx";
+import CreateCustumer from "./CreateCustumer.jsx";
+import Box from "@mui/material/Box";
+import Backdrop from "@mui/material/Backdrop";
 
 function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
@@ -61,18 +65,50 @@ function Login({ setEstAuthentifie }) {
   } else {
     return (
       <div>
-        <Stack spacing={2} alignItems="center" mt={2}>
-          <TextField name="username" label="Username" onChange={handleChange} />
-          <TextField
-            type="password"
-            name="password"
-            label="Password"
-            onChange={handleChange}
-          />
-          <Button variant="outlined" color="primary" onClick={login}>
-            Login
-          </Button>
-        </Stack>
+        <Backdrop
+          open={true}
+          style={{
+            backgroundColor: "white",
+          }}
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              mt: "10px", // Ajustez la marge supérieure
+              mx: "20px", // Ajustez la marge horizontale
+            }}
+          >
+            <Stack
+              spacing={2}
+              alignItems="center"
+              boxShadow="0 0 5px blue"
+              display="flex"
+              justifyContent="center"
+            >
+              <TextField
+                name="username"
+                label="Username"
+                onChange={handleChange}
+                sx={{ p: "10px" }} // Ajustez la marge intérieure pour le TextField
+              />
+              <TextField
+                type="password"
+                name="password"
+                label="Password"
+                onChange={handleChange}
+                sx={{ p: "10px" }} // Ajustez la marge intérieure pour le TextField
+              />
+              <Button variant="outlined" color="primary" onClick={login}>
+                Login
+              </Button>
+              <CreatePrestataire />
+              <CreateCustumer />
+            </Stack>
+          </Box>
+        </Backdrop>
         <Snackbar
           open={open}
           autoHideDuration={3000}
