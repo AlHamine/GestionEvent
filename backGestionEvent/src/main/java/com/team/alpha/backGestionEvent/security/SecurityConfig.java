@@ -44,6 +44,7 @@ public class SecurityConfig {
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -98,6 +99,8 @@ public class SecurityConfig {
 	// A decommenter une fois qu'on lance la partie front
 =======
 >>>>>>> 8e0880c (Backend updated)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 		return http
@@ -107,21 +110,28 @@ public class SecurityConfig {
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
 <<<<<<< HEAD
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*").permitAll()
 						.requestMatchers(HttpMethod.POST, "/event").permitAll()
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
 =======
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*", "/event",
 								"/websocket/*")
 						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
 						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+<<<<<<< HEAD
 >>>>>>> 8e0880c (Backend updated)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
 						UsernamePasswordAuthenticationFilter.class)
 				.httpBasic(withDefaults())
+<<<<<<< HEAD
 =======
 				// .csrf(csrf -> csrf.disable())
 				// .cors(withDefaults())
@@ -142,6 +152,11 @@ public class SecurityConfig {
 
 =======
 
+=======
+				.build();
+	}
+
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 	// Moins de security
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
@@ -151,6 +166,7 @@ public class SecurityConfig {
 	// return http.build();
 	// }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// @Bean
 	// CorsConfigurationSource corsConfigurationSource() {
@@ -171,6 +187,8 @@ public class SecurityConfig {
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
 =======
 >>>>>>> 8e0880c (Backend updated)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -182,6 +200,7 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 
@@ -209,6 +228,9 @@ public class SecurityConfig {
 =======
 
 >>>>>>> 8e0880c (Backend updated)
+=======
+
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {

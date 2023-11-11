@@ -27,6 +27,7 @@ public class ClientService {
     private UserService userService;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 // Nouveau service provider
@@ -36,6 +37,10 @@ public class ClientService {
 // Nouveau service provider
     @Autowired
 >>>>>>> 8e0880c (Backend updated)
+=======
+// Nouveau service provider
+    @Autowired
+>>>>>>> 27aa8ab (Revision du projet dans le github)
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }

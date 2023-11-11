@@ -56,6 +56,7 @@
 		</dependency>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <!-- Spring Boot Starter for Hibernate -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -92,6 +93,8 @@
     </dependencies>
 >>>>>>> a0cd38b (Version omega du systeme de messagerie)
 =======
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -142,7 +145,10 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+<<<<<<< HEAD
 >>>>>>> 65c6d69 (Remise a jour du github)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 
 	<build>
 		<plugins>

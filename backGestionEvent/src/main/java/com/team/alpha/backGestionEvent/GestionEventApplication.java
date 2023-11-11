@@ -55,8 +55,11 @@ public class GestionEventApplication implements CommandLineRunner {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 8e0880c (Backend updated)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 		Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
 				null);
 		Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
@@ -65,6 +68,7 @@ public class GestionEventApplication implements CommandLineRunner {
 				"nagato@gmail.com",
 				null);
 		prepository.saveAll(Arrays.asList(p1, p2, p3));
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 	// 	Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
@@ -78,6 +82,8 @@ public class GestionEventApplication implements CommandLineRunner {
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
 =======
 >>>>>>> 8e0880c (Backend updated)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 
 		Evenement ev1 = new Evenement("Bapteme", new Date(),
 				"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);

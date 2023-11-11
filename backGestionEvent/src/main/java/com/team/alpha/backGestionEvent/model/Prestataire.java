@@ -1,6 +1,7 @@
 package com.team.alpha.backGestionEvent.model;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 
 <<<<<<< HEAD
@@ -24,6 +25,15 @@ import jakarta.persistence.Column;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 >>>>>>> 8e0880c (Backend updated)
+=======
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -50,6 +60,13 @@ public class Prestataire {
 	private String mail;
 	
     private String photo;
+<<<<<<< HEAD
+=======
+    // Pour pouvoir ajouter la note a prestataire
+    // **************************************************
+    private Integer note;
+    // **************************************************
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 
     // @ManyToOne
     // @JoinColumn(name = "evenement")
@@ -146,7 +163,10 @@ public class Prestataire {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
     public Integer getNote() {
         return note;
     }
@@ -160,8 +180,11 @@ public class Prestataire {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 8e0880c (Backend updated)
 =======
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
     public void setIdp(long idp) {
         this.idp = idp;
     }
@@ -178,5 +201,8 @@ public class Prestataire {
         this.requetes = requetes;
     }
 
+<<<<<<< HEAD
 >>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
+=======
+>>>>>>> 27aa8ab (Revision du projet dans le github)
 }
