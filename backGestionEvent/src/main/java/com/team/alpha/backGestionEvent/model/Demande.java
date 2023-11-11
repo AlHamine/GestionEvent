@@ -29,7 +29,7 @@ public class Demande {
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
-    private Status status;
+    private String status;
     
 
     public Demande() {
