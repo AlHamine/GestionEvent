@@ -29,7 +29,6 @@ function EventList() {
   const [searchTerm, setSearchTerm] = useState(""); // Ajoutez cet état pour le terme de recherche
   const [selectedValue, setSelectedValue] = useState("");
 
-
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -67,7 +66,6 @@ function EventList() {
   const handleClickSelect = (event) => {
     console.log(event.target.value);
     setSelectedValue(event.target.value);
-
   };
 
   return (
