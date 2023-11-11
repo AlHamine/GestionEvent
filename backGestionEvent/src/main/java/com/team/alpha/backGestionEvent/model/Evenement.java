@@ -37,6 +37,9 @@ public class Evenement {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
     private List<Prestataire> prestataires;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
+    private List<Demande> demandes;
 
     public Evenement() {
 
@@ -51,9 +54,6 @@ public class Evenement {
         this.prestataires = new ArrayList<Prestataire>();
     }
 
-
-
-   
     public String getDesciption() {
         return desciption;
     }
@@ -82,9 +82,10 @@ public class Evenement {
         return prestataires;
     }
 
-    public void ajouterPrestataire( Prestataire p) {
+    public void ajouterPrestataire(Prestataire p) {
         this.prestataires.add(p);
     }
+
     public void setPrestataires(List<Prestataire> prestataires) {
         this.prestataires = prestataires;
     }
@@ -112,6 +113,15 @@ public class Evenement {
     public void setIdEvent(long idEvent) {
         this.idEvent = idEvent;
     }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
+    
 
 }
 

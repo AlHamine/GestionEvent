@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 com/team/alpha/backGestionEvent/service/CustomUserDetailsService.class
 com/team/alpha/backGestionEvent/web/LoginController.class
 com/team/alpha/backGestionEvent/web/ClientController.class
@@ -28,3 +29,5 @@ com/team/alpha/backGestionEvent/web/ClientChatController.class
 com/team/alpha/backGestionEvent/web/Valid.class
 com/team/alpha/backGestionEvent/service/ClientService.class
 com/team/alpha/backGestionEvent/repository/ClientRepository.class
+=======
+>>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)

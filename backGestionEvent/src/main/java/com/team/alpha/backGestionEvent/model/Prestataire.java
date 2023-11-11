@@ -1,8 +1,14 @@
 package com.team.alpha.backGestionEvent.model;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Autowired;
 
 <<<<<<< HEAD
+=======
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+>>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -15,6 +21,7 @@ import jakarta.persistence.Column;
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
 =======
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 >>>>>>> 8e0880c (Backend updated)
 import jakarta.persistence.Entity;
@@ -23,6 +30,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 /**
  * Prestataire
@@ -48,6 +56,9 @@ public class Prestataire {
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prestataire")
+    private List<Demande> requetes;
 
     // private Evenement event=null;
     public Prestataire() {
@@ -148,5 +159,24 @@ public class Prestataire {
         return idp;
     }
 
+<<<<<<< HEAD
 >>>>>>> 8e0880c (Backend updated)
+=======
+    public void setIdp(long idp) {
+        this.idp = idp;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
+    }
+
+    public List<Demande> getRequetes() {
+        return requetes;
+    }
+
+    public void setRequetes(List<Demande> requetes) {
+        this.requetes = requetes;
+    }
+
+>>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
 }
