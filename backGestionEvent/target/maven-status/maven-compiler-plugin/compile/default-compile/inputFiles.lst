@@ -2,6 +2,7 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/GestionEventApplication.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Prestataire.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ClientRepository.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/DemandeService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/PrestataireChatController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Evenement.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/UserDetailsServiceImpl.java
@@ -20,7 +21,9 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/Valid.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientChatController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientController.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/DemandeRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/EmailController.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/DemandeController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ReviwRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Email.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/SecurityConfig.java
@@ -30,8 +33,10 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/CustomUserDetailsService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/PrestataireRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthenticationFilter.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Demande.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/UserRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/EvenementRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/ClientDetailsServiceImpl.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthEntryPoint.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ChatController.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Constant.java

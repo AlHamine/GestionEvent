@@ -7,9 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.util.Arrays;
 import java.util.Date;
 import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.DemandeRepository;
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.service.ClientService;
@@ -37,6 +39,9 @@ public class GestionEventApplication implements CommandLineRunner {
 
 	@Autowired
 	private PrestataireRepository prepository;
+
+	@Autowired
+	DemandeRepository dRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GestionEventApplication.class, args);
@@ -68,7 +73,9 @@ public class GestionEventApplication implements CommandLineRunner {
 				"Il s'agit de célébrer la naissance du prophète Seydina Mouhamadou Al Hamine", "Madina Baye", c2);
 
 		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
-
+		Demande d1 = new Demande(c2, p3, ev4);
+		Demande d2 = new Demande(c1, p1, ev1);
+		dRepository.saveAll(Arrays.asList(d1, d2));
 		// Envoyer l-email
 
 		// emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com",

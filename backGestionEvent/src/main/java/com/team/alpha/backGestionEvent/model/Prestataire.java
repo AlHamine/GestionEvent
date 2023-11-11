@@ -1,7 +1,11 @@
 package com.team.alpha.backGestionEvent.model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 /**
  * Prestataire
@@ -38,6 +43,9 @@ public class Prestataire {
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prestataire")
+    private List<Demande> requetes;
 
     // private Evenement event=null;
     public Prestataire() {
@@ -134,6 +142,22 @@ public class Prestataire {
 
     public long getIdp() {
         return idp;
+    }
+
+    public void setIdp(long idp) {
+        this.idp = idp;
+    }
+
+    public void setNote(Integer note) {
+        this.note = note;
+    }
+
+    public List<Demande> getRequetes() {
+        return requetes;
+    }
+
+    public void setRequetes(List<Demande> requetes) {
+        this.requetes = requetes;
     }
 
 }

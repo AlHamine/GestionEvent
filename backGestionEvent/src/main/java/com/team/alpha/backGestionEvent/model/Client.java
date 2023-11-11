@@ -34,6 +34,10 @@ public class Client {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organisateur")
     private List<Evenement> events;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    private List<Demande> requetes;
+
 
     // private
     public Client() {
@@ -133,4 +137,13 @@ public class Client {
         this.idc = idc;
     }
 
+    public List<Demande> getRequetes() {
+        return requetes;
+    }
+
+    public void setRequetes(List<Demande> requetes) {
+        this.requetes = requetes;
+    }
+
+    
 }
