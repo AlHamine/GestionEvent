@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Evenement.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/UserRepository.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthEntryPoint.java
@@ -52,6 +53,8 @@
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/SecurityConfig.java
 /home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/AccountCredentials.java
 =======
+=======
+>>>>>>> 8e0880c (Backend updated)
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/PrestataireController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/GestionEventApplication.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Prestataire.java
@@ -74,8 +77,11 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/Valid.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientChatController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientController.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/EmailController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/ReviwRepository.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Email.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/SecurityConfig.java
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/EmailService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/AccountCredentials.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/User.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/CustomUserDetailsService.java
@@ -85,6 +91,7 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/EvenementRepository.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/ClientDetailsServiceImpl.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/security/AuthEntryPoint.java
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> 50a1b6e (Supression des fichiers explicatifs non necessaire)
 =======
@@ -96,3 +103,6 @@
 =======
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ChatController.java
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ChatController.java
+>>>>>>> 8e0880c (Backend updated)

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 <<<<<<< HEAD
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.team.alpha.backGestionEvent.service.UserService;
 
 =======
@@ -12,6 +13,10 @@ import com.team.alpha.backGestionEvent.service.UserService;
 =======
 import jakarta.persistence.Column;
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+
+import jakarta.persistence.Column;
+>>>>>>> 8e0880c (Backend updated)
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +33,7 @@ import jakarta.persistence.ManyToOne;
 public class Prestataire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idp;
     private String nom;
     private String prenom;
     private String service;
@@ -63,13 +68,6 @@ public class Prestataire {
         // User user = userService.createUser(mail, password, photo, "prestataire");
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;
@@ -136,4 +134,19 @@ public class Prestataire {
         this.evenement = evenement;
     }
 
+<<<<<<< HEAD
+=======
+    public Integer getNote() {
+        return note;
+    }
+
+    public void setRating(Integer note) {
+        this.note = note;
+    }
+
+    public long getIdp() {
+        return idp;
+    }
+
+>>>>>>> 8e0880c (Backend updated)
 }

@@ -26,11 +26,16 @@ public class ClientService {
     @Autowired
     private UserService userService;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 // Nouveau service provider
     @Autowired
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+// Nouveau service provider
+    @Autowired
+>>>>>>> 8e0880c (Backend updated)
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
@@ -68,6 +73,7 @@ public class ClientService {
         // Enregistrez le client en base de données
         return clientRepository.save(client);
     }
+    // A Ameliorer
 
     public Client updateClient(Long id, Client updatedClient) {
         Optional<Client> existingClient = clientRepository.findById(id);

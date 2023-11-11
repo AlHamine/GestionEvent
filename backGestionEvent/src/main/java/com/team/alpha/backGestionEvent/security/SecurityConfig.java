@@ -23,7 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.team.alpha.backGestionEvent.service.UserDetailsServiceImpl;
 import com.team.alpha.backGestionEvent.security.*;
- 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -42,8 +42,8 @@ public class SecurityConfig {
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-<<<<<<< HEAD
 
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -96,6 +96,8 @@ public class SecurityConfig {
 	// }
 
 	// A decommenter une fois qu'on lance la partie front
+=======
+>>>>>>> 8e0880c (Backend updated)
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 		return http
@@ -104,9 +106,17 @@ public class SecurityConfig {
 				.sessionManagement(management -> management
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*").permitAll()
 						.requestMatchers(HttpMethod.POST, "/event").permitAll()
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*", "/event",
+								"/websocket/*")
+						.permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+>>>>>>> 8e0880c (Backend updated)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
@@ -129,19 +139,19 @@ public class SecurityConfig {
 >>>>>>> 4e71276 (Mettre a niveau mon repertoire avant le prochain pull)
 				.build();
 	}
-<<<<<<< HEAD
 
 =======
 
 	// Moins de security
 	// @Bean
-    // SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-    //     // Add this row
-    //     http.csrf().disable().cors().and()
-    //     .authorizeHttpRequests().anyRequest().permitAll();
-   	// 	return http.build();
+	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+	// // Add this row
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return http.build();
 	// }
 
+<<<<<<< HEAD
 	// @Bean
 	// CorsConfigurationSource corsConfigurationSource() {
 	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -159,18 +169,20 @@ public class SecurityConfig {
 	
 	
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+>>>>>>> 8e0880c (Backend updated)
 	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:3000"); // L'origine de votre application frontend
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-        configuration.setAllowCredentials(true);
-
-       	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.addAllowedOrigin("http://localhost:3000"); // L'origine de votre application frontend
+		configuration.addAllowedMethod("*");
+		configuration.addAllowedHeader("*");
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -194,6 +206,9 @@ public class SecurityConfig {
 	// 	return http.build();
 	// }
 >>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
+=======
+
+>>>>>>> 8e0880c (Backend updated)
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
