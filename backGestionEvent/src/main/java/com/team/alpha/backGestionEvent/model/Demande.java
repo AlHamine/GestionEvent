@@ -29,7 +29,7 @@ public class Demande {
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
-    private Status staus;
+    private Status status;
     
 
     public Demande() {
@@ -67,11 +67,11 @@ public class Demande {
     }
 
     public Status getStaus() {
-        return staus;
+        return status;
     }
 
     public void setStaus(Status staus) {
-        this.staus = staus;
+        this.status = staus;
     }
 
 }
