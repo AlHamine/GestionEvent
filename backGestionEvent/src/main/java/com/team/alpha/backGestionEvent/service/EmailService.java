@@ -16,7 +16,7 @@ import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 
 @Service
-@Repository
+// @Repository
 public class EmailService {
 
     @Autowired

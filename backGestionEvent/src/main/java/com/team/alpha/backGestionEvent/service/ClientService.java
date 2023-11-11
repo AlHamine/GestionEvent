@@ -25,12 +25,8 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
-<<<<<<< HEAD
 // Nouveau service provider
     @Autowired
-=======
-
->>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
@@ -68,6 +64,7 @@ public class ClientService {
         // Enregistrez le client en base de données
         return clientRepository.save(client);
     }
+    // A Ameliorer
 
     public Client updateClient(Long id, Client updatedClient) {
         Optional<Client> existingClient = clientRepository.findById(id);

@@ -1,11 +1,8 @@
 package com.team.alpha.backGestionEvent.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-<<<<<<< HEAD
 
 import jakarta.persistence.Column;
-=======
->>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +19,7 @@ import jakarta.persistence.ManyToOne;
 public class Prestataire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idp;
     private String nom;
     private String prenom;
     private String service;
@@ -61,13 +58,6 @@ public class Prestataire {
         // User user = userService.createUser(mail, password, photo, "prestataire");
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;
@@ -140,6 +130,10 @@ public class Prestataire {
 
     public void setRating(Integer note) {
         this.note = note;
+    }
+
+    public long getIdp() {
+        return idp;
     }
 
 }

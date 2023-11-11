@@ -23,7 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.team.alpha.backGestionEvent.service.UserDetailsServiceImpl;
 import com.team.alpha.backGestionEvent.security.*;
- 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -42,26 +42,7 @@ public class SecurityConfig {
 			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-<<<<<<< HEAD
 
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// return http
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults())
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// .build();
-	// }
-
-	// A decommenter une fois qu'on lance la partie front
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 		return http
@@ -70,42 +51,11 @@ public class SecurityConfig {
 				.sessionManagement(management -> management
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*").permitAll()
-						.requestMatchers(HttpMethod.POST, "/event").permitAll()
-=======
-
-	// http.csrf().disable().cors().and()
-	// .authorizeHttpRequests().anyRequest().permitAll();
-	// return
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults())
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// http.build();
-
-	@Bean
-	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-		// http.csrf().disable().cors().and()
-		// .authorizeHttpRequests().anyRequest().permitAll();
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults())
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers(HttpMethod.POST, "/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*", "/event",
+								"/websocket/*")
+						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/client").permitAll()
->>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
+						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
@@ -113,71 +63,28 @@ public class SecurityConfig {
 				.httpBasic(withDefaults())
 				.build();
 	}
-<<<<<<< HEAD
 
 	// Moins de security
 	// @Bean
-    // SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-    //     // Add this row
-    //     http.csrf().disable().cors().and()
-    //     .authorizeHttpRequests().anyRequest().permitAll();
-   	// 	return http.build();
+	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+	// // Add this row
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return http.build();
 	// }
 
-	// @Bean
-	// CorsConfigurationSource corsConfigurationSource() {
-	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	// 	CorsConfiguration config = new CorsConfiguration();
-	// 	config.setAllowedOrigins(Arrays.asList("*"));
-	// 	config.setAllowedMethods(Arrays.asList("*"));
-	// 	config.setAllowedHeaders(Arrays.asList("*"));
-	// 	config.setAllowCredentials(false);
-	// 	config.applyPermitDefaultValues();
-
-	// 	source.registerCorsConfiguration("/**", config);
-	// 	return source;
-	// }
-
-	
-	
-=======
-
->>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 	@Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:3000"); // L'origine de votre application frontend
-        configuration.addAllowedMethod("*");
-        configuration.addAllowedHeader("*");
-        configuration.setAllowCredentials(true);
-
-       	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration configuration = new CorsConfiguration();
+		configuration.addAllowedOrigin("http://localhost:3000"); // L'origine de votre application frontend
+		configuration.addAllowedMethod("*");
+		configuration.addAllowedHeader("*");
+		configuration.setAllowCredentials(true);
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-<<<<<<< HEAD
-	
-	
-	
-	
-	// @Bean
-	// public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	// 	http
-	// 			.authorizeHttpRequests()
-	// 			.requestMatchers("/", "/ws/**")
-	// 			.permitAll()
-	// 			.and()
-	// 			.authorizeHttpRequests()
-	// 			.anyRequest().authenticated()
-	// 			.and()
-	// 			.formLogin()
-	// 			.and()
-	// 			.logout(logout -> logout.logoutSuccessUrl("/"));
-	// 	return http.build();
-	// }
-=======
 
->>>>>>> 2c0c64b1058afa5695bb61a3dbd71bc4a8ba9a8c
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {
