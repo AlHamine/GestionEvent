@@ -66,11 +66,11 @@ public class Demande {
         this.prestataire = prestataire;
     }
 
-    public Status getStaus() {
+    public String getStaus() {
         return status;
     }
 
-    public void setStaus(Status staus) {
+    public void setStaus(String staus) {
         this.status = staus;
     }
 
