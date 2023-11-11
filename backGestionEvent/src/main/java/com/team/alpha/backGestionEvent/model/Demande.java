@@ -6,9 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.team.alpha.backGestionEvent.model.Constant.Status;
 
 /**
  * Demande
@@ -30,16 +28,15 @@ public class Demande {
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
     private String status;
-    
 
     public Demande() {
         super();
     }
 
-    public Demande(Client client, Prestataire prestataire,Evenement evenement) {
+    public Demande(Client client, Prestataire prestataire, Evenement evenement) {
         this.client = client;
         this.prestataire = prestataire;
-        this.evenement=evenement;
+        this.evenement = evenement;
     }
 
     public long getIdDemande() {
