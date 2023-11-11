@@ -57,13 +57,14 @@
   display: inline-flex;
   align-items: center;
   padding: 10px 20px; /* Adjust the padding to control button size */
-  background-color: #007bff; /* Button background color */
+  background-color: #69829b; /* Button background color */
   color: #fff; /* Text color */
   text-decoration: none; /* Remove underline from links */
   border: none;
   border-radius: 5px; /* Rounded corners for the button */
   cursor: pointer;
   transition: background-color 0.3s;
+  transform: scale(0.7);
 }
 
 .social-buttons a:hover {
@@ -81,4 +82,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+/* CSS */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border: 0px solid #dddddd;
+  text-align: left;
+  padding: 4px;
+  padding-left: 1%;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  border-right: 1px solid #ffffff; /* Ajoute une bordure blanche à droite de la deuxième colonne */
 }

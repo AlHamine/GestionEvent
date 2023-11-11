@@ -5,7 +5,7 @@ import EventList from "./EventList.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
 import About from "./About.js";
-import ChatComponent from "./Chat.js";
+// import ChatComponent from "./Chat.js";
 import CreatePrestataire from "./CreatePrestataire.jsx";
 import CreateCustumer from "./CreateCustumer.jsx";
 import Box from "@mui/material/Box";
@@ -59,7 +59,7 @@ function Login({ setEstAuthentifie }) {
         <ResponsiveAppBar />
         <EventList />
         <About />
-        <ChatComponent />
+        {/* <ChatComponent /> */}
       </div>
     );
   } else {
