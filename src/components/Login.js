@@ -5,7 +5,7 @@ import EventList from "./EventList.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
 import About from "./About.js";
-// import ChatComponent from "./Chat.js";
+import ChatComponent from "./Chat.js";
 import CreatePrestataire from "./CreatePrestataire.jsx";
 import CreateCustumer from "./CreateCustumer.jsx";
 import Box from "@mui/material/Box";
@@ -45,6 +45,8 @@ function Login({ setEstAuthentifie }) {
         const jwtToken = res.headers.get("Authorization");
         if (jwtToken != null) {
           sessionStorage.setItem("jwt", jwtToken);
+          sessionStorage.setItem("isLoggedIn", true);
+          sessionStorage.setItem("UserMail", user.username);
           setAuth(true);
         } else {
           setOpen(true);
@@ -53,13 +55,35 @@ function Login({ setEstAuthentifie }) {
       .catch((err) => console.error(err));
   };
 
+  const gmail = sessionStorage.getItem("UserMail");
+  const token = sessionStorage.getItem("jwt");
+  useEffect(() => {
+    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
+      headers: { "Content-Type": "application/json", Authorization: token },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        sessionStorage.setItem("idClient", data.idc);
+        sessionStorage.setItem("n", data.nom);
+        sessionStorage.setItem("p", data.prenom);
+        sessionStorage.setItem("client", data);
+      })
+      .catch((err) => console.error(err))
+      .catch((err) => console.log(err));
+  }, [gmail, token]);
+
+  const onLogout = () => {
+    sessionStorage.removeItem("jwt");
+    setAuth(false);
+  };
+
   if (isAuthenticated) {
     return (
       <div>
         <ResponsiveAppBar />
         <EventList />
         <About />
-        {/* <ChatComponent /> */}
+        <ChatComponent />
       </div>
     );
   } else {

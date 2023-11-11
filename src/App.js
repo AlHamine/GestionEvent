@@ -1,8 +1,8 @@
 import "./App.css";
 import About from "./components/About";
 import { useState } from "react";
-// import EventList from "./components/EventList";
-// import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import EventList from "./components/EventList";
+import ResponsiveAppBar from "./components/ResponsiveAppBar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
@@ -17,6 +17,8 @@ function App() {
 
   const handleLogout = () => {
     sessionStorage.removeItem("jwt");
+    sessionStorage.removetItem("isLoggedIn");
+
     // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
     setEstAuthentifie(false);
   };
@@ -28,10 +30,18 @@ function App() {
         <Route
           path="/"
           element={
-            <Login
-              estAuthentifie={estAuthentifie}
-              setEstAuthentifie={setEstAuthentifie}
-            />
+            sessionStorage.getItem("isLoggedIn") ? (
+              <div>
+                <ResponsiveAppBar />
+                <EventList />
+                <About />
+              </div>
+            ) : (
+              <Login
+                estAuthentifie={estAuthentifie}
+                setEstAuthentifie={setEstAuthentifie}
+              />
+            )
           }
         />
         {/* <Route path="/about" element={<About />} /> */}

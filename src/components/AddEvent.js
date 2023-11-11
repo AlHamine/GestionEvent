@@ -5,9 +5,13 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
+import { SERVER_URL } from "../constants.js";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.module.css";
+
 // import Input from "@mui/material/Input";
 // import Box from "@mui/material/Box";
 // import Select from "@mui/joy/Select";
@@ -15,11 +19,30 @@ import Stack from "@mui/material/Stack";
 
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
+  const gmail = sessionStorage.getItem("UserMail");
+  const token = sessionStorage.getItem("jwt");
+  useEffect(() => {
+    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
+      headers: { "Content-Type": "application/json", Authorization: token },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        sessionStorage.setItem("idClient", data.idc);
+        sessionStorage.setItem("n", data.nom);
+        sessionStorage.setItem("p", data.prenom);
+        // sessionStorage.setItem("client", data);
+        // d = data;
+      })
+      .catch((err) => console.error(err))
+      .catch((err) => console.log(err));
+  }, [gmail, token]);
+
   const [event, setEvent] = useState({
-    nom: "",
+    nomEvent: "",
+    date: "",
     desciption: "",
     lieu: "",
-    organisateur: "",
+    organisateur: { idc: Number(sessionStorage.getItem("idClient")) },
   });
 
   const handleClickOpen = () => {
@@ -31,18 +54,37 @@ function AddEvent(props) {
   };
 
   const handleSave = () => {
-    props.addEvent(event);
+    if (event.organisateur.idc !== 0) {
+      props.addEvent(event);
+    } else {
+      event.organisateur.idc = Number(sessionStorage.getItem("idClient"));
+      setEvent(event);
+      props.addEvent(event);
+      // alert("Veuillez re-essayez encore   ");
+    }
+    setEvent({
+      nomEvent: "",
+      date: "",
+      desciption: "",
+      lieu: "",
+      organisateur: { idc: Number(sessionStorage.getItem("idCient")) },
+    });
     handleClose();
   };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setEvent({
-      ...event,
+    setEvent((prevEvent) => ({
+      ...prevEvent,
       [name]: value,
-    });
+    }));
   };
-
+  const handleDateChange = (date) => {
+    setEvent((prevEvent) => ({
+      ...prevEvent,
+      date,
+    }));
+  };
   return (
     <div>
       {/* <Box
@@ -99,18 +141,17 @@ function AddEvent(props) {
           <Stack spacing={2} mt={1}>
             <TextField
               label="Nom de l'événement"
-              name="nom"
+              name="nomEvent"
               autoFocus
               variant="standard"
-              value={event.nom}
+              value={event.nomEvent}
               onChange={handleChange}
             />
-            <TextField
-              label="Date"
-              name="date"
-              variant="standard"
+            <DatePicker
+              name="dkdk"
               value={event.date}
-              onChange={handleChange}
+              onChange={handleDateChange}
+              dateFormat="dd-MM-yyyy"
             />
             <TextField
               label="Desciption"
@@ -124,14 +165,6 @@ function AddEvent(props) {
               name="lieu"
               variant="standard"
               value={event.lieu}
-              onChange={handleChange}
-            />
-
-            <TextField
-              label="Organisateur"
-              name="organisateur"
-              variant="standard"
-              value={event.organisateur}
               onChange={handleChange}
             />
           </Stack>
