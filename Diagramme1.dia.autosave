@@ -22,7 +22,7 @@
           <dia:real val="2.8222"/>
         </dia:attribute>
         <dia:attribute name="is_portrait">
-          <dia:boolean val="true"/>
+          <dia:boolean val="false"/>
         </dia:attribute>
         <dia:attribute name="scaling">
           <dia:real val="1"/>
@@ -34,6 +34,7 @@
     </dia:attribute>
   </dia:diagramdata>
   <dia:layer name="Arrière-plan" visible="true" connectable="false"/>
+  <dia:layer name="Arrière-plan" visible="true" connectable="true"/>
   <dia:layer name="Arrière-plan" visible="true" connectable="false"/>
   <dia:layer name="Arrière-plan" visible="true" connectable="true"/>
 </dia:diagram>
