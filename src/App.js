@@ -7,14 +7,15 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
 import Logouter from "./components/Logout";
+import EventDetails from "./components/EventDetails";
 
-function App() {
+function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
   // const onLogout = () => {
 
   //   setEstAuthentifie(false);
   // };
-
+  console.log(props.id);
   const handleLogout = () => {
     sessionStorage.removeItem("jwt");
     sessionStorage.removetItem("isLoggedIn");
@@ -46,6 +47,7 @@ function App() {
         />
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
+        <Route path={`/events/${props.id}`} element={<EventDetails />} />;
       </Routes>
     </Router>
   );
