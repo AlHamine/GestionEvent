@@ -36,10 +36,6 @@ public class ClientService {
 
     }
 
-    public Iterable<Client> getAllClients() {
-        return clientRepository.findAll();
-    }
-
     public Optional<Client> getClientById(Long id) {
         return clientRepository.findById(id);
     }

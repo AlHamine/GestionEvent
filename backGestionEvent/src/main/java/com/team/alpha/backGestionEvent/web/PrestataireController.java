@@ -35,16 +35,6 @@ public class PrestataireController {
     @Autowired
     private ReviwRepository reviwRepository;
 
-    @GetMapping
-    public Iterable<Prestataire> getAllClients() {
-        return prestataireService.getAllPrestataires();
-    }
-
-    @GetMapping("/{id}")
-    public Optional<Prestataire> getClientById(@PathVariable Long id) {
-        return prestataireService.getPrestataireById(id);
-    }
-
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping
