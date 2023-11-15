@@ -31,8 +31,8 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Client getClientByMail(String mail) {
-       return clientRepository.findByMail(mail).get();
+    public Optional<Client> getClientByMail(String mail) {
+       return clientRepository.findByMail(mail);
 
     }
 
@@ -49,7 +49,7 @@ public class ClientService {
         return clientRepository.save(client);
 
     }
-
+// Deuxieme Methode
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService

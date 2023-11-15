@@ -86,6 +86,10 @@ public class PrestataireService {
         }
         return false;
     }
+
+    public Optional<Prestataire> getPrestataireByMail(String mail) {
+        return prestataireRepository.findByMail(mail);
+    }
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"
