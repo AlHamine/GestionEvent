@@ -68,6 +68,7 @@ public class PrestataireController {
     @Autowired
     private ReviwRepository reviwRepository;
 
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
     @GetMapping
     public Iterable<Prestataire> getAllClients() {
@@ -79,6 +80,8 @@ public class PrestataireController {
         return prestataireService.getPrestataireById(id);
     }
 
+=======
+>>>>>>> 310dff7 (Ajout du rapport)
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping

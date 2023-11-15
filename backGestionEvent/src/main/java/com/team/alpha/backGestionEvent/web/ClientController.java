@@ -23,16 +23,6 @@ public class ClientController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping
-    public Iterable<Client> getAllClients() {
-        return clientService.getAllClients();
-    }
-
-    @GetMapping("/{id}")
-    public Optional<Client> getClientById(@PathVariable Long id) {
-        return clientService.getClientById(id);
-    }
-// Nouveau Controller
     @GetMapping("/mail")
     public Client getClientByMail(@RequestParam String mail) {
         return clientService.getClientByMail(mail).get();
@@ -62,7 +52,7 @@ public class ClientController {
         // Utilisez l'utilisateur actuellement connecté pour récupérer le profil du
         // client
         Optional<Client> client = clientService.getClientByMail(user.getMail());
-         return new ResponseEntity<>(client.get(), HttpStatus.OK);
+        return new ResponseEntity<>(client.get(), HttpStatus.OK);
     }
 
     // Ajoutez d'autres méthodes pour les fonctionnalités spécifiques aux clients
