@@ -35,7 +35,7 @@ public class ClientController {
 // Nouveau Controller
     @GetMapping("/mail")
     public Client getClientByMail(@RequestParam String mail) {
-        return clientService.getClientByMail(mail);
+        return clientService.getClientByMail(mail).get();
     }
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -61,8 +61,8 @@ public class ClientController {
     public ResponseEntity<Client> getClientProfile(@AuthenticationPrincipal User user) {
         // Utilisez l'utilisateur actuellement connecté pour récupérer le profil du
         // client
-        Optional<Client> client = clientService.getClientById(user.getId());
-        return new ResponseEntity<>(client.get(), HttpStatus.OK);
+        Optional<Client> client = clientService.getClientByMail(user.getMail());
+         return new ResponseEntity<>(client.get(), HttpStatus.OK);
     }
 
     // Ajoutez d'autres méthodes pour les fonctionnalités spécifiques aux clients

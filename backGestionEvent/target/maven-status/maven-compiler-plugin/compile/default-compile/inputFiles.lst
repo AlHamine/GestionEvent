@@ -120,5 +120,8 @@
 >>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
 =======
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ChatController.java
+<<<<<<< HEAD
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/model/Constant.java
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+>>>>>>> 2fd3c3a (updating users->client et user->prestataires)

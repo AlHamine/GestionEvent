@@ -28,6 +28,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
@@ -149,7 +150,14 @@ public class PrestataireController {
 
         return ResponseEntity.ok(review);
     }
-    // *******************************************************************************************************************
 
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+    // *******************************************************************************************************************
+    @GetMapping("/mail")
+    public Prestataire getClientByMail(@RequestParam String mail) {
+        return prestataireService.getPrestataireByMail(mail).get();
+    }
+>>>>>>> 2fd3c3a (updating users->client et user->prestataires)
 }
