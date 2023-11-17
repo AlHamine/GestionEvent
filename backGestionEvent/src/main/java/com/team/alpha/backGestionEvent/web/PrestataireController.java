@@ -29,13 +29,18 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+import com.team.alpha.backGestionEvent.service.EventService;
+>>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 import com.team.alpha.backGestionEvent.service.PrestataireService;
 
 //Pour les controller
@@ -58,6 +63,8 @@ public class PrestataireController {
     private UserRepository userRepository;
     @Autowired
     private PrestataireRepository prestataireRepository;
+    @Autowired
+    private EventService eService;
 
 <<<<<<< HEAD
     // @Autowired
@@ -95,6 +102,27 @@ public class PrestataireController {
     @PutMapping("/{id}")
     public Prestataire updatePrestataire(@PathVariable Long id, @RequestBody Prestataire updatePrestataire) {
         return prestataireService.updatePrestataire(id, updatePrestataire);
+
+    }
+    @PutMapping("/event/{id}/{idE}")
+    public ResponseEntity<Prestataire> updatePrestataireE(@PathVariable Long id, @PathVariable Long idE,
+            @RequestBody Prestataire prestataire) {
+
+        // Vérifiez si le prestataire existe
+        Prestataire prestataireExistant = prestataireRepository.findById(id).orElseThrow();
+
+        // Récupérez l'événement existant de la base de données
+        Evenement evenement = eService.getEvenementById(idE);
+
+        // Définissez l'événement sur la propriété evenement du prestataire
+        // prestataireExistant.setEvenement(evenement);
+        prestataireExistant.ajoutEvenement(evenement);
+        evenement.ajouterPrestataire(prestataireExistant);
+        
+        // Enregistrez le prestataire
+        prestataireRepository.save(prestataireExistant);
+
+        return ResponseEntity.ok(prestataireExistant);
     }
 
     @DeleteMapping("/{id}")

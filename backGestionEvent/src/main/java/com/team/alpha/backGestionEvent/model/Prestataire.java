@@ -39,6 +39,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -56,9 +57,9 @@ public class Prestataire {
     private String prenom;
     private String service;
     private String password;
-    @Column(nullable=false, unique=true)
-	private String mail;
-	
+    @Column(nullable = false, unique = true)
+    private String mail;
+
     private String photo;
 <<<<<<< HEAD
 =======
@@ -70,9 +71,8 @@ public class Prestataire {
 
     // @ManyToOne
     // @JoinColumn(name = "evenement")
-    @ManyToOne
-    @JoinColumn(name = "evenement_id")
-    private Evenement evenement;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Evenement> evenement;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prestataire")
     private List<Demande> requetes;
@@ -96,7 +96,6 @@ public class Prestataire {
         // User user = userService.createUser(mail, password, photo, "prestataire");
     }
 
-
     public String getNom() {
         return nom;
     }
@@ -119,14 +118,6 @@ public class Prestataire {
 
     public void setService(String service) {
         this.service = service;
-    }
-
-    public Evenement getEventActuel() {
-        return evenement;
-    }
-
-    public void setEventActuel(Evenement eventActuel) {
-        this.evenement = eventActuel;
     }
 
     public String getPassword() {
@@ -154,6 +145,7 @@ public class Prestataire {
         this.photo = photo;
     }
 
+<<<<<<< HEAD
     public Evenement getEvenement() {
         return evenement;
     }
@@ -167,6 +159,8 @@ public class Prestataire {
 =======
 =======
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+>>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
     public Integer getNote() {
         return note;
     }
@@ -202,7 +196,24 @@ public class Prestataire {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
 =======
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+    public List<Evenement> getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(List<Evenement> evenement) {
+        this.evenement = evenement;
+    }
+
+    public void ajoutEvenement(Evenement E) {
+        if (!this.evenement.contains(E))
+            this.evenement.add(E);
+
+    }
+
+>>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 }

@@ -36,6 +36,11 @@ public class EventService {
         eRepository.save(E);
     }
 
+    public void suprimmerPrestataire(Evenement E, Prestataire prestataire) {
+
+        E.suprimerPrestataire(prestataire);
+        eRepository.save(E);
+    }
     public Evenement getEvenementById(Long id) {
         return eRepository.findById(id).get();
     }
