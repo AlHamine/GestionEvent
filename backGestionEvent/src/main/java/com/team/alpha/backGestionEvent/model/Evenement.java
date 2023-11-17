@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 // import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
@@ -35,7 +36,9 @@ public class Evenement {
     private Client organisateur;
 
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
+    // @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
+    // (cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Prestataire> prestataires;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
@@ -83,7 +86,12 @@ public class Evenement {
     }
 
     public void ajouterPrestataire(Prestataire p) {
-        this.prestataires.add(p);
+        if (!this.prestataires.contains(p))
+            this.prestataires.add(p);
+    }
+
+    public void suprimerPrestataire(Prestataire p) {
+        this.prestataires.remove(p);
     }
 
     public void setPrestataires(List<Prestataire> prestataires) {
@@ -121,7 +129,6 @@ public class Evenement {
     public void setDemandes(List<Demande> demandes) {
         this.demandes = demandes;
     }
-    
 
 }
 
