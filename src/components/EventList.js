@@ -22,6 +22,8 @@ import {
   DialogTitle,
 } from "@mui/material";
 import Button from "@mui/material/Button";
+import ResponsiveAppBar from "./ResponsiveAppBar.js";
+import Footer from "./Footer.js";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -92,6 +94,7 @@ function EventList() {
 
   return (
     <React.Fragment>
+      <ResponsiveAppBar />
       <Stack mt={2} mb={2}>
         <AddEvent addEvent={addEvent} />
 
@@ -240,6 +243,7 @@ function EventList() {
           </DialogActions>
         </Dialog>
       )}
+      <Footer />
     </React.Fragment>
   );
 }

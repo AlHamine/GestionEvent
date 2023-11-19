@@ -1,5 +1,4 @@
 import "./App.css";
-import About from "./components/About";
 import { useState } from "react";
 import EventList from "./components/EventList";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
@@ -7,7 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
 import Logouter from "./components/Logout";
-import EventDetails from "./components/EventDetails";
+import Footer from "./components/Footer";
+import HomePage from "./components/HomePage";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -34,8 +34,9 @@ function App(props) {
             sessionStorage.getItem("isLoggedIn") ? (
               <div>
                 <ResponsiveAppBar />
-                <EventList />
-                <About />
+                {/* <EventList /> */}
+                <HomePage />
+                <Footer />
               </div>
             ) : (
               <Login
@@ -47,7 +48,7 @@ function App(props) {
         />
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
-        <Route path={`/events/${props.id}`} element={<EventDetails />} />;
+        <Route path={"/events"} element={<EventList />} />;
       </Routes>
     </Router>
   );

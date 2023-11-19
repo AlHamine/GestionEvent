@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 import Logout from "./Logout";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Evenements", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -59,7 +59,7 @@ function ResponsiveAppBar() {
               component="a"
               href="#app-bar-with-responsive-menu"
             >
-              <Link href="/" passHref>
+              <Link to="/" passHref>
                 <Button
                   as="a"
                   variant="text"
@@ -79,7 +79,7 @@ function ResponsiveAppBar() {
                 </Button>
               </Link>
             </Typography>
-
+            {/* 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -115,7 +115,7 @@ function ResponsiveAppBar() {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box>
+            </Box> */}
             {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} /> */}
             {/* <Typography
               variant="h5"
@@ -136,16 +136,47 @@ function ResponsiveAppBar() {
               LOGO
             </Typography> */}
 
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               {pages.map((page) => (
-                <Button
+                {pages === "Evenements" ? (
+                  <Link to="/event">
+                    Evenements
+                  </Link>
+                ) : (
+                  <Button
                   key={page}
                   onClick={handleCloseNavMenu}
                   sx={{ my: 2, color: "white", display: "block" }}
                 >
-                  {page}
+                  {pages}
                 </Button>
+                )}
+                
               ))}
+            </Box> */}
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) =>
+                page === "Evenements" ? (
+                  <Button>
+                    <Link
+                      to="/events"
+                      key={page}
+                      style={{ color: "white", textDecoration: "none" }}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      Les Evenements
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                )
+              )}
             </Box>
 
             <IconButton
