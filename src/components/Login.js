@@ -4,7 +4,7 @@ import { SERVER_URL } from "../constants";
 import EventList from "./EventList.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
-import About from "./About.js";
+import Footer from "./Footer.js";
 import ChatComponent from "./Chat.js";
 import CreatePrestataire from "./CreatePrestataire.jsx";
 import CreateCustumer from "./CreateCustumer.jsx";
@@ -82,7 +82,7 @@ function Login({ setEstAuthentifie }) {
       <div>
         <ResponsiveAppBar />
         <EventList />
-        <About />
+        <Footer />
         <ChatComponent />
       </div>
     );

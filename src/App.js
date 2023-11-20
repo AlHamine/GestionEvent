@@ -1,5 +1,4 @@
 import "./App.css";
-import About from "./components/About";
 import { useState } from "react";
 import EventList from "./components/EventList";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
@@ -7,14 +6,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile";
 import Login from "./components/Login";
 import Logouter from "./components/Logout";
+import Footer from "./components/Footer";
+import HomePage from "./components/HomePage";
 
-function App() {
+function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
   // const onLogout = () => {
 
   //   setEstAuthentifie(false);
   // };
-
+  console.log(props.id);
   const handleLogout = () => {
     sessionStorage.removeItem("jwt");
     sessionStorage.removetItem("isLoggedIn");
@@ -32,8 +33,9 @@ function App() {
             sessionStorage.getItem("isLoggedIn") ? (
               <div>
                 <ResponsiveAppBar />
-                <EventList />
-                <About />
+                {/* <EventList /> */}
+                <HomePage />
+                <Footer />
               </div>
             ) : (
               <Login
@@ -45,6 +47,7 @@ function App() {
         />
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
+        <Route path={"/events"} element={<EventList />} />;
       </Routes>
     </Router>
   );

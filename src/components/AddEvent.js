@@ -107,41 +107,6 @@ function AddEvent(props) {
   };
   return (
     <div>
-      {/* <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      > */}
-      {/* <Input
-          color="primary"
-          disabled={false}
-          placeholder="Rechercher un événement"
-          size="md"
-          variant="solid"
-          sx={{ marginRight: 2, marginLeft: 2 }}
-        />
-
-        <Select
-          sx={{ marginRight: "auto" }}
-          color="primary"
-          placeholder="Trier par événement ..."
-          size="sm"
-          variant="solid"
-        >
-          <Option value="dahira">Dahira</Option>
-          <Option value="meting">Meting</Option>
-        </Select> */}
-
-      {/* <Button
-        variant="contained"
-        disableElevation
-        sx={{ margin: "0 16px" }}
-        onClick={handleClickOpen}
-      >
-        Créer un événement
-      </Button> */}
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
           variant="contained"
