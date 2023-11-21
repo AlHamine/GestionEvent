@@ -1,6 +1,8 @@
 package com.team.alpha.backGestionEvent.repository;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
@@ -18,7 +20,7 @@ public interface EvenementRepository extends CrudRepository<Evenement, Long> {
 
     List<Evenement> findByDate(Date date);
 
-    // @Query("select * from Car where model= ?1")
-    // List<Evenement> findByModel(@Param("model") String model);
+    @Query("SELECT e FROM Evenement e WHERE e.organisateur.id = :org")
+    List<Evenement> findByOrganisateur(@Param("org") Long id);
 
 }

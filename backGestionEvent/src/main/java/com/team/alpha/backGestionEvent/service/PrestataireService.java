@@ -1,25 +1,37 @@
 package com.team.alpha.backGestionEvent.service;
 
+import com.team.alpha.backGestionEvent.model.Evenement;
+import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 
 @Service
 public class PrestataireService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Autowired
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FileDataRepository fileDataRepository;
+
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
@@ -40,6 +52,21 @@ public class PrestataireService {
         return prestataireRepository.save(p);
     }
 
+    public Prestataire createPrestataire(MultipartFile file, String nom, String prenom,
+            String mail, String password, String service) {
+        Prestataire prestataire = new Prestataire();
+        prestataire.setNom(nom);
+        prestataire.setPrenom(prenom);
+        prestataire.setMail(mail);
+        prestataire.setService(service);
+        prestataire.setPassword(passwordEncoder.encode(password));
+        if (file.getSize() != 0)
+            prestataire.setPhoto(file.getOriginalFilename());
+        else
+            prestataire.setPhoto("null");
+        return prestataireRepository.save(prestataire);
+    }
+
     @Transactional
     public Prestataire createPrestataire(String nom, String prenom, String service, String password, String mail,
             String photo) throws Exception {
@@ -52,28 +79,37 @@ public class PrestataireService {
         return prestataireRepository.save(prestataire);
     }
 
+    @Transactional
     public Prestataire updatePrestataire(Long id, Prestataire updatedPrestataire) {
 
-        Optional<Prestataire> existingPrestataire = prestataireRepository.findById(id);
-        if (existingPrestataire.isPresent()) {
-            // Mettre à jour les champs nécessaires de l'objet Prestataire existant
-            Prestataire prestataire = existingPrestataire.get();
-            prestataire.setNom(updatedPrestataire.getNom());
-            prestataire.setPrenom(updatedPrestataire.getPrenom());
-            prestataire.setService(updatedPrestataire.getService());
-            prestataire.setMail(updatedPrestataire.getMail());
-            prestataire.setPassword(updatedPrestataire.getPassword());
-            prestataire.setPhoto(updatedPrestataire.getPhoto());
-
-            Optional<User> updatedUser = userRepository.findByMail(existingPrestataire.get().getMail());
-            User user = userService.updateUser(id, prestataire.getMail(), prestataire.getPassword(),
-                    prestataire.getPhoto(),
-                    "prestataire");
-            return prestataireRepository.save(prestataire);
-        } else {
-            // Le prestataire avec l'ID spécifié n'a pas été trouvé
+        Prestataire existingPrestataire = prestataireRepository.findById(id).get();
+        if (existingPrestataire == null) {
+            // Gérer le cas où le Prestataire n'existe pas
             return null;
         }
+
+        BeanUtils.copyProperties(updatedPrestataire, existingPrestataire, "idp");
+
+        Optional<User> updatedUser = userRepository.findByMail(existingPrestataire.getMail());
+        User user = userService.updateUser(id, existingPrestataire.getMail(), existingPrestataire.getPassword(),
+                existingPrestataire.getPhoto(),
+                "prestataire");
+        return prestataireRepository.save(existingPrestataire);
+
+        // Le prestataire avec l'ID spécifié n'a pas été trouvé
+
+    }
+
+    public Prestataire updatePrestataire(Long id, Evenement E) {
+        Prestataire existingPrestataire = prestataireRepository.findById(id).get();
+        if (existingPrestataire == null) {
+            // Gérer le cas où le Prestataire n'existe pas
+            return null;
+        }
+        // existingPrestataire.setEventActuel(E);
+        existingPrestataire.ajoutEvenement(E);
+        return prestataireRepository.save(existingPrestataire);
+
     }
 
     public boolean deletePrestataire(Long id) {
@@ -85,6 +121,18 @@ public class PrestataireService {
             return true;
         }
         return false;
+    }
+
+    public Optional<Prestataire> getPrestataireByMail(String mail) {
+        return prestataireRepository.findByMail(mail);
+    }
+
+    // Recuperer l'image pour pouvoir l'exploiter
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
     }
 }
 /*

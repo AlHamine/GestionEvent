@@ -1,21 +1,25 @@
 package com.team.alpha.backGestionEvent.web;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
+import com.team.alpha.backGestionEvent.service.EventService;
 import com.team.alpha.backGestionEvent.service.PrestataireService;
 
 //Pour les controller
@@ -30,19 +34,11 @@ public class PrestataireController {
     private UserRepository userRepository;
     @Autowired
     private PrestataireRepository prestataireRepository;
+    @Autowired
+    private EventService eService;
 
     @Autowired
     private ReviwRepository reviwRepository;
-
-    @GetMapping
-    public Iterable<Prestataire> getAllClients() {
-        return prestataireService.getAllPrestataires();
-    }
-
-    @GetMapping("/{id}")
-    public Optional<Prestataire> getClientById(@PathVariable Long id) {
-        return prestataireService.getPrestataireById(id);
-    }
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -57,6 +53,38 @@ public class PrestataireController {
     @PutMapping("/{id}")
     public Prestataire updatePrestataire(@PathVariable Long id, @RequestBody Prestataire updatePrestataire) {
         return prestataireService.updatePrestataire(id, updatePrestataire);
+
+    }
+
+    @PutMapping("/event/{id}/{idE}")
+    public ResponseEntity<Prestataire> updatePrestataireE(@PathVariable Long id, @PathVariable Long idE,
+            @RequestBody Prestataire prestataire) {
+
+        // Vérifiez si le prestataire existe
+        Prestataire prestataireExistant = prestataireRepository.findById(id).orElseThrow();
+
+        // Récupérez l'événement existant de la base de données
+        Evenement evenement = eService.getEvenementById(idE);
+
+        // Définissez l'événement sur la propriété evenement du prestataire
+        // prestataireExistant.setEvenement(evenement);
+        prestataireExistant.ajoutEvenement(evenement);
+        evenement.ajouterPrestataire(prestataireExistant);
+
+        // Enregistrez le prestataire
+        prestataireRepository.save(prestataireExistant);
+
+        return ResponseEntity.ok(prestataireExistant);
+    }
+
+    // Recuperation de l'image par l'end-point pour son exploitation cote front-end
+    @GetMapping("/clientphoto/{fileName}")
+    public ResponseEntity<?> downloadImageFromFileSystem(@PathVariable String fileName) throws IOException {
+        byte[] imageData = prestataireService.downloadImageFromFileSystem(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+
     }
 
     @DeleteMapping("/{id}")
@@ -105,6 +133,10 @@ public class PrestataireController {
 
         return ResponseEntity.ok(review);
     }
-    // *******************************************************************************************************************
 
+    // *******************************************************************************************************************
+    @GetMapping("/mail")
+    public Prestataire getClientByMail(@RequestParam String mail) {
+        return prestataireService.getPrestataireByMail(mail).get();
+    }
 }

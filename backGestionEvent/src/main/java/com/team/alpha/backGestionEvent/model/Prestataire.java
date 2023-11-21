@@ -12,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -29,9 +30,9 @@ public class Prestataire {
     private String prenom;
     private String service;
     private String password;
-    @Column(nullable=false, unique=true)
-	private String mail;
-	
+    @Column(nullable = false, unique = true)
+    private String mail;
+
     private String photo;
     // Pour pouvoir ajouter la note a prestataire
     // **************************************************
@@ -40,9 +41,8 @@ public class Prestataire {
 
     // @ManyToOne
     // @JoinColumn(name = "evenement")
-    @ManyToOne
-    @JoinColumn(name = "evenement_id")
-    private Evenement evenement;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    private List<Evenement> evenement;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prestataire")
     private List<Demande> requetes;
@@ -65,7 +65,6 @@ public class Prestataire {
 
         // User user = userService.createUser(mail, password, photo, "prestataire");
     }
-
 
     public String getNom() {
         return nom;
@@ -91,14 +90,6 @@ public class Prestataire {
         this.service = service;
     }
 
-    public Evenement getEventActuel() {
-        return evenement;
-    }
-
-    public void setEventActuel(Evenement eventActuel) {
-        this.evenement = eventActuel;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -122,14 +113,6 @@ public class Prestataire {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public Evenement getEvenement() {
-        return evenement;
-    }
-
-    public void setEvenement(Evenement evenement) {
-        this.evenement = evenement;
     }
 
     public Integer getNote() {
@@ -158,6 +141,20 @@ public class Prestataire {
 
     public void setRequetes(List<Demande> requetes) {
         this.requetes = requetes;
+    }
+
+    public List<Evenement> getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(List<Evenement> evenement) {
+        this.evenement = evenement;
+    }
+
+    public void ajoutEvenement(Evenement E) {
+        if (!this.evenement.contains(E))
+            this.evenement.add(E);
+
     }
 
 }

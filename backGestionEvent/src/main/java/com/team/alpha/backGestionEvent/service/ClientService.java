@@ -1,8 +1,10 @@
 package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -10,7 +12,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 
 @Service
@@ -22,22 +28,24 @@ public class ClientService {
     private ClientRepository clientRepository;
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private FileDataRepository fileDataRepository;
     @Autowired
     private UserService userService;
-// Nouveau service provider
+
+    // Nouveau service provider
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-    public Client getClientByMail(String mail) {
-       return clientRepository.findByMail(mail).get();
-
-    }
-
     public Iterable<Client> getAllClients() {
         return clientRepository.findAll();
+    }
+
+    public Optional<Client> getClientByMail(String mail) {
+        return clientRepository.findByMail(mail);
+
     }
 
     public Optional<Client> getClientById(Long id) {
@@ -50,6 +58,7 @@ public class ClientService {
 
     }
 
+    // Deuxieme Methode
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService
@@ -62,6 +71,18 @@ public class ClientService {
         // nécessaire.
 
         // Enregistrez le client en base de données
+        return clientRepository.save(client);
+    }
+
+    public Client createClient(MultipartFile file, String nom, String prenom,
+            String mail, String password) {
+        Client client = new Client();
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setMail(mail);
+        client.setPassword(passwordEncoder.encode(password));
+        client.setPhoto(file.getOriginalFilename());
+
         return clientRepository.save(client);
     }
     // A Ameliorer
@@ -84,6 +105,14 @@ public class ClientService {
             // Le client avec l'ID spécifié n'a pas été trouvé
             return null;
         }
+    }
+
+    //
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
     }
 
     public boolean deleteClient(Long id) {
