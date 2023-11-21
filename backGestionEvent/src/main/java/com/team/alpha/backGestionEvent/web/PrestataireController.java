@@ -47,7 +47,7 @@ public class PrestataireController {
     @Autowired
     private FileDataRepository fileDataRepository;
 
-    private final String FOLDER_PATH = "/home/tinkin-djeeri/Téléchargements/Extraction/GestionEvent-back-end-al-hamine(3)/Modification/backGestionEvent/src/assets/";
+    private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
