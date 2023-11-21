@@ -244,7 +244,7 @@ public class SecurityConfig {
 	"/event",
 	"/websocket/*")
 	.permitAll()
-	.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+	.requestMatchers(HttpMethod.POST, "/prestataires","prestataires/prestatairephoto").permitAll()
 	.requestMatchers(HttpMethod.POST, "/client","/client/clientphoto").permitAll()
 	.anyRequest().authenticated())
 	.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()

@@ -110,7 +110,7 @@ public class PrestataireController {
     @Autowired
     private FileDataRepository fileDataRepository;
 
-    private final String FOLDER_PATH = "/home/tinkin-djeeri/Téléchargements/Extraction/GestionEvent-back-end-al-hamine(3)/Modification/backGestionEvent/src/assets/";
+    private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
 
 >>>>>>> d84eb0e (Redefinir l'entite Prestataire pour gerer l'insertions des photos de profils.)
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
