@@ -1,8 +1,13 @@
 package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Evenement;
+<<<<<<< HEAD
+=======
+import com.team.alpha.backGestionEvent.model.FileData;
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
@@ -12,16 +17,24 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 
 @Service
 public class PrestataireService {
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     @Autowired
     private UserService userService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private FileDataRepository fileDataRepository;
+
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
@@ -40,6 +53,21 @@ public class PrestataireService {
     public Prestataire createPrestataire(Prestataire p) {
         p.setPassword(passwordEncoder.encode(p.getPassword()));
         return prestataireRepository.save(p);
+    }
+
+    public Prestataire createPrestataire(MultipartFile file, String nom, String prenom,
+            String mail, String password, String service) {
+        Prestataire prestataire = new Prestataire();
+        prestataire.setNom(nom);
+        prestataire.setPrenom(prenom);
+        prestataire.setMail(mail);
+        prestataire.setService(service);
+        prestataire.setPassword(passwordEncoder.encode(password));
+        if (file.getSize() != 0)
+            prestataire.setPhoto(file.getOriginalFilename());
+        else
+            prestataire.setPhoto("null");
+        return prestataireRepository.save(prestataire);
     }
 
     @Transactional
@@ -101,6 +129,17 @@ public class PrestataireService {
     public Optional<Prestataire> getPrestataireByMail(String mail) {
         return prestataireRepository.findByMail(mail);
     }
+<<<<<<< HEAD
+=======
+
+    // Recuperer l'image pour pouvoir l'exploiter
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
+    }
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"

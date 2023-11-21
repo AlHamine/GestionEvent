@@ -38,7 +38,6 @@ public class Client {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private List<Demande> requetes;
 
-
     // private
     public Client() {
 
@@ -145,5 +144,4 @@ public class Client {
         this.requetes = requetes;
     }
 
-    
 }

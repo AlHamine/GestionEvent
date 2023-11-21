@@ -146,6 +146,7 @@ public class Prestataire {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Evenement getEvenement() {
         return evenement;
     }
@@ -161,6 +162,8 @@ public class Prestataire {
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     public Integer getNote() {
         return note;
     }
@@ -197,10 +200,13 @@ public class Prestataire {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
 =======
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     public List<Evenement> getEvenement() {
         return evenement;
     }
@@ -215,5 +221,8 @@ public class Prestataire {
 
     }
 
+<<<<<<< HEAD
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 }

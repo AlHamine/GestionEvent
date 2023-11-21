@@ -1,9 +1,11 @@
 package com.team.alpha.backGestionEvent.web;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 <<<<<<< HEAD
@@ -28,7 +30,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 import com.team.alpha.backGestionEvent.model.Client;
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
@@ -37,10 +42,14 @@ import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
 import com.team.alpha.backGestionEvent.service.EventService;
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
+=======
+import com.team.alpha.backGestionEvent.service.EventService;
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 import com.team.alpha.backGestionEvent.service.PrestataireService;
 
 //Pour les controller
@@ -76,6 +85,7 @@ public class PrestataireController {
     private ReviwRepository reviwRepository;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
     @GetMapping
     public Iterable<Prestataire> getAllClients() {
@@ -89,6 +99,8 @@ public class PrestataireController {
 
 =======
 >>>>>>> 310dff7 (Ajout du rapport)
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping
@@ -104,6 +116,10 @@ public class PrestataireController {
         return prestataireService.updatePrestataire(id, updatePrestataire);
 
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     @PutMapping("/event/{id}/{idE}")
     public ResponseEntity<Prestataire> updatePrestataireE(@PathVariable Long id, @PathVariable Long idE,
             @RequestBody Prestataire prestataire) {
@@ -118,11 +134,28 @@ public class PrestataireController {
         // prestataireExistant.setEvenement(evenement);
         prestataireExistant.ajoutEvenement(evenement);
         evenement.ajouterPrestataire(prestataireExistant);
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
         // Enregistrez le prestataire
         prestataireRepository.save(prestataireExistant);
 
         return ResponseEntity.ok(prestataireExistant);
+<<<<<<< HEAD
+=======
+    }
+
+    // Recuperation de l'image par l'end-point pour son exploitation cote front-end
+    @GetMapping("/clientphoto/{fileName}")
+    public ResponseEntity<?> downloadImageFromFileSystem(@PathVariable String fileName) throws IOException {
+        byte[] imageData = prestataireService.downloadImageFromFileSystem(fileName);
+        return ResponseEntity.status(HttpStatus.OK)
+                .contentType(MediaType.valueOf("image/png"))
+                .body(imageData);
+
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     }
 
     @DeleteMapping("/{id}")
@@ -183,12 +216,18 @@ public class PrestataireController {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     // *******************************************************************************************************************
     @GetMapping("/mail")
     public Prestataire getClientByMail(@RequestParam String mail) {
         return prestataireService.getPrestataireByMail(mail).get();
     }
+<<<<<<< HEAD
 >>>>>>> 2fd3c3a (updating users->client et user->prestataires)
+=======
+>>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 }
