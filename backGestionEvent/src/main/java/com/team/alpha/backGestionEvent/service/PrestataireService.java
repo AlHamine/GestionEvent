@@ -63,10 +63,7 @@ public class PrestataireService {
         prestataire.setMail(mail);
         prestataire.setService(service);
         prestataire.setPassword(passwordEncoder.encode(password));
-        if (file.getSize() != 0)
-            prestataire.setPhoto(file.getOriginalFilename());
-        else
-            prestataire.setPhoto("null");
+        prestataire.setPhoto(file.getOriginalFilename());
         return prestataireRepository.save(prestataire);
     }
 
