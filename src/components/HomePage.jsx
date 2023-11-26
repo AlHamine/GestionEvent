@@ -1,23 +1,47 @@
 import React from "react";
 import Animefront from "./Animefront.json";
+import Animefront2 from "./Animefront2.json";
+import Animation1 from "./Animation1.json";
 import Lottie from "lottie-react";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
 
 function HomePage() {
   return (
     <div>
       <div
-        style={{ display: "flex", boxShadow: "0px 5px 10px rgba(0, 0, 0, 2)" }}
+        style={{
+          display: "flex",
+          boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
+        }}
       >
-        <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
+        <div
+          style={{
+            flex: 1,
+            marginTop: "50px",
+            marginBottom: "40px",
+            marginLeft: "30px",
+          }}
+        >
           {/* Contenu texte à gauche */}
           <h1 style={{ color: "blue", textAlign: "#1b06f1" }}>
             Gerer vos evenements facilement.
           </h1>
           <p style={{ lineHeight: "2", color: "#776af5" }}>
             {" "}
-            Oraniser ou prester un evenement n'a jamais <br /> ete si facile
+            Organiser ou prester un événement n'a jamais <br /> ete si facile
             avec votre plateforme EVENT-PRO
           </p>
+          <div>
+            <div style={{ width: "30%", marginLeft: "15px" }}>
+              <Lottie animationData={Animation1} />{" "}
+            </div>
+
+            <Stack direction="row" spacing={2}>
+              <Button variant="outlined">CREER UN EVENEMENT</Button>
+            </Stack>
+          </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
           <Lottie animationData={Animefront} />{" "}
@@ -25,22 +49,22 @@ function HomePage() {
       </div>
 
       <div
-        style={{ display: "flex", boxShadow: "0px 5px 10px rgba(0, 0, 0, 2)" }}
+        style={{ display: "flex", boxShadow: "0px 5px 10px rgba(0, 0, 0, 1)" }}
       >
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, marginLeft: "30px" }}>
           {/* Contenu texte à gauche */}
-          <h1 style={{ color: "blue", textAlign: "#1b06f1" }}>
+          <h1
+            style={{ color: "#8171df", textAlign: "center", marginTop: "40px" }}
+          >
             À PROPOS DE NOUS
           </h1>
-          <p style={{ lineHeight: "2", color: "#776af5" }}>
-            Kopar Express est une fintech créée par des sénégalais qui regroupe
-            sur une seule plateforme des services de rechargement téléphonique,
-            d'abonnement de forfait mobile, de financement participatif en ligne
-            (collecte de fonds, tontine) et de paiements de facture, de
-            scolarité et de salaire.
+          <p style={{ lineHeight: "2", color: "#776af5", marginTop: "60px" }}>
+            EVENT-PRO est une organisation créée par des sénégalais qui regroupe
+            sur une seule plateforme des services d'organisations d'événement et
+            de prestations pour tout les types d'événements
           </p>
         </div>
-        <div style={{ flex: 1 }}>
+        <div style={{ flex: 1, marginRight: "5px" }}>
           {/* Image à droite */}
           <img
             src="https://media.istockphoto.com/id/974238866/photo/audience-listens-to-the-lecturer-at-the-conference.jpg?s=612x612&w=0&k=20&c=p_BQCJWRQQtZYnQlOtZMzTjeB_csic8OofTCAKLwT0M="
@@ -59,16 +83,39 @@ function HomePage() {
       >
         <div style={{ flex: 1 }}>
           {/* Contenu texte à gauche */}
-          <h1 style={{ color: "blue", textAlign: "#1b06f1" }}>
-            À PROPOS DE NOUS
+          <h1
+            style={{
+              color: "#827ca4",
+              textAlign: "center",
+              margin: "0 auto",
+              marginTop: "20px",
+            }}
+          >
+            L'événement
           </h1>
-          <p style={{ lineHeight: "2", color: "#776af5" }}>
-            Kopar Express est une fintech créée par des sénégalais qui regroupe
-            sur une seule plateforme des services de rechargement téléphonique,
-            d'abonnement de forfait mobile, de financement participatif en ligne
-            (collecte de fonds, tontine) et de paiements de facture, de
-            scolarité et de salaire.
-          </p>
+          <div
+            style={{ lineHeight: "2", color: "#747379", marginLeft: "30px" }}
+          >
+            <div style={{ marginTop: "20%", marginLeft: "30px" }}>
+              <div>EVENT-PRO est la solution qui permet de:</div>
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <TaskAltIcon /> {" Etre au rendez-vous, sans retard.  "}
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <TaskAltIcon /> {" Une satisfaction totale pour ton événement.  "}
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <TaskAltIcon />{" "}
+              {" Suivre les besoins de l'organisateur en temps.  "}
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <TaskAltIcon /> {" Simplifier les événements au Sénégal. "}
+            </div>
+            <div style={{ marginBottom: "10px" }}>
+              <TaskAltIcon /> {" Economiser son argent evec EVENT-PRO.  "}
+            </div>
+          </div>
         </div>
         <div style={{ flex: 1 }}>
           {/* Image à droite */}

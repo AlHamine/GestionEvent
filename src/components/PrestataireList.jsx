@@ -4,6 +4,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import "../index.css";
+import ResponsiveAppBar from "./ResponsiveAppBar.js";
+import Footer from "./Footer.js";
 
 export default function PrestataireList() {
   const [prestataires, setPrestataires] = useState([]);
@@ -23,6 +25,7 @@ export default function PrestataireList() {
 
   return (
     <>
+      <ResponsiveAppBar />
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {prestataires.map((prestataire) => (
           <Card key={prestataire.id} style={{ margin: "16px", width: 300 }}>
@@ -43,6 +46,7 @@ export default function PrestataireList() {
           </Card>
         ))}
       </div>
+      <Footer />
     </>
   );
 }

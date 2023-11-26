@@ -22,7 +22,7 @@ import { Link } from "react-router-dom";
 
 import Logout from "./Logout";
 
-const pages = ["Evenements", "Pricing", "Blog"];
+const pages = ["Evenements", "Prestataires", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -165,6 +165,15 @@ function ResponsiveAppBar() {
                       sx={{ my: 2, color: "white", display: "block" }}
                     >
                       Les Evenements
+                    </Link>
+                  </Button>
+                ) : page === "Prestataires" ? (
+                  <Button>
+                    <Link
+                      to="/prest"
+                      style={{ color: "white", textDecoration: "none" }}
+                    >
+                      Prestataires
                     </Link>
                   </Button>
                 ) : (

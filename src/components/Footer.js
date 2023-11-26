@@ -15,7 +15,7 @@ import AirlinesIcon from "@mui/icons-material/Airlines";
 
 function Footer() {
   return (
-    <footer>
+    <footer className="footer2">
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
           <Container maxWidth="xl">
@@ -98,6 +98,16 @@ function Footer() {
                 <tr></tr>
               </tfoot>
             </table>
+            <hr style={{ color: "#bcb2fa", marginTop: "30px" }} />
+            <div
+              style={{
+                display: "center",
+                marginTop: "15px",
+                marginBottom: "15px",
+              }}
+            >
+              Copyright 2023 EVENT-PRO Tous droits réservés.
+            </div>
           </Container>
         </AppBar>
       </div>
