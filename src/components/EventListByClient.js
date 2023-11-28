@@ -127,8 +127,6 @@ function EventListByClient() {
     return nouvelleChaine;
   }
   const estPresent = (T, sT) => {
-    // const t = T.toString();
-    // const t2 = sT.toString();
     console.log(T.includes(sT));
     return T.includes(sT);
   };

@@ -32,7 +32,7 @@ import {
 import Logout from "./Logout";
 import EventListByClient from "./EventListByClient";
 
-const pages = ["Evenements", "myEvents", "Pricing", "Blog"];
+const pages = ["Evenements", "myEvents", "Prestataires", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
