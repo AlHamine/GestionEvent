@@ -88,6 +88,8 @@
 .table {
   border-collapse: collapse;
   width: 100%;
+  margin-bottom: "20px";
+  margin-top: 25px;
 }
 
 .table th,
@@ -96,9 +98,28 @@
   text-align: left;
   padding: 4px;
   padding-left: 1%;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 .table th:nth-child(2),
 .table td:nth-child(2) {
   border-right: 1px solid #ffffff; /* Ajoute une bordure blanche à droite de la deuxième colonne */
 }
+
+.footer2 {
+  position: "relative";
+  bottom: 0;
+  width: "10%";
+  justify-content: space-between;
+  margin-bottom: "20px";
+}
+
+/* .footer2 {
+  display: flex;
+  width: "10%";
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 10px;
+} */

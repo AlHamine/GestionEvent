@@ -12,11 +12,6 @@ import Stack from "@mui/material/Stack";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.module.css";
 
-// import Input from "@mui/material/Input";
-// import Box from "@mui/material/Box";
-// import Select from "@mui/joy/Select";
-// import Option from "@mui/joy/Option";
-
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
   // const gmail = sessionStorage.getItem("UserMail");
