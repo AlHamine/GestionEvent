@@ -11,9 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 /**
@@ -36,7 +34,7 @@ public class Prestataire {
     private String photo;
     // Pour pouvoir ajouter la note a prestataire
     // **************************************************
-    private Integer note;
+    private Integer note = 0; // Initialisation de la note
     // **************************************************
 
     // @ManyToOne
