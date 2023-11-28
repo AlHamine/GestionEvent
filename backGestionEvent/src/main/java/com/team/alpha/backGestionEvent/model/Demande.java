@@ -37,6 +37,7 @@ public class Demande {
         this.client = client;
         this.prestataire = prestataire;
         this.evenement = evenement;
+        this.status = "EN_ATTENTE";
     }
 
     public long getIdDemande() {
@@ -71,4 +72,55 @@ public class Demande {
         this.status = staus;
     }
 
+    public Evenement getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Demande other = (Demande) obj;
+        if (idDemande != other.idDemande)
+            return false;
+        if (client == null) {
+            if (other.client != null)
+                return false;
+        } else if (!client.equals(other.client))
+            return false;
+        if (prestataire == null) {
+            if (other.prestataire != null)
+                return false;
+        } else if (!prestataire.equals(other.prestataire))
+            return false;
+        if (evenement == null) {
+            if (other.evenement != null)
+                return false;
+        } else if (!evenement.equals(other.evenement))
+            return false;
+        if (status == null) {
+            if (other.status != null)
+                return false;
+        } else if (!status.equals(other.status))
+            return false;
+        return true;
+    }
+
+    
 }

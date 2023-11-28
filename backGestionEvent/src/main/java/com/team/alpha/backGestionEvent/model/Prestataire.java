@@ -222,7 +222,20 @@ public class Prestataire {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 =======
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+    public void ajoutDemande(Demande E) {
+        if (!this.requetes.contains(E))
+            this.requetes.add(E);
+
+    }
+
+    public void suprimerDemande(Demande d) {
+        if (!this.requetes.contains(d))
+            this.requetes.remove(d);
+    }
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
 }

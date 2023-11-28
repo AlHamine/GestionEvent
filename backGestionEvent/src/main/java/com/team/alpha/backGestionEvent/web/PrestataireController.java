@@ -123,6 +123,7 @@ public class PrestataireController {
 
     }
 
+<<<<<<< HEAD
     // Ajout avec la photo de profil
     @PostMapping("/prestatairephoto")
     @CrossOrigin(origins = "*", methods = { RequestMethod.POST,
@@ -159,6 +160,11 @@ public class PrestataireController {
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);
 
+=======
+    @GetMapping
+    public Iterable<Prestataire> getAllPrestataires() {
+        return prestataireRepository.findAll();
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
     }
 
     @PutMapping("/{id}")
@@ -167,9 +173,13 @@ public class PrestataireController {
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
     @PutMapping("/event/{id}/{idE}")
     public ResponseEntity<Prestataire> updatePrestataireE(@PathVariable Long id, @PathVariable Long idE,
             @RequestBody Prestataire prestataire) {
@@ -185,10 +195,14 @@ public class PrestataireController {
         prestataireExistant.ajoutEvenement(evenement);
         evenement.ajouterPrestataire(prestataireExistant);
 <<<<<<< HEAD
+<<<<<<< HEAD
         
 =======
 
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
         // Enregistrez le prestataire
         prestataireRepository.save(prestataireExistant);
 

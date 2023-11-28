@@ -36,7 +36,6 @@ com/team/alpha/backGestionEvent/repository/ClientRepository.class
 com/team/alpha/backGestionEvent/service/CustomUserDetailsService.class
 com/team/alpha/backGestionEvent/web/LoginController.class
 com/team/alpha/backGestionEvent/web/ClientController.class
-com/team/alpha/backGestionEvent/web/DemandeController.class
 com/team/alpha/backGestionEvent/service/EventService.class
 com/team/alpha/backGestionEvent/security/SecurityConfig.class
 com/team/alpha/backGestionEvent/service/UserDetailsServiceImpl.class
@@ -54,5 +53,8 @@ com/team/alpha/backGestionEvent/service/PrestataireService.class
 com/team/alpha/backGestionEvent/web/ClientChatController.class
 com/team/alpha/backGestionEvent/web/Valid.class
 com/team/alpha/backGestionEvent/service/ClientService.class
+<<<<<<< HEAD
 com/team/alpha/backGestionEvent/service/DemandeService.class
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
+=======
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)

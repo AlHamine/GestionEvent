@@ -27,6 +27,10 @@ public class EventService {
         return eRepository.findAll();
     }
 
+    public Iterable<Evenement> getAllClientsByOrg(Long id) {
+        return eRepository.findByOrganisateur(id);
+    }
+
     public Evenement createEvent(Evenement E) {
         return eRepository.save(E);
     }
@@ -41,6 +45,7 @@ public class EventService {
         E.suprimerPrestataire(prestataire);
         eRepository.save(E);
     }
+
     public Evenement getEvenementById(Long id) {
         return eRepository.findById(id).get();
     }

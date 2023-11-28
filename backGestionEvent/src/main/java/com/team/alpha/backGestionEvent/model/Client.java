@@ -144,4 +144,18 @@ public class Client {
         this.requetes = requetes;
     }
 
+<<<<<<< HEAD
+=======
+    public void ajoutDemande(Demande E) {
+        if (!this.requetes.contains(E))
+            this.requetes.add(E);
+
+    }
+    
+    public void suprimerDemande(Demande d) {
+        if (!this.requetes.contains(d))
+            this.requetes.remove(d);
+    }
+
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
 }

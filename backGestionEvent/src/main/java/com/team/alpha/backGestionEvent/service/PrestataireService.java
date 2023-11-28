@@ -1,5 +1,6 @@
 package com.team.alpha.backGestionEvent.service;
 
+import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 <<<<<<< HEAD
 =======
@@ -7,7 +8,11 @@ import com.team.alpha.backGestionEvent.model.FileData;
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.User;
+<<<<<<< HEAD
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
+=======
+import com.team.alpha.backGestionEvent.repository.EvenementRepository;
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
@@ -31,14 +36,40 @@ public class PrestataireService {
     @Autowired
     private UserService userService;
     @Autowired
+    private DemandeService dService;
+
+    @Autowired
     private UserRepository userRepository;
     @Autowired
+<<<<<<< HEAD
     private FileDataRepository fileDataRepository;
 
+=======
+    private EvenementRepository eRepository;
+>>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
         this.prestataireRepository = prestataireRepository;
+    }
+
+    // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
+    //     E.suprimerDemande(demande);
+    //     p.suprimerDemande(demande);
+    //     E.getOrganisateur().suprimerDemande(demande);
+    //     eRepository.save(E);
+    //     prestataireRepository.save(p);
+    //     dService.deleteDemande(demande.getIdDemande());
+
+    // }
+ public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
+        E.suprimerDemande(demande);
+        p.suprimerDemande(demande);
+        E.getOrganisateur().suprimerDemande(demande);
+        eRepository.save(E);
+        prestataireRepository.save(p);
+        dService.deleteDemande(demande.getIdDemande());
+
     }
 
     // @GetMapping
