@@ -46,6 +46,7 @@ function Login({ setEstAuthentifie }) {
         if (jwtToken != null) {
           sessionStorage.setItem("jwt", jwtToken);
           sessionStorage.setItem("isLoggedIn", true);
+          sessionStorage.setItem("idClient", user.idc);
           sessionStorage.setItem("UserMail", user.username);
           setAuth(true);
         } else {

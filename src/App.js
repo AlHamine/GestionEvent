@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Logouter from "./components/Logout";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
+import EventListByClient from "./components/EventListByClient";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -48,6 +49,7 @@ function App(props) {
         {/* <Route path="/about" element={<About />} /> */}
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
         <Route path={"/events"} element={<EventList />} />;
+        <Route path={"/myevents"} element={<EventListByClient />} />;
       </Routes>
     </Router>
   );

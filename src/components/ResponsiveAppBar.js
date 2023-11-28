@@ -21,8 +21,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
 
 import Logout from "./Logout";
+import EventListByClient from "./EventListByClient";
 
-const pages = ["Evenements", "Pricing", "Blog"];
+const pages = ["Evenements", "myEvents", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -167,6 +168,17 @@ function ResponsiveAppBar() {
                       Les Evenements
                     </Link>
                   </Button>
+                ) : page === "myEvents" ? (
+                  <Button color="success">
+                    <Link
+                      to="/myevents"
+                      key={page}
+                      style={{ color: "white", textDecoration: "none" }}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      Mes Evenements
+                    </Link>
+                  </Button>
                 ) : (
                   <Button
                     key={page}
@@ -178,6 +190,30 @@ function ResponsiveAppBar() {
                 )
               )}
             </Box>
+            {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {pages.map((page) =>
+                page === "myEvents" ? (
+                  <Button>
+                    <Link
+                      to="/myevents"
+                      key={page}
+                      style={{ color: "white", textDecoration: "none" }}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      Mes Evenements
+                    </Link>
+                  </Button>
+                ) : (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={{ my: 2, color: "white", display: "block" }}
+                  >
+                    {page}
+                  </Button>
+                )
+              )}
+            </Box> */}
 
             <IconButton
               size="large"
@@ -233,6 +269,9 @@ function ResponsiveAppBar() {
                     ) : setting === "Logout" ? (
                       <Logout />
                     ) : (
+                      //   : setting === "Dashboard" ? (
+                      // <EventListByClient />
+                      //   )
                       <Typography textAlign="center">{setting}</Typography>
                     )}
                   </MenuItem>

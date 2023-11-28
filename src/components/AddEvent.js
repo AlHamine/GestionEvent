@@ -19,23 +19,23 @@ import "react-datepicker/dist/react-datepicker.module.css";
 
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
-  const gmail = sessionStorage.getItem("UserMail");
-  const token = sessionStorage.getItem("jwt");
-  useEffect(() => {
-    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        sessionStorage.setItem("idClient", data.idc);
-        sessionStorage.setItem("n", data.nom);
-        sessionStorage.setItem("p", data.prenom);
-        // sessionStorage.setItem("client", data);
-        // d = data;
-      })
-      .catch((err) => console.error(err))
-      .catch((err) => console.log(err));
-  }, [gmail, token]);
+  // const gmail = sessionStorage.getItem("UserMail");
+  // const token = sessionStorage.getItem("jwt");
+  // useEffect(() => {
+  //   fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
+  //     headers: { "Content-Type": "application/json", Authorization: token },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       sessionStorage.setItem("idClient", data.idc);
+  //       sessionStorage.setItem("n", data.nom);
+  //       sessionStorage.setItem("p", data.prenom);
+  //       // sessionStorage.setItem("client", data);
+  //       // d = data;
+  //     })
+  //     .catch((err) => console.error(err))
+  //     .catch((err) => console.log(err));
+  // }, [gmail, token]);
 
   const [event, setEvent] = useState({
     nomEvent: "",
@@ -91,7 +91,6 @@ function AddEvent(props) {
     });
     handleClose();
   };
-  console.log(event.date);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEvent((prevEvent) => ({
