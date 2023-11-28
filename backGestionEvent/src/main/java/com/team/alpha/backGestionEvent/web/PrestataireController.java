@@ -49,11 +49,17 @@ public class PrestataireController {
 
     }
 
+    @GetMapping
+    public Iterable<Prestataire> getAllPrestataires() {
+        return prestataireRepository.findAll();
+    }
+
     @PutMapping("/{id}")
     public Prestataire updatePrestataire(@PathVariable Long id, @RequestBody Prestataire updatePrestataire) {
         return prestataireService.updatePrestataire(id, updatePrestataire);
 
     }
+
     @PutMapping("/event/{id}/{idE}")
     public ResponseEntity<Prestataire> updatePrestataireE(@PathVariable Long id, @PathVariable Long idE,
             @RequestBody Prestataire prestataire) {
@@ -68,7 +74,7 @@ public class PrestataireController {
         // prestataireExistant.setEvenement(evenement);
         prestataireExistant.ajoutEvenement(evenement);
         evenement.ajouterPrestataire(prestataireExistant);
-        
+
         // Enregistrez le prestataire
         prestataireRepository.save(prestataireExistant);
 

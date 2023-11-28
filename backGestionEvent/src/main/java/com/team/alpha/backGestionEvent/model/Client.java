@@ -38,7 +38,6 @@ public class Client {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
     private List<Demande> requetes;
 
-
     // private
     public Client() {
 
@@ -145,5 +144,15 @@ public class Client {
         this.requetes = requetes;
     }
 
+    public void ajoutDemande(Demande E) {
+        if (!this.requetes.contains(E))
+            this.requetes.add(E);
+
+    }
     
+    public void suprimerDemande(Demande d) {
+        if (!this.requetes.contains(d))
+            this.requetes.remove(d);
+    }
+
 }

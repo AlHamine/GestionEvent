@@ -36,6 +36,11 @@ public class EventController {
         return eService.getAllClients();
     }
 
+    @GetMapping("org/{id}")
+    public Iterable<Evenement> getAllClientsByOrg(@PathVariable Long id) {
+        return eService.getAllClientsByOrg(id);
+    }
+
     @PostMapping
     public Evenement createClient(@RequestBody Evenement E) throws Exception {
         return eService.createEvent(E);

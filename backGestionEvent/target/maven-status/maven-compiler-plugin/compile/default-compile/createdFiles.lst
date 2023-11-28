@@ -1,7 +1,6 @@
 com/team/alpha/backGestionEvent/service/CustomUserDetailsService.class
 com/team/alpha/backGestionEvent/web/LoginController.class
 com/team/alpha/backGestionEvent/web/ClientController.class
-com/team/alpha/backGestionEvent/web/DemandeController.class
 com/team/alpha/backGestionEvent/service/EventService.class
 com/team/alpha/backGestionEvent/security/SecurityConfig.class
 com/team/alpha/backGestionEvent/service/UserDetailsServiceImpl.class
@@ -19,4 +18,3 @@ com/team/alpha/backGestionEvent/service/PrestataireService.class
 com/team/alpha/backGestionEvent/web/ClientChatController.class
 com/team/alpha/backGestionEvent/web/Valid.class
 com/team/alpha/backGestionEvent/service/ClientService.class
-com/team/alpha/backGestionEvent/service/DemandeService.class
