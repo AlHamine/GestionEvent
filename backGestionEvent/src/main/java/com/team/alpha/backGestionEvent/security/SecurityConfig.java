@@ -69,6 +69,7 @@ public class SecurityConfig {
 
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+<<<<<<< HEAD
 		http.csrf().disable().cors().and()
 				.authorizeHttpRequests().anyRequest().permitAll();
 		return http
@@ -219,6 +220,11 @@ public class SecurityConfig {
 		return http
 				.csrf(csrf -> csrf.disable())
 				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
+=======
+		return http
+				.csrf(csrf -> csrf.disable())
+				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
+>>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
 				.sessionManagement(management -> management
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
@@ -226,14 +232,24 @@ public class SecurityConfig {
 								"/event",
 								"/websocket/*")
 						.permitAll()
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
 						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+=======
+						.requestMatchers(HttpMethod.POST,
+								"/prestataires", "prestataires/prestatairephoto")
+						.permitAll()
+						.requestMatchers(HttpMethod.POST,
+								"/client", "/client/clientphoto")
+						.permitAll()
+>>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
 						UsernamePasswordAuthenticationFilter.class)
 				.httpBasic(withDefaults())
 				.build();
+<<<<<<< HEAD
 =======
 	return http
 	.csrf(csrf -> csrf.disable())
@@ -254,6 +270,8 @@ public class SecurityConfig {
 	.httpBasic(withDefaults())
 	.build();
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+>>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
 	}
 
 <<<<<<< HEAD
@@ -264,6 +282,7 @@ public class SecurityConfig {
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	// 	return http
 	// 			.csrf(csrf -> csrf.disable())
@@ -289,6 +308,12 @@ public class SecurityConfig {
 	// 			.authorizeHttpRequests().anyRequest().permitAll();
 	// 	return http.build();
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+	// // Add this row
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return http.build();
+>>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
 	// }
 
 <<<<<<< HEAD

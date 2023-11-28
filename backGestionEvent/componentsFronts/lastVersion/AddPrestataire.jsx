@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { PersonAdd, Email, Lock, Work } from "@mui/icons-material";
 import FileIcon from "@mui/icons-material/FileCopy";
-import { SERVER_URL } from "../../constants";
+import { SERVER_URL } from "../constants";
 import axios from "axios";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
@@ -20,11 +20,9 @@ export default function AddPrestataire(props) {
   const [prenom, setPrenom] = useState("");
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [service, setService] = useState("");
   const [open, setOpen] = useState(false);
-
-  const defaultImage =
-    "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/defaultprofil.jpg";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -36,7 +34,13 @@ export default function AddPrestataire(props) {
     formData.append("password", password);
     formData.append("service", service);
 
-    if (nom === "" || prenom === "" || mail === "" || password === "") {
+    if (
+      nom === "" ||
+      prenom === "" ||
+      mail === "" ||
+      password === "" ||
+      passwordConfirmation === ""
+    ) {
       alert("Veuillez remplir tous les champs.");
       return;
     }
@@ -46,17 +50,16 @@ export default function AddPrestataire(props) {
       return;
     }
 
-    // Vérifier si le champ `password` est de type `string` et a au moins 8 caractères
-    if (typeof password !== "string" || password.length < 2) {
-      alert(
-        "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
-      );
+    // Vérifier que le password est robust et contient au moins 8 caractères
+    if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/)) {
+      alert("Votre mot de passe doit être robuste.");
       return;
     }
 
-    // if (file === null) {
-    //   formData.append("file", defaultImage);
-    // }
+    if (password !== passwordConfirmation) {
+      alert("Les mots de passe ne correspondent pas.");
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -180,6 +183,23 @@ export default function AddPrestataire(props) {
                 ),
               }}
               onChange={(event) => setPassword(event.target.value)}
+            />
+            <TextField
+              id="passwordConfirmation"
+              label="Confirmation du mot de passe"
+              variant="outlined"
+              type="password"
+              fullWidth
+              margin="normal"
+              // value={client.password}
+              onChange={(event) => setPasswordConfirmation(event.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+              }}
             />
             <TextField
               id="file"
