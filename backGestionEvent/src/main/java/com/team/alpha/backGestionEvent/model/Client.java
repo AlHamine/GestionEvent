@@ -2,11 +2,7 @@ package com.team.alpha.backGestionEvent.model;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -31,6 +27,8 @@ public class Client {
     @Column(nullable = false, unique = true)
     private String mail;
     private String photo;
+    // private String role1 = "client";
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organisateur")
     private List<Evenement> events;
@@ -40,7 +38,7 @@ public class Client {
 
     // private
     public Client() {
-
+        // this.role1 = "client";
     }
 
     // @Autowired
@@ -51,6 +49,7 @@ public class Client {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
+        // this.role1 = "client";
     }
 
     public Client(long idc) {
@@ -63,18 +62,10 @@ public class Client {
         this.mail = mail;
         this.photo = photo;
         this.password = password;
-
+        // this.role1 = "client";
         // User user = userService.createUser(mail, password, photo, "client");
 
     }
-
-    // public long getId() {
-    // return id;
-    // }
-
-    // public void setId(long id) {
-    // this.id = id;
-    // }
 
     public String getNom() {
         return nom;
@@ -142,6 +133,17 @@ public class Client {
 
     public void setRequetes(List<Demande> requetes) {
         this.requetes = requetes;
+    }
+
+    public void ajoutDemande(Demande E) {
+        if (!this.requetes.contains(E))
+            this.requetes.add(E);
+
+    }
+
+    public void suprimerDemande(Demande d) {
+        if (!this.requetes.contains(d))
+            this.requetes.remove(d);
     }
 
 }

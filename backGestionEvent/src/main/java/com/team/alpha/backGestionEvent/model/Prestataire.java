@@ -36,7 +36,7 @@ public class Prestataire {
     // **************************************************
     private Integer note = 0; // Initialisation de la note
     // **************************************************
-
+    private String role = "prestataire";
     // @ManyToOne
     // @JoinColumn(name = "evenement")
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -47,7 +47,7 @@ public class Prestataire {
 
     // private Evenement event=null;
     public Prestataire() {
-
+        // this.role = "prestataire";
     }
 
     public Prestataire(String nom, String prenom, String service, String mail, String photo, String password)
@@ -117,10 +117,6 @@ public class Prestataire {
         return note;
     }
 
-    public void setRating(Integer note) {
-        this.note = note;
-    }
-
     public long getIdp() {
         return idp;
     }
@@ -129,8 +125,12 @@ public class Prestataire {
         this.idp = idp;
     }
 
+    // Controller l'ajout de la note avant chaque mise a jour
     public void setNote(Integer note) {
-        this.note = note;
+        if (note >= 1 && note <= 5) {
+            this.note = note;
+        }
+
     }
 
     public List<Demande> getRequetes() {
@@ -155,4 +155,14 @@ public class Prestataire {
 
     }
 
+    public void ajoutDemande(Demande E) {
+        if (!this.requetes.contains(E))
+            this.requetes.add(E);
+
+    }
+
+    public void suprimerDemande(Demande d) {
+        if (!this.requetes.contains(d))
+            this.requetes.remove(d);
+    }
 }

@@ -91,7 +91,8 @@ public class Evenement {
     }
 
     public void suprimerPrestataire(Prestataire p) {
-        this.prestataires.remove(p);
+        if (this.prestataires.contains(p))
+            this.prestataires.remove(p);
     }
 
     public void setPrestataires(List<Prestataire> prestataires) {
@@ -128,6 +129,17 @@ public class Evenement {
 
     public void setDemandes(List<Demande> demandes) {
         this.demandes = demandes;
+    }
+
+    public void ajoutDemande(Demande E) {
+        if (!this.demandes.contains(E))
+            this.demandes.add(E);
+
+    }
+
+    public void suprimerDemande(Demande d) {
+        if (!this.demandes.contains(d))
+            this.demandes.remove(d);
     }
 
 }

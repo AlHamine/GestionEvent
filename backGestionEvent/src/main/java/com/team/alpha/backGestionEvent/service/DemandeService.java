@@ -1,6 +1,9 @@
 package com.team.alpha.backGestionEvent.service;
 
+import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Demande;
+import com.team.alpha.backGestionEvent.model.Evenement;
+import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.repository.DemandeRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
@@ -20,22 +23,60 @@ public class DemandeService {
     @Autowired
     private UserService userService;
 
-    // Nouveau service provider
-    @Autowired
-    public DemandeService(DemandeRepository dRepository) {
-        this.dRepository = dRepository;
+    public Iterable<Demande> getAllDemande() {
+        return dRepository.findAll();
     }
 
-    public Iterable<Demande> getAllClients() {
-        return dRepository.findAll();
+    // Nouveau service provider
+    @Autowired
+    // public DemandeService(DemandeRepository dRepository) {
+    // this.dRepository = dRepository;
+    // }
+
+    // public void associer(Evenement E, Prestataire prestataire,Client C) {
+
+    // dRepository.save(E);
+    // }
+
+    public DemandeService(DemandeRepository dRepository, UserRepository userRepository, UserService userService) {
+        this.dRepository = dRepository;
+        this.userRepository = userRepository;
+        this.userService = userService;
     }
 
     public Optional<Demande> getClientById(Long id) {
         return dRepository.findById(id);
     }
 
-    public Demande createDemande(Demande demande) {
-        return dRepository.save(demande);
+    public Boolean existeDemande(Prestataire p, Evenement e) {
+        // Client c = e.getOrganisateur() ;
+        return (dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).isPresent());
+
+    }
+
+    // public Long getDemandeByPrestataireEvenement(Prestataire p, Evenement e) {
+    // return dRepository.findByClientPrestataireEvent(p.getIdp(),
+    // e.getIdEvent()).isPresent()
+    // ? dRepository.findByClientPrestataireEvent(p.getIdp(),
+    // e.getIdEvent()).get().getIdDemande()
+    // : null;
+    // }
+    public Demande getDemandeByPrestataireEvenement(Prestataire p, Evenement e) {
+        if (dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).isPresent())
+            return dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).get();
+        else
+            return null;
+    }
+
+    public Demande createDemande(Demande demande, Evenement E, Prestataire prestataire) {
+        if (!existeDemande(prestataire, E)) {
+            Client clientOrganisateur = E.getOrganisateur();
+            demande.setClient(clientOrganisateur);
+            demande.setPrestataire(prestataire);
+            demande.setEvenement(E);
+            return dRepository.save(demande);
+        }
+        return null;
 
     }
 

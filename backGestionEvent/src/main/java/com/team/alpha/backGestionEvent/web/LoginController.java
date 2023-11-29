@@ -6,17 +6,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.team.alpha.backGestionEvent.model.AccountCredentials;
+import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.Evenement;
+import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.service.JwtService;
+import com.team.alpha.backGestionEvent.service.UserService;
 
 @RestController
 public class LoginController {
 	@Autowired
 	private JwtService jwtService;
-
+	@Autowired
+	UserService uService;
 	@Autowired
 	AuthenticationManager authenticationManager;
 
@@ -36,5 +43,15 @@ public class LoginController {
 				.header(HttpHeaders.AUTHORIZATION, "Bearer " + jwts)
 				.header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Authorization")
 				.build();
+	}
+
+	@GetMapping("/mail")
+	public User getUserByMail(@RequestParam String mail) {
+		return uService.getClientByMail(mail).get();
+	}
+
+	@GetMapping("/user")
+	public Iterable<User> getAllClients() {
+		return uService.getAllUsers();
 	}
 }

@@ -1,16 +1,11 @@
 package com.team.alpha.backGestionEvent.service;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
-import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 
 @Service
@@ -27,6 +22,10 @@ public class EventService {
         return eRepository.findAll();
     }
 
+    public Iterable<Evenement> getAllClientsByOrg(Long id) {
+        return eRepository.findByOrganisateur(id);
+    }
+
     public Evenement createEvent(Evenement E) {
         return eRepository.save(E);
     }
@@ -41,6 +40,7 @@ public class EventService {
         E.suprimerPrestataire(prestataire);
         eRepository.save(E);
     }
+
     public Evenement getEvenementById(Long id) {
         return eRepository.findById(id).get();
     }

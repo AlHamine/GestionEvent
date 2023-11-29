@@ -8,17 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 
+import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.DemandeRepository;
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.ReviwRepository;
@@ -36,18 +39,26 @@ public class PrestataireController {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private PrestataireRepository prestataireRepository;
+
     @Autowired
     private EventService eService;
 
     @Autowired
-    private ReviwRepository reviwRepository;
-
-    @Autowired
     private FileDataRepository fileDataRepository;
 
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private DemandeRepository demandeRepository;
+
     private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
+
+    @Autowired
+    private ReviwRepository reviwRepository;
 
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -94,7 +105,11 @@ public class PrestataireController {
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);
+    }
 
+    @GetMapping
+    public Iterable<Prestataire> getAllPrestataires() {
+        return prestataireRepository.findAll();
     }
 
     @PutMapping("/{id}")
@@ -141,39 +156,47 @@ public class PrestataireController {
 
     // *******************************************************************************************************************
     @PostMapping("/reviews")
-    public ResponseEntity<Review> createReview(@RequestBody Review review) {
-        // Vérifie que l'utilisateur est connecté
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            return ResponseEntity.status(401).build();
+    public boolean createReview(
+            @RequestParam("emailPrestataire") String emailPrestataire,
+            @RequestParam("emailClient") String emailClient,
+            @RequestParam("comment") String comment,
+            @RequestParam("note") int note) {
+
+        Client client = clientRepository.findByMail(emailClient).orElse(null);
+        Prestataire prestataire = prestataireRepository.findByMail(emailPrestataire).orElse(null);
+
+        Demande demande = demandeRepository.findByClient(client).orElse(null);
+        Demande demande_SeachPrestataire = demandeRepository.findByPrestataire(prestataire).orElse(null);
+
+        if (prestataire != null || client != null) {
+            int rating;
+
+            rating = prestataire.getNote() + note;
+            prestataire.setNote(rating);
+
+            Review review = new Review();
+            review.setNote(note);
+            review.setEmailPrestataire(emailPrestataire);
+            review.setEmailClient(emailClient);
+            review.setComment(comment);
+
+            // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
+            // si le prestataire a accepte la demande puis noter
+            if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
+                    && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") == 0) {
+                reviwRepository.save(review);
+                prestataireRepository.save(prestataire);
+                return true;
+            }
         }
 
-        // Vérifie que l'utilisateur a utilisé le service du prestataire
-        Prestataire prestataire = prestataireRepository.findByMail(review.getEmailPrestataire()).orElse(null);
+        return false;
 
-        if (prestataire == null) {
-            return ResponseEntity.status(404).build();
-        }
-
-        // Vérifie que la note est comprise entre 1 et 5
-        if (review.getNote() < 1 || review.getNote() > 5) {
-            return ResponseEntity.status(400).build();
-        }
-
-        // Enregistre la critique
-        review.setEmailClient(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        reviwRepository.save(review);
-
-        // Met à jour la note du produit
-        prestataire.setRating(prestataire.getNote() + review.getNote());
-        prestataireRepository.save(prestataire);
-
-        return ResponseEntity.ok(review);
     }
 
     // *******************************************************************************************************************
     @GetMapping("/mail")
-    public Prestataire getPrestataireByMail(@RequestParam String mail) {
+    public Prestataire getClientByMail(@RequestParam String mail) {
         return prestataireService.getPrestataireByMail(mail).get();
     }
 }

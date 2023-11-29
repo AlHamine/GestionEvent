@@ -1,9 +1,11 @@
 package com.team.alpha.backGestionEvent.service;
 
+import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
@@ -23,12 +25,21 @@ import java.util.Optional;
 
 @Service
 public class PrestataireService {
+
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private DemandeService dService;
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private EvenementRepository eRepository;
+
     @Autowired
     private FileDataRepository fileDataRepository;
 
@@ -36,6 +47,25 @@ public class PrestataireService {
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
         this.prestataireRepository = prestataireRepository;
+    }
+
+    // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
+    // E.suprimerDemande(demande);
+    // p.suprimerDemande(demande);
+    // E.getOrganisateur().suprimerDemande(demande);
+    // eRepository.save(E);
+    // prestataireRepository.save(p);
+    // dService.deleteDemande(demande.getIdDemande());
+
+    // }
+    public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
+        E.suprimerDemande(demande);
+        p.suprimerDemande(demande);
+        E.getOrganisateur().suprimerDemande(demande);
+        eRepository.save(E);
+        prestataireRepository.save(p);
+        dService.deleteDemande(demande.getIdDemande());
+
     }
 
     // @GetMapping
@@ -52,18 +82,6 @@ public class PrestataireService {
         return prestataireRepository.save(p);
     }
 
-    public Prestataire createPrestataire(MultipartFile file, String nom, String prenom,
-            String mail, String password, String service) {
-        Prestataire prestataire = new Prestataire();
-        prestataire.setNom(nom);
-        prestataire.setPrenom(prenom);
-        prestataire.setMail(mail);
-        prestataire.setService(service);
-        prestataire.setPassword(passwordEncoder.encode(password));
-        prestataire.setPhoto(file.getOriginalFilename());
-        return prestataireRepository.save(prestataire);
-    }
-
     @Transactional
     public Prestataire createPrestataire(String nom, String prenom, String service, String password, String mail,
             String photo) throws Exception {
@@ -73,6 +91,19 @@ public class PrestataireService {
         // Créez un prestataire et associez-le à l'utilisateur
         Prestataire prestataire = new Prestataire(nom, prenom, service, mail, photo, passwordEncoder.encode(password));
         // Enregistrez le prestataire en base de données
+        return prestataireRepository.save(prestataire);
+    }
+
+    // Créez un nouveau prestataire en ajoutant la photo de profile
+    public Prestataire createPrestataire(MultipartFile file, String nom, String prenom,
+            String mail, String password, String service) {
+        Prestataire prestataire = new Prestataire();
+        prestataire.setNom(nom);
+        prestataire.setPrenom(prenom);
+        prestataire.setMail(mail);
+        prestataire.setService(service);
+        prestataire.setPassword(passwordEncoder.encode(password));
+        prestataire.setPhoto(file.getOriginalFilename());
         return prestataireRepository.save(prestataire);
     }
 
@@ -125,7 +156,7 @@ public class PrestataireService {
     }
 
     // Recuperer l'image pour pouvoir l'exploiter
-    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException {
         Optional<FileData> fileData = fileDataRepository.findByName(fileName);
         String filePath = fileData.get().getFilePath();
         byte[] images = Files.readAllBytes(new File(filePath).toPath());

@@ -28,19 +28,17 @@ public class ClientService {
     private ClientRepository clientRepository;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private FileDataRepository fileDataRepository;
+
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private FileDataRepository fileDataRepository;
 
     // Nouveau service provider
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-    }
-
-    public Iterable<Client> getAllClients() {
-        return clientRepository.findAll();
     }
 
     public Optional<Client> getClientByMail(String mail) {
@@ -74,6 +72,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    // Création d'un client en ajoutant la photo de profile
     public Client createClient(MultipartFile file, String nom, String prenom,
             String mail, String password) {
         Client client = new Client();
@@ -85,6 +84,7 @@ public class ClientService {
 
         return clientRepository.save(client);
     }
+
     // A Ameliorer
 
     public Client updateClient(Long id, Client updatedClient) {
@@ -107,14 +107,6 @@ public class ClientService {
         }
     }
 
-    //
-    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
-        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
-        String filePath = fileData.get().getFilePath();
-        byte[] images = Files.readAllBytes(new File(filePath).toPath());
-        return images;
-    }
-
     public boolean deleteClient(Long id) {
         Optional<Client> client = clientRepository.findById(id);
         if (client.isPresent()) {
@@ -126,4 +118,11 @@ public class ClientService {
         return false;
     }
 
+    // Recuperer l'image pour pouvoir l'exploiter
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
+    }
 }
