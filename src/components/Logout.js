@@ -5,6 +5,7 @@ function Logouter() {
   const handleLogout = () => {
     // Supprimez le jeton JWT du stockage local
     localStorage.removeItem("jwtToken");
+    sessionStorage.removeItem("role");
     sessionStorage.clear();
     // Redirigez l'utilisateur vers la page de connexion
     window.location.href = "/"; // Vous pouvez utiliser React Router pour la navigation

@@ -10,6 +10,9 @@ import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import PrestataireList from "./components/PrestataireList";
 import EventListByClient from "./components/EventListByClient";
+import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnected";
+import HomePageConnected from "./components/HomePageConnected";
+import DemandeList from "./components/DemandeList";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -34,20 +37,33 @@ function App(props) {
           element={
             sessionStorage.getItem("isLoggedIn") ? (
               <div>
-                <ResponsiveAppBar />
-                {/* <EventList /> */}
-                <HomePage />
-                <Footer />
+                {/* <ResponsiveAppBar /> */}
+                {/* <HomePageConnected /> */}
+                <DemandeList/>
+                {/* <Footer /> */}
               </div>
             ) : (
-              <Login
-                estAuthentifie={estAuthentifie}
-                setEstAuthentifie={setEstAuthentifie}
-              />
+              <div>
+                <ResponsiveAppBarNotConnected />
+                <HomePage />
+                <br />
+                <br />
+                <br />
+                <Footer />
+              </div>
             )
           }
         />
         {/* <Route path="/about" element={<About />} /> */}
+        <Route
+          path="/login"
+          element={
+            <Login
+              estAuthentifie={estAuthentifie}
+              setEstAuthentifie={setEstAuthentifie}
+            />
+          }
+        />
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
         <Route path={"/events"} element={<EventList />} />;
         <Route path={"/prest"} element={<PrestataireList />} />;

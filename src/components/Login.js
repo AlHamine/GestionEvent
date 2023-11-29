@@ -1,4 +1,5 @@
 import { Button, Stack, TextField } from "@mui/material";
+import { jwtDecode } from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import { SERVER_URL } from "../constants";
 import EventList from "./EventList.js";
@@ -10,12 +11,14 @@ import CreatePrestataire from "./CreatePrestataire.jsx";
 import CreateCustumer from "./CreateCustumer.jsx";
 import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
+import DemandeList from "./DemandeList.jsx";
 
 function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+  // const [role, setRole] = useState("");
   const [isAuthenticated, setAuth] = useState(false);
   const handleChange = (event) => {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -48,6 +51,13 @@ function Login({ setEstAuthentifie }) {
           sessionStorage.setItem("isLoggedIn", true);
           sessionStorage.setItem("idClient", user.idc);
           sessionStorage.setItem("UserMail", user.username);
+          const decodedToken = jwtDecode(jwtToken);
+          const role = decodedToken.role;
+          sessionStorage.setItem("role", role);
+          console.log(decodedToken);
+          console.log(decodedToken.role);
+          console.log(decodedToken.sub);
+
           setAuth(true);
         } else {
           setOpen(true);
@@ -55,23 +65,40 @@ function Login({ setEstAuthentifie }) {
       })
       .catch((err) => console.error(err));
   };
-
-  const gmail = sessionStorage.getItem("UserMail");
   const token = sessionStorage.getItem("jwt");
-  useEffect(() => {
-    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
+
+  // sessionStorage.setItem("roleUser", role);
+  const gmail = sessionStorage.getItem("UserMail");
+  // fetch(SERVER_URL + `login/mail?mail=${gmail}`, {
+  //   headers: { "Content-Type": "application/json", Authorization: token },
+  // })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setRole(data.role);
+  //   })
+  //   .catch((err) => console.error(err))
+  //   .catch((err) => console.log(err));
+  // const role = sessionStorage.getItem("role");
+  fetch(
+    SERVER_URL + (sessionStorage.getItem("role") === "client")
+      ? `client/mail?mail=${gmail}`
+      : `prestataires/mail?mail=${gmail}`,
+    {
       headers: { "Content-Type": "application/json", Authorization: token },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      sessionStorage.getItem("role") === "client"
+        ? sessionStorage.setItem("idClient", data.idc)
+        : sessionStorage.setItem("idPretataire", data.idp);
+      console.log(sessionStorage.setItem("idClient", data.idc));
+      console.log(sessionStorage.setItem("idPretataire", data.idp));
+      sessionStorage.setItem("n", data.nom);
+      sessionStorage.setItem("p", data.prenom);
     })
-      .then((response) => response.json())
-      .then((data) => {
-        sessionStorage.setItem("idClient", data.idc);
-        sessionStorage.setItem("n", data.nom);
-        sessionStorage.setItem("p", data.prenom);
-        sessionStorage.setItem("client", data);
-      })
-      .catch((err) => console.error(err))
-      .catch((err) => console.log(err));
-  }, [gmail, token]);
+    .catch((err) => console.error(err))
+    .catch((err) => console.log(err));
 
   const onLogout = () => {
     sessionStorage.removeItem("jwt");
@@ -79,14 +106,23 @@ function Login({ setEstAuthentifie }) {
   };
 
   if (isAuthenticated) {
-    return (
-      <div>
-        <ResponsiveAppBar />
-        <EventList />
-        <Footer />
-        <ChatComponent />
-      </div>
-    );
+    // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
+    if (sessionStorage.getItem("role") === "client") {
+      return (
+        <div>
+          <EventList />
+          {/* <Footer /> */}
+          <ChatComponent />
+        </div>
+      );
+    } else
+      return (
+        <div>
+          <DemandeList />
+          {/* <Footer /> */}
+          <ChatComponent />
+        </div>
+      );
   } else {
     return (
       <div>
@@ -129,8 +165,8 @@ function Login({ setEstAuthentifie }) {
               <Button variant="outlined" color="primary" onClick={login}>
                 Login
               </Button>
-              <CreatePrestataire />
-              <CreateCustumer />
+              {/* <CreatePrestataire /> */}
+              {/* <CreateCustumer /> */}
             </Stack>
           </Box>
         </Backdrop>

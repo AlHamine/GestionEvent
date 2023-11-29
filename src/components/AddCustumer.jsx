@@ -76,16 +76,19 @@ export default function AddCustomer(props) {
   return (
     <div>
       {/* <Button variant="contained" onClick={handleOpen}> */}
-      <Box
+      <Button variant="contained" onClick={handleOpen}>
+                JE VEUX ORGANISER UN EVENEMENT
+              </Button>
+        
+      {/* <Box
         onClick={handleOpen}
         style={{
           display: "flex",
           alignItems: "center",
         }}
       >
-        <AddCircleOutlinedIcon />
-        <p>Creer un compte</p>
-      </Box>
+
+      </Box> */}
       {/* </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau client </DialogTitle>
