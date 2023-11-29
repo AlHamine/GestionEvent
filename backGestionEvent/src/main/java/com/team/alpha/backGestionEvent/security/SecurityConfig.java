@@ -49,6 +49,7 @@ public class SecurityConfig {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -348,15 +349,44 @@ public class SecurityConfig {
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 =======
 	// Moins de security
+=======
+>>>>>>> a9816e1 (mise mineur acceptation Demande)
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// // Add this row
-	// http.csrf().disable().cors().and()
-	// .authorizeHttpRequests().anyRequest().permitAll();
-	// return http.build();
+	// return http
+	// .csrf(csrf -> csrf.disable())
+	// .cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
+	// .sessionManagement(management -> management
+	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	// .authorizeRequests(authorizeRequests -> authorizeRequests
+	// .requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
+	// "/event",
+	// "/websocket/*")
+	// .permitAll()
+	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
+	// .requestMatchers(HttpMethod.GET,"/api/evenements").permitAll()
+	// .anyRequest().authenticated())
+	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+	// .addFilterBefore(authenticationFilter,
+	// UsernamePasswordAuthenticationFilter.class)
+	// .httpBasic(withDefaults())
+	// .build();
 	// }
 
+<<<<<<< HEAD
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
+=======
+	// Moins de security
+	@Bean
+	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+		// Add this row
+		http.csrf().disable().cors().and()
+				.authorizeHttpRequests().anyRequest().permitAll();
+		return http.build();
+	}
+
+>>>>>>> a9816e1 (mise mineur acceptation Demande)
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();

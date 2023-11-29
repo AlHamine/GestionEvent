@@ -65,8 +65,12 @@ public class Prestataire {
     // **************************************************
     private Integer note = 0; // Initialisation de la note
     // **************************************************
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 
+=======
+    private String role = "prestataire";
+>>>>>>> a9816e1 (mise mineur acceptation Demande)
     // @ManyToOne
     // @JoinColumn(name = "evenement")
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -77,7 +81,7 @@ public class Prestataire {
 
     // private Evenement event=null;
     public Prestataire() {
-
+        // this.role = "prestataire";
     }
 
     public Prestataire(String nom, String prenom, String service, String mail, String photo, String password)

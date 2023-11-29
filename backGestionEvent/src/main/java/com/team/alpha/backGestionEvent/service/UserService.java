@@ -4,6 +4,8 @@ import java.util.Optional;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
@@ -19,7 +21,6 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
     @Transactional
     public User createUser(String mail, String password, String photo, String role) {
         // Vérifiez si un utilisateur avec la même adresse e-mail existe déjà
@@ -41,6 +42,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public Optional<User> getClientByMail(String mail) {
+       return userRepository.findByMail(mail);
+
+    }
     @Transactional
     public User updateUser(Long userId, String newMail, String newPassword, String newPhoto, String newRole) {
         // Recherchez l'utilisateur existant par son ID
@@ -75,5 +80,8 @@ public class UserService {
             // L'utilisateur avec l'ID spécifié n'a pas été trouvé
             throw new RuntimeException("L'utilisateur n'a pas été trouvé.");
         }
+    }
+    public Iterable<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }
