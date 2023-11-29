@@ -34,7 +34,7 @@ public class ClientController {
     @Autowired
     private FileDataRepository fileDataRepository;
 
-    private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
+    private final String FOLDER_PATH = System.getProperty("user.dir") + "/src/assets/";
 
     @GetMapping("/mail")
     public Client getClientByMail(@RequestParam String mail) {

@@ -55,7 +55,7 @@ public class PrestataireController {
     @Autowired
     private DemandeRepository demandeRepository;
 
-    private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
+    private final String FOLDER_PATH = System.getProperty("user.dir") + "/src/assets/";
 
     @Autowired
     private ReviwRepository reviwRepository;
@@ -183,7 +183,7 @@ public class PrestataireController {
             // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
             // si le prestataire a accepte la demande puis noter
             if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
-                    && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") == 0) {
+                    && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED") == 0) {
                 reviwRepository.save(review);
                 prestataireRepository.save(prestataire);
                 return true;
