@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,20 +28,29 @@ import com.team.alpha.backGestionEvent.repository.UserRepository;
 >>>>>>> 3145185 (Revision de la structure du backend)
 =======
 import org.springframework.security.core.context.SecurityContextHolder;
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.team.alpha.backGestionEvent.model.Client;
 =======
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.Demande;
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.DemandeRepository;
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.ReviwRepository;
@@ -74,8 +84,10 @@ public class PrestataireController {
 >>>>>>> 27aa8ab (Revision du projet dans le github)
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private PrestataireRepository prestataireRepository;
+
     @Autowired
     private EventService eService;
 
@@ -86,6 +98,7 @@ public class PrestataireController {
 >>>>>>> 3145185 (Revision de la structure du backend)
 =======
     @Autowired
+<<<<<<< HEAD
     private ReviwRepository reviwRepository;
 
 <<<<<<< HEAD
@@ -108,11 +121,25 @@ public class PrestataireController {
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 =======
     @Autowired
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     private FileDataRepository fileDataRepository;
+
+    @Autowired
+    private ClientRepository clientRepository;
+
+    @Autowired
+    private DemandeRepository demandeRepository;
 
     private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
 
+<<<<<<< HEAD
 >>>>>>> d84eb0e (Redefinir l'entite Prestataire pour gerer l'insertions des photos de profils.)
+=======
+    @Autowired
+    private ReviwRepository reviwRepository;
+
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     private BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     @PostMapping
@@ -159,12 +186,19 @@ public class PrestataireController {
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("image/png"))
                 .body(imageData);
+    }
 
+<<<<<<< HEAD
 =======
     @GetMapping
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
+=======
+    @GetMapping
+    public Iterable<Prestataire> getAllPrestataires() {
+        return prestataireRepository.findAll();
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     }
 
     @PutMapping("/{id}")
@@ -252,34 +286,42 @@ public class PrestataireController {
 
     // *******************************************************************************************************************
     @PostMapping("/reviews")
-    public ResponseEntity<Review> createReview(@RequestBody Review review) {
-        // Vérifie que l'utilisateur est connecté
-        if (SecurityContextHolder.getContext().getAuthentication() == null) {
-            return ResponseEntity.status(401).build();
+    public boolean createReview(
+            @RequestParam("emailPrestataire") String emailPrestataire,
+            @RequestParam("emailClient") String emailClient,
+            @RequestParam("comment") String comment,
+            @RequestParam("note") int note) {
+
+        Client client = clientRepository.findByMail(emailClient).orElse(null);
+        Prestataire prestataire = prestataireRepository.findByMail(emailPrestataire).orElse(null);
+
+        Demande demande = demandeRepository.findByClient(client).orElse(null);
+        Demande demande_SeachPrestataire = demandeRepository.findByPrestataire(prestataire).orElse(null);
+
+        if (prestataire != null || client != null) {
+            int rating;
+
+            rating = prestataire.getNote() + note;
+            prestataire.setNote(rating);
+
+            Review review = new Review();
+            review.setNote(note);
+            review.setEmailPrestataire(emailPrestataire);
+            review.setEmailClient(emailClient);
+            review.setComment(comment);
+
+            // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
+            // si le prestataire a accepte la demande puis noter
+            if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
+                    && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") == 0) {
+                reviwRepository.save(review);
+                prestataireRepository.save(prestataire);
+                return true;
+            }
         }
 
-        // Vérifie que l'utilisateur a utilisé le service du prestataire
-        Prestataire prestataire = prestataireRepository.findByMail(review.getEmailPrestataire()).orElse(null);
+        return false;
 
-        if (prestataire == null) {
-            return ResponseEntity.status(404).build();
-        }
-
-        // Vérifie que la note est comprise entre 1 et 5
-        if (review.getNote() < 1 || review.getNote() > 5) {
-            return ResponseEntity.status(400).build();
-        }
-
-        // Enregistre la critique
-        review.setEmailClient(SecurityContextHolder.getContext().getAuthentication().getName());
-
-        reviwRepository.save(review);
-
-        // Met à jour la note du produit
-        prestataire.setRating(prestataire.getNote() + review.getNote());
-        prestataireRepository.save(prestataire);
-
-        return ResponseEntity.ok(review);
     }
 
 <<<<<<< HEAD
@@ -290,7 +332,7 @@ public class PrestataireController {
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     // *******************************************************************************************************************
     @GetMapping("/mail")
-    public Prestataire getPrestataireByMail(@RequestParam String mail) {
+    public Prestataire getClientByMail(@RequestParam String mail) {
         return prestataireService.getPrestataireByMail(mail).get();
     }
 <<<<<<< HEAD

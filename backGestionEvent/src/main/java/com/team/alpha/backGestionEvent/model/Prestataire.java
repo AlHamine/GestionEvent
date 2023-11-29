@@ -66,11 +66,15 @@ public class Prestataire {
     private Integer note = 0; // Initialisation de la note
     // **************************************************
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 
 =======
     private String role = "prestataire";
 >>>>>>> a9816e1 (mise mineur acceptation Demande)
+=======
+    private String role = "prestataire";
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     // @ManyToOne
     // @JoinColumn(name = "evenement")
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -170,10 +174,6 @@ public class Prestataire {
         return note;
     }
 
-    public void setRating(Integer note) {
-        this.note = note;
-    }
-
     public long getIdp() {
         return idp;
     }
@@ -188,8 +188,12 @@ public class Prestataire {
         this.idp = idp;
     }
 
+    // Controller l'ajout de la note avant chaque mise a jour
     public void setNote(Integer note) {
-        this.note = note;
+        if (note >= 1 && note <= 5) {
+            this.note = note;
+        }
+
     }
 
     public List<Demande> getRequetes() {
@@ -225,10 +229,13 @@ public class Prestataire {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
 =======
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 =======
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public void ajoutDemande(Demande E) {
         if (!this.requetes.contains(E))
             this.requetes.add(E);
@@ -239,5 +246,8 @@ public class Prestataire {
         if (!this.requetes.contains(d))
             this.requetes.remove(d);
     }
+<<<<<<< HEAD
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 }

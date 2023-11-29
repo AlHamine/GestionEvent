@@ -1,16 +1,11 @@
 package com.team.alpha.backGestionEvent.service;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
-import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 
 @Service

@@ -6,12 +6,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.http.MediaType;
 
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.FileData;
@@ -24,6 +24,7 @@ import com.team.alpha.backGestionEvent.service.ClientService;
 @RestController
 @RequestMapping("/client")
 public class ClientController {
+
     @Autowired
     private ClientService clientService;
 
@@ -37,12 +38,15 @@ public class ClientController {
 
     private final String FOLDER_PATH = "/home/tinkin-djeeri/Documents/Travaux/Projet/backGestionEvent/src/assets/";
 
+<<<<<<< HEAD
     @GetMapping
     public Iterable<Client> getAllClients() {
         return clientService.getAllClients();
     }
 
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     @GetMapping("/mail")
     public Client getClientByMail(@RequestParam String mail) {
         return clientService.getClientByMail(mail).get();
@@ -104,7 +108,6 @@ public class ClientController {
     }
 
     @GetMapping("/profile")
-
     public ResponseEntity<Client> getClientProfile(@AuthenticationPrincipal User user) {
         // Utilisez l'utilisateur actuellement connecté pour récupérer le profil du
         // client

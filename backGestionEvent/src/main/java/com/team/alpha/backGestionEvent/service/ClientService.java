@@ -28,8 +28,7 @@ public class ClientService {
     private ClientRepository clientRepository;
     @Autowired
     private UserRepository userRepository;
-    @Autowired
-    private FileDataRepository fileDataRepository;
+
     @Autowired
     private UserService userService;
 <<<<<<< HEAD
@@ -40,6 +39,9 @@ public class ClientService {
 =======
 // Nouveau service provider
 =======
+
+    @Autowired
+    private FileDataRepository fileDataRepository;
 
     // Nouveau service provider
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
@@ -58,6 +60,7 @@ public class ClientService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     public Optional<Client> getClientByMail(String mail) {
        return clientRepository.findByMail(mail);
 =======
@@ -65,6 +68,8 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public Optional<Client> getClientByMail(String mail) {
         return clientRepository.findByMail(mail);
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
@@ -101,6 +106,7 @@ public class ClientService {
         return clientRepository.save(client);
     }
 
+    // Création d'un client en ajoutant la photo de profile
     public Client createClient(MultipartFile file, String nom, String prenom,
             String mail, String password) {
         Client client = new Client();
@@ -112,6 +118,7 @@ public class ClientService {
 
         return clientRepository.save(client);
     }
+
     // A Ameliorer
 
     public Client updateClient(Long id, Client updatedClient) {
@@ -134,14 +141,6 @@ public class ClientService {
         }
     }
 
-    //
-    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
-        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
-        String filePath = fileData.get().getFilePath();
-        byte[] images = Files.readAllBytes(new File(filePath).toPath());
-        return images;
-    }
-
     public boolean deleteClient(Long id) {
         Optional<Client> client = clientRepository.findById(id);
         if (client.isPresent()) {
@@ -153,4 +152,11 @@ public class ClientService {
         return false;
     }
 
+    // Recuperer l'image pour pouvoir l'exploiter
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
+    }
 }

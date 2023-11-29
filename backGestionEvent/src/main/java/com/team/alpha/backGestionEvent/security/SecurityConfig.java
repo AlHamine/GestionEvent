@@ -50,6 +50,7 @@ public class SecurityConfig {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -351,6 +352,8 @@ public class SecurityConfig {
 	// Moins de security
 =======
 >>>>>>> a9816e1 (mise mineur acceptation Demande)
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 	// return http
@@ -363,9 +366,20 @@ public class SecurityConfig {
 	// "/event",
 	// "/websocket/*")
 	// .permitAll()
+<<<<<<< HEAD
 	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
 	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
 	// .requestMatchers(HttpMethod.GET,"/api/evenements").permitAll()
+=======
+	// .requestMatchers(HttpMethod.POST,
+	// "/prestataires", "prestataires/prestatairephoto")
+	// .permitAll()
+	// .requestMatchers(HttpMethod.POST,
+	// "/client", "/client/clientphoto")
+	// .permitAll()
+	// .requestMatchers(HttpMethod.GET, "/api/evenements").permitAll()
+
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 	// .anyRequest().authenticated())
 	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 	// .addFilterBefore(authenticationFilter,
@@ -375,8 +389,11 @@ public class SecurityConfig {
 	// }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
 =======
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 	// Moins de security
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
@@ -386,7 +403,10 @@ public class SecurityConfig {
 		return http.build();
 	}
 
+<<<<<<< HEAD
 >>>>>>> a9816e1 (mise mineur acceptation Demande)
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();

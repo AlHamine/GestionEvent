@@ -2,11 +2,7 @@ package com.team.alpha.backGestionEvent.model;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.team.alpha.backGestionEvent.service.UserService;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -70,14 +66,6 @@ public class Client {
         // User user = userService.createUser(mail, password, photo, "client");
 
     }
-
-    // public long getId() {
-    // return id;
-    // }
-
-    // public void setId(long id) {
-    // this.id = id;
-    // }
 
     public String getNom() {
         return nom;
@@ -148,7 +136,10 @@ public class Client {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public void ajoutDemande(Demande E) {
         if (!this.requetes.contains(E))
             this.requetes.add(E);
@@ -160,5 +151,8 @@ public class Client {
             this.requetes.remove(d);
     }
 
+<<<<<<< HEAD
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
+=======
+>>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 }
