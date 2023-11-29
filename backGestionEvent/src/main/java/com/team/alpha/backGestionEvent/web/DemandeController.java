@@ -41,7 +41,7 @@ public class DemandeController {
     @Autowired
     private PrestataireService prestataireService;
 
-    @Autowired
+    @Autowired  
     private UserRepository userRepository;
     @Autowired
     private PrestataireRepository prestataireRepository;
@@ -58,6 +58,16 @@ public class DemandeController {
 
     public Iterable<Demande> getAllDemande() {
         return dService.getAllDemande();
+    }
+
+    @GetMapping("/{idE}/{idp}")
+    public Demande getDemandeIdByPrestatireEvent(@PathVariable Long idp,
+            @PathVariable Long idE) {
+        // Vérifiez si le prestataire existe
+        Prestataire prestataireExistant = prestataireRepository.findById(idp).orElseThrow();
+        // Récupérez l'événement existant de la base de données
+        Evenement evenement = eService.getEvenementById(idE);
+        return dService.getDemandeByPrestataireEvenement(prestataireExistant, evenement);
     }
 
     @PostMapping("/{idE}/{idp}")

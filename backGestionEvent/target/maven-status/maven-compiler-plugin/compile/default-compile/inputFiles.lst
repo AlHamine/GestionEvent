@@ -18,7 +18,6 @@
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/JwtService.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/EventController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/service/WebSocketConfig.java
-/home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/Valid.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientChatController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/web/ClientController.java
 /home/smah/Documents/Projet/GestionEvent/backGestionEvent/src/main/java/com/team/alpha/backGestionEvent/repository/DemandeRepository.java

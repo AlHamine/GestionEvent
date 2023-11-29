@@ -31,6 +31,8 @@ public class Client {
     @Column(nullable = false, unique = true)
     private String mail;
     private String photo;
+    // private String role1 = "client";
+
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "organisateur")
     private List<Evenement> events;
@@ -40,7 +42,7 @@ public class Client {
 
     // private
     public Client() {
-
+        // this.role1 = "client";
     }
 
     // @Autowired
@@ -51,6 +53,7 @@ public class Client {
         this.nom = nom;
         this.prenom = prenom;
         this.mail = mail;
+        // this.role1 = "client";
     }
 
     public Client(long idc) {
@@ -63,7 +66,7 @@ public class Client {
         this.mail = mail;
         this.photo = photo;
         this.password = password;
-
+        // this.role1 = "client";
         // User user = userService.createUser(mail, password, photo, "client");
 
     }
@@ -149,7 +152,7 @@ public class Client {
             this.requetes.add(E);
 
     }
-    
+
     public void suprimerDemande(Demande d) {
         if (!this.requetes.contains(d))
             this.requetes.remove(d);

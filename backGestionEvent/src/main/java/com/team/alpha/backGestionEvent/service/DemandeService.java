@@ -51,7 +51,21 @@ public class DemandeService {
     public Boolean existeDemande(Prestataire p, Evenement e) {
         // Client c = e.getOrganisateur() ;
         return (dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).isPresent());
-    
+
+    }
+
+    // public Long getDemandeByPrestataireEvenement(Prestataire p, Evenement e) {
+    // return dRepository.findByClientPrestataireEvent(p.getIdp(),
+    // e.getIdEvent()).isPresent()
+    // ? dRepository.findByClientPrestataireEvent(p.getIdp(),
+    // e.getIdEvent()).get().getIdDemande()
+    // : null;
+    // }
+    public Demande getDemandeByPrestataireEvenement(Prestataire p, Evenement e) {
+        if (dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).isPresent())
+            return dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).get();
+        else
+            return null;
     }
 
     public Demande createDemande(Demande demande, Evenement E, Prestataire prestataire) {
