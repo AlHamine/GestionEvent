@@ -201,6 +201,13 @@ public class PrestataireController {
 >>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     }
 
+    @GetMapping("/notEvent/{idE}")
+    public Iterable<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
+        Evenement evenement = eService.getEvenementById(idE);
+
+        return prestataireService.prestataireByEvent(evenement);
+    }
+
     @PutMapping("/{id}")
     public Prestataire updatePrestataire(@PathVariable Long id, @RequestBody Prestataire updatePrestataire) {
         return prestataireService.updatePrestataire(id, updatePrestataire);

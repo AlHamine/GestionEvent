@@ -96,9 +96,9 @@ public class GestionEventApplication implements CommandLineRunner {
 				"Il s'agit de célébrer la naissance du prophète Seydina Mouhamadou Al Hamine", "Madina Baye", c2);
 
 		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
-		Demande d1 = new Demande(c2, p3, ev4);
-		Demande d2 = new Demande(c1, p1, ev1);
-		dRepository.saveAll(Arrays.asList(d1, d2));
+		// Demande d1 = new Demande(c2, p3, ev4);
+		// Demande d2 = new Demande(c1, p1, ev1);
+		// dRepository.saveAll(Arrays.asList(d1, d2));
 		// Envoyer l-email
 
 		// emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com",

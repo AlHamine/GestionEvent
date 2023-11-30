@@ -28,9 +28,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+=======
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+>>>>>>> 2494790 (Acception DE DEMANDE)
 import java.util.Optional;
 
 @Service
@@ -68,6 +74,7 @@ public class PrestataireService {
 
     // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //     E.suprimerDemande(demande);
     //     p.suprimerDemande(demande);
     //     E.getOrganisateur().suprimerDemande(demande);
@@ -78,12 +85,24 @@ public class PrestataireService {
     // }
  public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
 =======
+=======
     // E.suprimerDemande(demande);
     // p.suprimerDemande(demande);
     // E.getOrganisateur().suprimerDemande(demande);
     // eRepository.save(E);
     // prestataireRepository.save(p);
     // dService.deleteDemande(demande.getIdDemande());
+
+    // }
+    // public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
+>>>>>>> 2494790 (Acception DE DEMANDE)
+    // E.suprimerDemande(demande);
+    // p.suprimerDemande(demande);
+    // E.getOrganisateur().suprimerDemande(demande);
+    // eRepository.save(E);
+    // prestataireRepository.save(p);
+    // dService.deleteDemande(demande.getIdDemande());
+<<<<<<< HEAD
 
     // }
     public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
@@ -94,13 +113,30 @@ public class PrestataireService {
         eRepository.save(E);
         prestataireRepository.save(p);
         dService.deleteDemande(demande.getIdDemande());
+=======
+>>>>>>> 2494790 (Acception DE DEMANDE)
 
-    }
+    // }
 
     // @GetMapping
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
     }
+    // List<Prestataire> liste=new ArrayList<Prestataire>();
+
+    public ArrayList<Prestataire> prestataireByEvent(Evenement e) {
+        ArrayList<Prestataire> l = new ArrayList<Prestataire>();
+        prestataireRepository.findAll().forEach(p -> {
+            if (!e.getPrestataires().contains(p)) {
+                l.add(p);
+            }
+        });
+
+        return l;
+    }
+    // public Iterable<Prestataire> findPrestataireNotYetDemande(Evenement e) {
+    // return prestataireRepository.findPrestataireNotYetDemande(e.getIdEvent());
+    // }
 
     public Optional<Prestataire> getPrestataireById(Long id) {
         return prestataireRepository.findById(id);

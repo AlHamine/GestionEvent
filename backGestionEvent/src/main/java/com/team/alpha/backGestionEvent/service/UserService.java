@@ -84,4 +84,7 @@ public class UserService {
     public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
+    public User findByUsername(String username) {
+        return userRepository.findByMail(username).get();
+    }
 }
