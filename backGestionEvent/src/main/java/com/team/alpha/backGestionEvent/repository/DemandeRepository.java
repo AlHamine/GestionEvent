@@ -47,4 +47,7 @@ public interface DemandeRepository extends CrudRepository<Demande, Long> {
 
     Iterable<Demande> findDemandeByPrestataire(@Param("idp") Long idp);
 
+    @Query(value = "SELECT d.* FROM demande d WHERE status='ACCEPTED' AND prestataire_id= :idPres", nativeQuery = true)
+    List<Demande> contrat(@Param("idPres") Long idPres);
+
 }

@@ -22,7 +22,9 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PrestataireService {
@@ -47,15 +49,6 @@ public class PrestataireService {
         this.prestataireRepository = prestataireRepository;
     }
 
-    // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
-    // E.suprimerDemande(demande);
-    // p.suprimerDemande(demande);
-    // E.getOrganisateur().suprimerDemande(demande);
-    // eRepository.save(E);
-    // prestataireRepository.save(p);
-    // dService.deleteDemande(demande.getIdDemande());
-
-    // }
     public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
         E.suprimerDemande(demande);
         p.suprimerDemande(demande);
@@ -174,6 +167,13 @@ public class PrestataireService {
         String filePath = fileData.get().getFilePath();
         byte[] images = Files.readAllBytes(new File(filePath).toPath());
         return images;
+    }
+
+    public List<Prestataire> findPrestatairesNotInEvenement(Evenement e) {
+        return prestataireRepository.findPrestatairesNotInEvenement(e.getIdEvent());
+    }
+    public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
+        return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
     }
 }
 /*

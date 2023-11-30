@@ -2,6 +2,7 @@ package com.team.alpha.backGestionEvent.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -114,10 +115,16 @@ public class PrestataireController {
     }
 
     @GetMapping("/notEvent/{idE}")
-    public Iterable<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
+    public List<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
         Evenement evenement = eService.getEvenementById(idE);
 
-        return prestataireService.prestataireByEvent(evenement);
+        return prestataireService.findPrestatairesNotInEvenement(evenement);
+    }
+    @GetMapping("/byEvent/{idE}")
+    public List<Prestataire> findPrestataireByEvent(@PathVariable Long idE) {
+        Evenement evenement = eService.getEvenementById(idE);
+
+        return prestataireService.findPrestatairesByEvenement(evenement);
     }
 
     @PutMapping("/{id}")
