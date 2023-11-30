@@ -36,7 +36,7 @@ public class Prestataire {
     private String photo;
     // Pour pouvoir ajouter la note a prestataire
     // **************************************************
-    private Integer note;
+    private Integer note = 0; // Initialisation de la note
     // **************************************************
     private String role = "prestataire";
     // @ManyToOne
@@ -119,10 +119,6 @@ public class Prestataire {
         return note;
     }
 
-    public void setRating(Integer note) {
-        this.note = note;
-    }
-
     public long getIdp() {
         return idp;
     }
@@ -131,8 +127,12 @@ public class Prestataire {
         this.idp = idp;
     }
 
+    // Controller l'ajout de la note avant chaque mise a jour
     public void setNote(Integer note) {
-        this.note = note;
+        if (note >= 1 && note <= 5) {
+            this.note = note;
+        }
+
     }
 
     public List<Demande> getRequetes() {

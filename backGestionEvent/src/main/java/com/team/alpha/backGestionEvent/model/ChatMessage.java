@@ -11,7 +11,7 @@ public class ChatMessage {
         // Constructeur par défaut requis pour la désérialisation JSON
     }
 
-    public ChatMessage(String content, String sender) {
+    public ChatMessage(String content, String sender,Date timestamp) {
         this.content = content;
         this.to = sender;
         this.timestamp = new Date();
@@ -45,4 +45,6 @@ public class ChatMessage {
     public void setTo(String to) {
         this.to = to;
     }
+
+   
 }

@@ -1,8 +1,10 @@
 package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Client;
+import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -10,7 +12,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.Optional;
 
 @Service
@@ -25,14 +31,18 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
-// Nouveau service provider
+
+    @Autowired
+    private FileDataRepository fileDataRepository;
+
+    // Nouveau service provider
     @Autowired
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
     public Optional<Client> getClientByMail(String mail) {
-       return clientRepository.findByMail(mail);
+        return clientRepository.findByMail(mail);
 
     }
 
@@ -45,7 +55,8 @@ public class ClientService {
         return clientRepository.save(client);
 
     }
-// Deuxieme Methode
+
+    // Deuxieme Methode
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService
@@ -60,6 +71,21 @@ public class ClientService {
         // Enregistrez le client en base de données
         return clientRepository.save(client);
     }
+    // A Ameliorer
+
+    // Création d'un client en ajoutant la photo de profile
+    public Client createClient(MultipartFile file, String nom, String prenom,
+            String mail, String password) {
+        Client client = new Client();
+        client.setNom(nom);
+        client.setPrenom(prenom);
+        client.setMail(mail);
+        client.setPassword(passwordEncoder.encode(password));
+        client.setPhoto(file.getOriginalFilename());
+
+        return clientRepository.save(client);
+    }
+
     // A Ameliorer
 
     public Client updateClient(Long id, Client updatedClient) {
@@ -93,4 +119,11 @@ public class ClientService {
         return false;
     }
 
+    // Recuperer l'image pour pouvoir l'exploiter
+    public byte[] downloadImageFromFileSystem(String fileName) throws IOException, java.io.IOException {
+        Optional<FileData> fileData = fileDataRepository.findByName(fileName);
+        String filePath = fileData.get().getFilePath();
+        byte[] images = Files.readAllBytes(new File(filePath).toPath());
+        return images;
+    }
 }

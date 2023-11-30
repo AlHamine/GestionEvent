@@ -1,28 +1,17 @@
 package com.team.alpha.backGestionEvent.web;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.team.alpha.backGestionEvent.model.AccountCredentials;
-import com.team.alpha.backGestionEvent.model.Client;
-import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.service.JwtService;
-import com.team.alpha.backGestionEvent.service.UserDetailsServiceImpl;
 import com.team.alpha.backGestionEvent.service.UserService;
 
 @RestController
@@ -42,12 +31,8 @@ public class LoginController {
 
 		Authentication auth = authenticationManager.authenticate(creds);
 
-		// Get user role
-		User user = uService.findByUsername(auth.getName());
-		String role = user.getRole();
-
 		// Generate token
-		String jwts = jwtService.getToken(auth.getName(), role);
+		String jwts = jwtService.getToken(auth.getName());
 
 		// Build response with the generated token
 		return ResponseEntity.ok()
@@ -55,6 +40,4 @@ public class LoginController {
 				.header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, "Authorization")
 				.build();
 	}
-
 }
-
