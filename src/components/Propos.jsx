@@ -7,9 +7,6 @@ import Lottie from "lottie-react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
-import CreatePrestataire from "./CreatePrestataire.jsx";
-import CreateCustumer from "./CreateCustumer.jsx";
-
 function Propos() {
   
   return (
@@ -41,7 +38,7 @@ function Propos() {
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
               <Lottie animationData={Animation1} />{" "}
-                <CreatePrestataire />
+                
             
             </div>
 
@@ -49,7 +46,7 @@ function Propos() {
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
           <Lottie animationData={Animefront} />{" "}
-            <CreateCustumer/>
+            
         </div>
       </div>
 

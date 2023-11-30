@@ -35,15 +35,19 @@ export default function AddCustomer(props) {
     formData.append("password", password);
     formData.append("confirmPassword", confirmPassword);
 
-    if (nom === "" || prenom === "" || mail === "" || password === "" || confirmPassword === "" ) {
+  if (
+      nom === "" ||
+      prenom === "" ||
+      mail === "" ||
+      password === "" ||
+      confirmPassword === ""
+    ) {
       alert("Veuillez remplir tous les champs.");
-       ok = false;
       return;
     }
     // Vérifier si le champ `mail` est de type `email`
     if (!mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
       alert("L'adresse e-mail n'est pas valide.");
-      ok = false;
       return;
     }
 
@@ -51,17 +55,16 @@ export default function AddCustomer(props) {
     if (typeof password !== "string" || password.length < 2) {
       alert(
         "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
-      );ok = false;
+      );
       return;
     }
     // Vérifions si les mots de pass sont conformes
-    if (password === confirmPassword) {
-      // Alors effectuer l'inscription
-      alert('Inscription réussie !');
-    } else{
-      alert("Veuillez vérifier à ce que les mots de passe puissent etre similaires !");
+    if (password != confirmPassword) {
+      alert(
+        "Veuillez vérifier à ce que les mots de passe puissent etre similaires !"
+      );
+      return;
     }
-
     try {
       const response = await axios.post(
         SERVER_URL + "client/clientphoto",

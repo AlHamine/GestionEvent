@@ -203,7 +203,10 @@ function EventList() {
             //     handleClickEvent(idEventFuc(event._links.self.href))
             //   }
             // >
-            <Card key={event.idEvent} style={{ margin: "16px", width: 300 }}>
+            <Card
+              key={event.idEvent}
+              style={{ margin: "16px", width: "300", marginLeft: "5%" }}
+            >
               <CardMedia
                 component="img"
                 height="200"
