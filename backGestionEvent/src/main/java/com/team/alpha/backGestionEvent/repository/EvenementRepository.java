@@ -20,7 +20,7 @@ public interface EvenementRepository extends CrudRepository<Evenement, Long> {
 
     List<Evenement> findByDate(Date date);
 
-    @Query("SELECT e FROM Evenement e WHERE e.organisateur.id = :org")
-    List<Evenement> findByOrganisateur(@Param("org") Long id);
+    @Query("SELECT e FROM Evenement e WHERE e.organisateur.mail = :org")
+    List<Evenement> findByOrganisateur(@Param("org") String id);
 
 }

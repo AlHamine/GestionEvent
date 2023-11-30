@@ -26,7 +26,7 @@ import com.team.alpha.backGestionEvent.security.*;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
@@ -43,36 +43,40 @@ public class SecurityConfig {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
+	@SuppressWarnings("deprecation")
+
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// return http
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-	// "/event",
-	// "/websocket/*")
-	// .permitAll()
-	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// .requestMatchers(HttpMethod.GET,"/api/evenements").permitAll()
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// .build();
+	// 	return http
+	// 			.csrf(csrf -> csrf.disable())
+	// 			.cors(withDefaults())
+	// 			.sessionManagement(management -> management
+	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
+	// 					.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
+	// 							"/event",
+	// 							"/websocket/**")
+	// 					.permitAll()
+	// 					.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
+	// 					.requestMatchers(HttpMethod.POST, "/client").permitAll()
+	// 					.requestMatchers("/websocket/**").permitAll()
+
+	// 					.requestMatchers(HttpMethod.GET, "/api/evenements").permitAll()
+	// 					.anyRequest().authenticated())
+	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+	// 			.addFilterBefore(authenticationFilter,
+	// 					UsernamePasswordAuthenticationFilter.class)
+	// 			.httpBasic(withDefaults())
+	// 			.build();
 	// }
 
 	// Moins de security
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-		// Add this row
-		http.csrf().disable().cors().and()
-				.authorizeHttpRequests().anyRequest().permitAll();
-		return http.build();
+	// Add this row
+	http.csrf().disable().cors().and()
+	.authorizeHttpRequests().anyRequest().permitAll();
+	return http.build();
 	}
 
 	@Bean

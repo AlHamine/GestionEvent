@@ -43,4 +43,8 @@ public interface DemandeRepository extends CrudRepository<Demande, Long> {
     Optional<Demande> findByClientPrestataireEvent(@Param("idp") Long idp,
             @Param("idEvent") Long idEvent);
 
+    @Query("SELECT e FROM Demande e WHERE e.prestataire.id=:idp")
+
+    Iterable<Demande> findDemandeByPrestataire(@Param("idp") Long idp);
+
 }

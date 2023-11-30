@@ -54,6 +54,13 @@ public class PrestataireController {
         return prestataireRepository.findAll();
     }
 
+    @GetMapping("/notEvent/{idE}")
+    public Iterable<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
+        Evenement evenement = eService.getEvenementById(idE);
+
+        return prestataireService.prestataireByEvent(evenement);
+    }
+
     @PutMapping("/{id}")
     public Prestataire updatePrestataire(@PathVariable Long id, @RequestBody Prestataire updatePrestataire) {
         return prestataireService.updatePrestataire(id, updatePrestataire);

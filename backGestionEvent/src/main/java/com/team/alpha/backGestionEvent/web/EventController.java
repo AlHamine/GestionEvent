@@ -37,7 +37,7 @@ public class EventController {
     }
 
     @GetMapping("org/{id}")
-    public Iterable<Evenement> getAllClientsByOrg(@PathVariable Long id) {
+    public Iterable<Evenement> getAllClientsByOrg(@PathVariable String id) {
         return eService.getAllClientsByOrg(id);
     }
 

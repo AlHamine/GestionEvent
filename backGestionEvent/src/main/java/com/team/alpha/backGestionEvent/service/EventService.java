@@ -27,7 +27,7 @@ public class EventService {
         return eRepository.findAll();
     }
 
-    public Iterable<Evenement> getAllClientsByOrg(Long id) {
+    public Iterable<Evenement> getAllClientsByOrg(String id) {
         return eRepository.findByOrganisateur(id);
     }
 

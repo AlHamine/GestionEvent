@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,28 +39,43 @@ public class PrestataireService {
     }
 
     // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
-    //     E.suprimerDemande(demande);
-    //     p.suprimerDemande(demande);
-    //     E.getOrganisateur().suprimerDemande(demande);
-    //     eRepository.save(E);
-    //     prestataireRepository.save(p);
-    //     dService.deleteDemande(demande.getIdDemande());
+    // E.suprimerDemande(demande);
+    // p.suprimerDemande(demande);
+    // E.getOrganisateur().suprimerDemande(demande);
+    // eRepository.save(E);
+    // prestataireRepository.save(p);
+    // dService.deleteDemande(demande.getIdDemande());
 
     // }
- public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
-        E.suprimerDemande(demande);
-        p.suprimerDemande(demande);
-        E.getOrganisateur().suprimerDemande(demande);
-        eRepository.save(E);
-        prestataireRepository.save(p);
-        dService.deleteDemande(demande.getIdDemande());
+    // public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
+    // E.suprimerDemande(demande);
+    // p.suprimerDemande(demande);
+    // E.getOrganisateur().suprimerDemande(demande);
+    // eRepository.save(E);
+    // prestataireRepository.save(p);
+    // dService.deleteDemande(demande.getIdDemande());
 
-    }
+    // }
 
     // @GetMapping
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
     }
+    // List<Prestataire> liste=new ArrayList<Prestataire>();
+
+    public ArrayList<Prestataire> prestataireByEvent(Evenement e) {
+        ArrayList<Prestataire> l = new ArrayList<Prestataire>();
+        prestataireRepository.findAll().forEach(p -> {
+            if (!e.getPrestataires().contains(p)) {
+                l.add(p);
+            }
+        });
+
+        return l;
+    }
+    // public Iterable<Prestataire> findPrestataireNotYetDemande(Evenement e) {
+    // return prestataireRepository.findPrestataireNotYetDemande(e.getIdEvent());
+    // }
 
     public Optional<Prestataire> getPrestataireById(Long id) {
         return prestataireRepository.findById(id);

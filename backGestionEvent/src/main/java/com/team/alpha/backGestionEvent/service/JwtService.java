@@ -1,5 +1,6 @@
 package com.team.alpha.backGestionEvent.service;
 
+import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -27,6 +28,29 @@ public class JwtService {
 		return token;
 	}
 
+	// public String getToken(String username, String role) {
+	// Date now = new Date();
+	// Date expiration = new Date(System.currentTimeMillis() + EXPIRATIONTIME);
+
+	// return Jwts.builder()
+	// .setSubject(username)
+	// .claim("role", role) // Include the user's role as a claim
+	// .setIssuedAt(now)
+	// .setExpiration(expiration)
+	// .signWith(SignatureAlgorithm.HS512, key)
+	// .compact();
+	// }
+	public String getToken(String username, String role) {
+		JwtBuilder builder = Jwts.builder()
+				.setSubject(username)
+				.claim("role", role)
+				.setIssuedAt(new Date())
+				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATIONTIME))
+				.signWith(key);
+
+		return builder.compact();
+	}
+
 	// Get a token from request Authorization header,
 	// parse a token and get username
 	public String getAuthUser(HttpServletRequest request) {
@@ -46,4 +70,5 @@ public class JwtService {
 
 		return null;
 	}
+
 }

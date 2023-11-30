@@ -49,7 +49,6 @@ public class DemandeService {
     }
 
     public Boolean existeDemande(Prestataire p, Evenement e) {
-        // Client c = e.getOrganisateur() ;
         return (dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).isPresent());
 
     }
@@ -66,6 +65,10 @@ public class DemandeService {
             return dRepository.findByClientPrestataireEvent(p.getIdp(), e.getIdEvent()).get();
         else
             return null;
+    }
+
+    public Iterable<Demande> getDemandeByPrestataire(Prestataire p) {
+        return dRepository.findDemandeByPrestataire(p.getIdp());
     }
 
     public Demande createDemande(Demande demande, Evenement E, Prestataire prestataire) {

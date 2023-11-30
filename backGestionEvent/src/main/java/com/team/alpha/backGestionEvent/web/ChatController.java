@@ -16,11 +16,20 @@ import com.team.alpha.backGestionEvent.model.ChatMessage;
 public class ChatController {
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
-    @MessageMapping("/chat")
-    @SendTo("/topic/messages")
-    public ChatMessage sendMessage(@Payload ChatMessage message) {
+
+    @MessageMapping("/application")
+    @SendTo("/all/messages")
+
+    public ChatMessage sendMessage(final ChatMessage message) {
         // Traitez le message ici et renvoyez-le aux abonnés du sujet
         message.setTimestamp(new Date());
         return message;
+    }
+
+    @MessageMapping("/private")
+    public void sendMessageToUserSpecfic(@Payload ChatMessage message) {
+        // Traitez le message ici et renvoyez-le aux abonnés du sujet
+         message.setTimestamp(new Date());
+         simpMessagingTemplate.convertAndSendToUser(message.getTo(), "/specific",message);
     }
 }
