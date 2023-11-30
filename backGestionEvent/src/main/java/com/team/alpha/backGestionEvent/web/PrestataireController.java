@@ -2,6 +2,7 @@ package com.team.alpha.backGestionEvent.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,10 +113,17 @@ public class PrestataireController {
     }
 
     @GetMapping("/notEvent/{idE}")
-    public Iterable<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
+    public List<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
         Evenement evenement = eService.getEvenementById(idE);
 
-        return prestataireService.prestataireByEvent(evenement);
+        return prestataireService.findPrestatairesNotInEvenement(evenement);
+    }
+
+    @GetMapping("/byEvent/{idE}")
+    public List<Prestataire> findPrestataireByEvent(@PathVariable Long idE) {
+        Evenement evenement = eService.getEvenementById(idE);
+
+        return prestataireService.findPrestatairesByEvenement(evenement);
     }
 
     @PutMapping("/{id}")
@@ -188,13 +196,14 @@ public class PrestataireController {
 
             // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
             // si le prestataire a accepte la demande puis noter
+            System.out.println("Controle " + demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED"));
+
             if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
                     && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED") == 0) {
                 reviwRepository.save(review);
                 prestataireRepository.save(prestataire);
                 return true;
-            } else
-                return false;
+            }
         }
 
         return false;
