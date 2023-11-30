@@ -103,6 +103,7 @@ function AddEvent(props) {
     <div>
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
         <Button
+          className="profile-card__button button--blue js-message-btn "
           variant="contained"
           disableElevation
           onClick={handleClickOpen}
@@ -157,8 +158,20 @@ function AddEvent(props) {
           </Stack>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handleSave}>Enregistrer</Button>
+          <Button
+            variant="contained"
+            className="profile-card__button button--orange "
+            onClick={handleClose}
+          >
+            Annuler
+          </Button>
+          <Button
+            variant="contained"
+            className="profile-card__button button--blue js-message-btn "
+            onClick={handleSave}
+          >
+            Enregistrer
+          </Button>
         </DialogActions>
       </Dialog>
       {open && (

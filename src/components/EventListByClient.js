@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { SERVER_URL } from "../constants.js";
 import "../index.css";
+import "./UserProfile.css";
 import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
@@ -34,10 +35,12 @@ function EventListByClient() {
 
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajoutez cet état pour le terme de recherche
   const [selectedValue, setSelectedValue] = useState("");
   const [cliked, setClick] = useState(false);
   const [estSelected, SetEstSelected] = useState(false);
+  const [estSelected2, SetEstSelected2] = useState(false);
   const [ListSelected, setListSelected] = useState("");
   const [idD, setIdD] = useState(-1);
   // var ListSelected = ""; //On y met les id deja selectionnes
@@ -80,13 +83,16 @@ function EventListByClient() {
   const handleClose2 = () => {
     setOpen2(false);
   };
+  const handleClose3 = () => {
+    setOpen3(false);
+  };
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
   useEffect(() => {
     fetchEvents();
   }, []);
-// const 
+  // const
   const fetchEvents = () => {
     const token = sessionStorage.getItem("jwt");
     fetch(SERVER_URL + `event/org/${sessionStorage.getItem("UserMail")}`, {
@@ -96,8 +102,9 @@ function EventListByClient() {
       .then((data) => setEvents(data));
     // .catch((err) => console.error(err));
     // console.log(token);
+    sessionStorage.setItem("nbEvent", events.length);
   };
-
+  
   const addEvent = (event) => {
     // event.prestataires = selectedPrestataires;
     fetch(SERVER_URL + "event", {
@@ -205,6 +212,11 @@ function EventListByClient() {
     fetchPrestataires(e);
     setOpen2(true);
   };
+  const voirPrestataire = (e) => {
+    SetEstSelected2(true);
+    prestatairesSelonEvent(e);
+    setOpen3(true);
+  };
   const handleClickSelect = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -281,6 +293,18 @@ function EventListByClient() {
     // .selection-button: {
     //   margin: '10px 0',
     // },
+  };
+  const prestatairesSelonEvent = (idE) => {
+    const token = sessionStorage.getItem("jwt");
+    fetch(SERVER_URL + `prestataires/byEvent/${idE}`, {
+      headers: { Authorization: token },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log(data); // Ajoutez cette ligne pour voir les données dans la console
+        setPrestataires(data);
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -372,13 +396,15 @@ function EventListByClient() {
                 <Typography variant="body2" color="text.secondary">
                   Date : {toDateFr(event.date)}
                 </Typography>
-                <Button
+
+                <button
+                  className="profile-card__button button--blue js-message-btn "
                   onClick={() => {
                     handleClickEvent(event);
                   }}
                 >
-                  Voir les détails
-                </Button>
+                  GERER{" "}
+                </button>
               </CardContent>
             </Card>
             // </Link>
@@ -423,6 +449,15 @@ function EventListByClient() {
                       >
                         Ajouter des prestataires
                       </Button>
+                      <Button
+                        color="success"
+                        variant="contained"
+                        onClick={() => {
+                          voirPrestataire(selectedEvent.idEvent);
+                        }}
+                      >
+                        Voir mes prestataires
+                      </Button>
                       {estSelected && (
                         <Dialog
                           open={open2}
@@ -450,7 +485,12 @@ function EventListByClient() {
                                       <CardMedia
                                         component="img"
                                         height="200"
-                                        image="https://animations-innovantes.fr/wp-content/uploads/2019/02/Social-Wall-Digital.jpg"
+                                        image={
+                                          prest.photo == null
+                                            ? "https://animations-innovantes.fr/wp-content/uploads/2019/02/Social-Wall-Digital.jpg"
+                                            : `${SERVER_URL}` +
+                                              `prestataires/${prest.photo}`
+                                        }
                                         alt={prest.nom}
                                       />
                                     </td>
@@ -512,6 +552,90 @@ function EventListByClient() {
                               color="error"
                               variant="contained"
                               onClick={handleClose2}
+                              className="profile-card__button button--orange "
+                            >
+                              Fermer
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
+                      )}
+                      {estSelected2 && (
+                        <Dialog
+                          open={open3}
+                          onClose={handleClose3}
+                          // fullWidth
+                          maxWidth="md"
+                          fullScreen
+                          style={dialogStyle}
+                        >
+                          <DialogTitle>
+                            <h1>Les Prestataires Disponibles</h1>
+                          </DialogTitle>
+                          <DialogContent>
+                            <table sx={styles.table}>
+                              <thead>
+                                <tr>
+                                  <th sx={styles.th}>Image</th>
+                                  <th sx={styles.th}>Details</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {prestataires.map((prest) => (
+                                  <tr key={prest.idp}>
+                                    <td sx={styles.td}>
+                                      <CardMedia
+                                        component="img"
+                                        height="200"
+                                        image={
+                                          prest.photo == null
+                                            ? "https://animations-innovantes.fr/wp-content/uploads/2019/02/Social-Wall-Digital.jpg"
+                                            : `${SERVER_URL}` +
+                                              `prestataires/${prest.photo}`
+                                        }
+                                        alt={prest.nom}
+                                      />
+                                    </td>
+                                    <td sx={styles.td}>
+                                      <Stack spacing={1} sx={{ maxWidth: 600 }}>
+                                        <SnackbarContent
+                                          message={`Nom : ${prest.nom}`}
+                                        />
+                                        <SnackbarContent
+                                          message={`Prenom : ${prest.prenom}`}
+                                        />
+                                        <SnackbarContent
+                                          message={`Mail : ${prest.mail}`}
+                                        />
+                                        <SnackbarContent
+                                          message={`Service : ${prest.service}`}
+                                        />
+
+                                        {/* <Button
+                                            color="success"
+                                            variant="contained"
+                                            onClick={() => {
+                                              choisirPrestataire(
+                                                prest.idp,
+                                                selectedEvent.idEvent
+                                              );
+                                              // setClick(true);
+                                            }}
+                                          >
+                                            Selectionner
+                                          </Button> */}
+                                      </Stack>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button
+                              color="error"
+                              className="profile-card__button button--orange "
+                              variant="contained"
+                              onClick={handleClose3}
                             >
                               Fermer
                             </Button>
@@ -531,7 +655,12 @@ function EventListByClient() {
             </table>
           </DialogContent>
           <DialogActions>
-            <Button color="error" variant="contained" onClick={handleClose}>
+            <Button
+              color="error"
+              className="profile-card__button button--orange "
+              variant="contained"
+              onClick={handleClose}
+            >
               Fermer
             </Button>
           </DialogActions>

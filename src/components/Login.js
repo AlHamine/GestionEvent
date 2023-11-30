@@ -89,6 +89,7 @@ function Login({ setEstAuthentifie }) {
         sessionStorage.setItem("idClient", data.idc);
         sessionStorage.setItem("n", data.nom);
         sessionStorage.setItem("p", data.prenom);
+        sessionStorage.setItem("photo", data.photo);
       })
       .catch((err) => console.error(err))
       .catch((err) => console.log(err));
@@ -101,6 +102,8 @@ function Login({ setEstAuthentifie }) {
         sessionStorage.setItem("idPrestataire", data.idp);
         sessionStorage.setItem("n", data.nom);
         sessionStorage.setItem("p", data.prenom);
+        sessionStorage.setItem("photo", data.photo);
+        sessionStorage.setItem("service", data.service);
       })
       .catch((err) => console.error(err))
       .catch((err) => console.log(err));

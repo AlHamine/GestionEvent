@@ -15,7 +15,10 @@ import AirlinesIcon from "@mui/icons-material/Airlines";
 
 function Footer() {
   return (
-    <footer className="footer2">
+    <footer
+      className="footer2"
+      // style={{ position: "fixed", bottom: 0, width: "100%" }}
+    >
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
           <Container maxWidth="xl">
@@ -45,21 +48,21 @@ function Footer() {
                     <text>Votre satisfaction notre bien être</text>
                   </th>
                   <th></th>
-                  <th>Products</th>
-                  <th>DEVELOPERS</th>
-                  <th>COMPANY</th>
+                  <th>Tous les evenements </th>
+                  <th>Mes evenements</th>
+                  <th>Mes demandes</th>
                   <th>LEGAL</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td></td>
-
+                  {/* 
                   <td></td>
                   <td>Components</td>
                   <td>Documentation</td>
                   <td>About</td>
-                  <td>Terms</td>
+                  <td>Terms</td> */}
                 </tr>
                 <tr>
                   <td>
@@ -86,11 +89,11 @@ function Footer() {
                     </div>
                   </td>
                   <td></td>
-                  <td>Pricing</td>
+                  {/* <td>Pricing</td>
 
                   <td>Discord serveur</td>
                   <td>Careers</td>
-                  <td>Privacy</td>
+                  <td>Privacy</td> */}
                 </tr>
               </tbody>
               <tfoot>
@@ -98,12 +101,12 @@ function Footer() {
                 <tr></tr>
               </tfoot>
             </table>
-            <hr style={{ color: "#bcb2fa", marginTop: "30px" }} />
+            <hr style={{ color: "#bcb2fa", marginTop: "1  px" }} />
             <div
               style={{
                 display: "center",
-                marginTop: "15px",
-                marginBottom: "15px",
+                marginTop: "5px",
+                marginBottom: "5px",
               }}
             >
               Copyright 2023 EVENT-PRO Tous droits réservés.

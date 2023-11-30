@@ -47,7 +47,20 @@ function DemandeList() {
   useEffect(() => {
     fetchDemandes();
   }, []);
-
+  sessionStorage.setItem("nbDemande", 0);
+  const contrat = () => {
+    const token = sessionStorage.getItem("jwt");
+    fetch(SERVER_URL + `demandes/contrat/${sessionStorage.getItem("UserMail")}`, {
+      headers: { Authorization: token },
+    })
+      .then((response) => response.json())
+      .then((data) => setDemandes(data))
+      .catch((err) => console.error(err));
+    
+    console.log(token);
+  sessionStorage.setItem("nbDemande", demandes.length);
+  
+}
   const fetchDemandes = () => {
     const token = sessionStorage.getItem("jwt");
     fetch(SERVER_URL + `demandes/${sessionStorage.getItem("UserMail")}`, {
@@ -69,7 +82,7 @@ function DemandeList() {
       .then((response) => {
         if (response.ok) {
           fetchDemandes();
-          fetch(SERVER_URL+`prestataires/event/${demande.prestataire.idp}/${demande.idDemande}`, {
+          fetch(SERVER_URL+`prestataires/event/${demande.prestataire.idp}/${demande.evenement.idEvent}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json", Authorization: token },
             body: "{}"
@@ -120,6 +133,7 @@ function DemandeList() {
   if (demandes.length === 0)
     return (<React.Fragment>
       <ResponsiveAppBar />
+      
       {/* <div className="image"></div> */}
               <CardMedia
                 component="img"
@@ -135,7 +149,23 @@ function DemandeList() {
 
   return (
     <React.Fragment >
+       
+
       <ResponsiveAppBar />
+
+      <div style={{ display: "flex", justifyContent: "flex-end" ,marginTop:"20px"}}>
+        <Button
+          className="profile-card__button button--blue js-message-btn "
+          variant="contained"
+          disableElevation
+          onClick={() => { contrat() }}
+          style={{ marginRight: "10px" }}
+        >
+          Voir les contrats
+        </Button>
+      </div>
+      <br></br>
+      
       <Stack mt={2} mb={2}>
         {/* <AddEvent addEvent={addEvent} /> */}
         {/* <HomePage addEvent={addEvent} /> */}
@@ -179,25 +209,36 @@ function DemandeList() {
                 maxHeight: "30px",
               }}
             >
-              <MenuItem value="">Tous les événements</MenuItem>
+              <MenuItem value="">Tous les Status</MenuItem>
               {demandes.map((d) => (
-                <MenuItem key={d.idDemande} value={d.idDemande}>
-                  {d.idDemande}
+                <MenuItem key={d.status} value={d.status}>
+                  {d.status}
                 </MenuItem>
               ))}
             </Select>
           </Box>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button
+          className="profile-card__button button--blue js-message-btn "
+          variant="contained"
+          disableElevation
+          onClick={() => { fetchDemandes() }}
+          style={{ marginRight: "10px" }}
+        >
+          Voir tous demandes
+        </Button>
+      </div>
         </Stack>
       </Stack>
 
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {demandes
-          // .filter((d) =>
-          //   d.nomEvent.toLowerCase().includes(searchTerm.toLowerCase())
-          // )
+          .filter((d) =>
+            d.status.toLowerCase().includes(searchTerm.toLowerCase())
+          )
           // .filter((d) =>
           //   // selectedValue === "" ? true : event.value === selectedValue
-          //   d.idDemande.toLowerCase().includes(selectedValue.toLowerCase())
+          //   d.evenement.nomEvent.toLowerCase().includes(selectedValue.toLowerCase())
           // )
           .map((d) => (
             // <Link

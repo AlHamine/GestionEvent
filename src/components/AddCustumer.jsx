@@ -13,7 +13,7 @@ import axios from "axios";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-
+import "./UserProfile.css";
 export default function AddCustomer(props) {
   const [file, setFile] = useState(null);
   const [nom, setNom] = useState("");
@@ -94,10 +94,7 @@ export default function AddCustomer(props) {
   
 
   return (
-    <>
-      <Button variant="contained" onClick={handleOpen}>
-        <b>JE VEUX ORGANISER DANS UN EVENEMENT</b>
-      </Button>
+    <><button className="profile-card__button button--blue js-message-btn " onClick={handleOpen}><b>JE VEUX ORGANISER UN EVENEMENT</b></button>
       <Dialog open={open} onClose={handleClose}   >
         <DialogTitle> Nouveau Client </DialogTitle>
         <DialogContent>

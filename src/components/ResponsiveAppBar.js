@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SERVER_URL } from "../constants.js";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -80,7 +81,10 @@ function ResponsiveAppBar() {
       Supprimer
     </Button>
   );
-
+  let im = "";
+  if (sessionStorage.getItem("role") == "client")
+    im = `${SERVER_URL}` + `prestataires/${sessionStorage.getItem("photo")}`;
+  else im = `${SERVER_URL}` + `client/${sessionStorage.getItem("photo")}`;
   return (
     <div>
       <AppBar position="static">
@@ -267,7 +271,7 @@ function ResponsiveAppBar() {
                   onClick={handleOpenUserMenu}
                   sx={{ p: 0, marginRight: "1px" }}
                 >
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                  {<Avatar alt={sessionStorage.getItem("UserMail")} src={im} />}
                 </IconButton>
               </Tooltip>
               <Menu

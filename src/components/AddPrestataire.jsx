@@ -94,9 +94,8 @@ export default function AddPrestataire(props) {
   };
   return (
     <>
-      <Button variant="contained" onClick={handleOpen}>
-        <b>JE VEUX PRESTER DANS UN EVENEMENT</b>
-      </Button>
+      <button className="profile-card__button button--blue js-message-btn " onClick={handleOpen}><b>JE VEUX PRESTER DANS UN EVENEMENT</b></button>
+      
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Prestataire </DialogTitle>
         <DialogContent>

@@ -49,11 +49,11 @@ function EventList() {
 
   const fetchEvents = () => {
     const token = sessionStorage.getItem("jwt");
-    fetch(SERVER_URL + "api/evenements", {
+    fetch(SERVER_URL + "event", {
       headers: { Authorization: token },
     })
       .then((response) => response.json())
-      .then((data) => setEvents(data._embedded.evenements))
+      .then((data) => setEvents(data))
       .catch((err) => console.error(err));
     console.log(token);
   };
@@ -106,7 +106,7 @@ function EventList() {
     setSelectedEvent(event);
     setOpen(true);
   };
-
+const tabImage=[]
   return (
     <React.Fragment>
       <ResponsiveAppBar />
@@ -209,14 +209,22 @@ function EventList() {
                   Lieu : {event.lieu}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Organisateur : {event.organisateur}
+                  Organisateur :{event.organisateur.prenom}{" "}
+                  {event.organisateur.nom} <br></br>
+                  mail :{event.organisateur.mail}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Date : {toDateFr(event.date)}
                 </Typography>
-                <Button onClick={() => handleClickEvent(event)}>
-                  Voir les détails
-                </Button>
+
+                <button
+                  className="profile-card__button button--blue js-message-btn "
+                  onClick={() => {
+                    handleClickEvent(event);
+                  }}
+                >
+                  Voir les détails{" "}
+                </button>
               </CardContent>
             </Card>
             // </Link>
@@ -246,26 +254,39 @@ function EventList() {
                         message={`Lieu : ${selectedEvent.lieu}`}
                       />
                       <SnackbarContent
-                        message={`Organisateur : ${selectedEvent.organisateur}`}
+                        message={`   Organisateur :${selectedEvent.organisateur.prenom} 
+                  ${selectedEvent.organisateur.nom} 
+        `}
                       />
                       <SnackbarContent
-                        message={`Date : ${selectedEvent.date}`}
+                        message={`Mail organisateur : ${selectedEvent.organisateur.mail}`}
                       />
-                      <SnackbarContent message={`Plus de details : $}`} />
+                      <SnackbarContent
+                        message={`Date : ${toDateFr(selectedEvent.date)}`}
+                      />
                     </Stack>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>plus de details</td>
-                  <td>plus de ...</td>
+                  <SnackbarContent
+                    message={`Description : ${selectedEvent.desciption}`}
+                  />
+                  {/* <td>plus de details</td>
+                  <td>plus de ...</td> */}
                 </tr>
               </tbody>
             </table>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Fermer</Button>
+            <Button
+              className="profile-card__button button--orange "
+              variant="contained"
+              onClick={handleClose}
+            >
+              Fermer
+            </Button>
           </DialogActions>
         </Dialog>
       )}

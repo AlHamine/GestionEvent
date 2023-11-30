@@ -36,17 +36,11 @@ function App(props) {
           path="/"
           element={
             sessionStorage.getItem("isLoggedIn") ? (
-              <div>   
+              <div>
                 {/* <ResponsiveAppBar /> */}
                 {/* <HomePageConnected /> */}
-                {sessionStorage.getItem("role") === "client" ? (
-                  <div>
-                    <EventList></EventList>
-                  </div>
-                ) : (
-                  <DemandeList />
-                )}
-
+                {sessionStorage.getItem("role") === "client" ?(<div><EventList></EventList></div>):( <DemandeList />)}
+               
                 {/* <Footer /> */}
               </div>
             ) : (
