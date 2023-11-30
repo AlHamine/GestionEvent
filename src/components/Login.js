@@ -1,19 +1,17 @@
 import { Button, Stack, TextField } from "@mui/material";
 import EventListByClient from "./EventListByClient";
+import EventList from "./EventList";
+
 import { jwtDecode } from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import { SERVER_URL } from "../constants";
-import EventList from "./EventList.js";
-import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Snackbar from "@mui/material/Snackbar";
-import Footer from "./Footer.js";
 import ChatComponent from "./Chat.js";
-import CreatePrestataire from "./CreatePrestataire.jsx";
-import CreateCustumer from "./CreateCustumer.jsx";
 import Box from "@mui/material/Box";
 import Backdrop from "@mui/material/Backdrop";
 import DemandeList from "./DemandeList.jsx";
-
+import InputAdornment from "@mui/material/InputAdornment";
+import { Email,Lock } from "@mui/icons-material";
 function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
     username: "",
@@ -80,7 +78,7 @@ function Login({ setEstAuthentifie }) {
   //   .catch((err) => console.error(err))
   //   .catch((err) => console.log(err));
   // const role = sessionStorage.getItem("role");
-  // : 
+  // :
   // console.log(sessionStorage.getItem("role") === "client");
   if (sessionStorage.getItem("role") === "client") {
     fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
@@ -94,17 +92,19 @@ function Login({ setEstAuthentifie }) {
       })
       .catch((err) => console.error(err))
       .catch((err) => console.log(err));
-  }else{fetch(SERVER_URL + `prestataires/mail?mail=${gmail}`, {
-    headers: { "Content-Type": "application/json", Authorization: token },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      sessionStorage.setItem("idPrestataire", data.idp);
-      sessionStorage.setItem("n", data.nom);
-      sessionStorage.setItem("p", data.prenom);
+  } else {
+    fetch(SERVER_URL + `prestataires/mail?mail=${gmail}`, {
+      headers: { "Content-Type": "application/json", Authorization: token },
     })
-    .catch((err) => console.error(err))
-    .catch((err) => console.log(err));}
+      .then((response) => response.json())
+      .then((data) => {
+        sessionStorage.setItem("idPrestataire", data.idp);
+        sessionStorage.setItem("n", data.nom);
+        sessionStorage.setItem("p", data.prenom);
+      })
+      .catch((err) => console.error(err))
+      .catch((err) => console.log(err));
+  }
 
   const onLogout = () => {
     sessionStorage.removeItem("jwt");
@@ -116,7 +116,7 @@ function Login({ setEstAuthentifie }) {
     if (sessionStorage.getItem("role") === "client") {
       return (
         <div>
-          <EventListByClient />
+          <EventList/>
           {/* <Footer /> */}
           <ChatComponent />
         </div>
@@ -158,6 +158,16 @@ function Login({ setEstAuthentifie }) {
               <TextField
                 name="username"
                 label="Username"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Email />
+                    </InputAdornment>
+                  ),
+                }}
                 onChange={handleChange}
                 sx={{ p: "10px" }} // Ajustez la marge intérieure pour le TextField
               />
@@ -165,6 +175,16 @@ function Login({ setEstAuthentifie }) {
                 type="password"
                 name="password"
                 label="Password"
+                variant="outlined"
+                fullWidth
+                margin="normal"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      <Lock />
+                    </InputAdornment>
+                  ),
+                }}
                 onChange={handleChange}
                 sx={{ p: "10px" }} // Ajustez la marge intérieure pour le TextField
               />

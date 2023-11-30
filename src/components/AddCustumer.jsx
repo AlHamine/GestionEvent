@@ -1,218 +1,219 @@
+import React, { useState } from "react";
+import { Button, TextField, InputAdornment, Container } from "@mui/material";
 import {
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import EventList from "./EventList.js";
-import React, { useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Stack from "@mui/material/Stack";
-import ChatComponent from "./Chat.js";
+import { PersonAdd, Email, Lock } from "@mui/icons-material";
+import FileIcon from "@mui/icons-material/FileCopy";
+import { SERVER_URL } from "../constants";
+import axios from "axios";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import Snackbar from "@mui/material/Snackbar";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import Box from "@mui/material/Box";
-import { SERVER_URL } from "../constants";
+
 export default function AddCustomer(props) {
-  const [open, SetOpen] = useState(false);
-  const [open2, setOpen2] = useState(false);
-const [isAuthenticated, setAuth] = useState(false);
-  const [client, setClient] = useState({
-    nom: "",
-    prenom: "",
-    mail: "",
-    service: "",
-    password: "",
-    photo: "",
-  });
+  const [file, setFile] = useState(null);
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
+  const [mail, setMail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  
+  const [open, setOpen] = useState(false);
 
-  const handleOpen = () => {
-    SetOpen(true);
-  };
-  const handleClose = () => {
-    SetOpen(false);
-  };
-  const handleOpen2 = () => {
-    setOpen2(true);
-  };
-  const handleClose2 = () => {
-    setOpen2(false);
-  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("nom", nom);
+    formData.append("prenom", prenom);
+    formData.append("mail", mail);
+    formData.append("password", password);
+    formData.append("confirmPassword", confirmPassword);
 
-  const handleChange = (event) => {
-    setClient({ ...client, [event.target.name]: event.target.value });
-  };
-let ok = true;
-  const handleSave = () => {
-    
-    if (
-      client.nom === "" ||
-      client.prenom === "" ||
-      client.mail === "" ||
-      client.password === ""
-    ) {
+    if (nom === "" || prenom === "" || mail === "" || password === "" || confirmPassword === "" ) {
       alert("Veuillez remplir tous les champs.");
-       ok = false;
       return;
     }
     // Vérifier si le champ `mail` est de type `email`
-    if (
-      !client.mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)
-    ) {
+    if (!mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
       alert("L'adresse e-mail n'est pas valide.");
-      ok = false;
       return;
     }
 
     // Vérifier si le champ `password` est de type `string` et a au moins 8 caractères
-    if (typeof client.password !== "string" || client.password.length < 2) {
+    if (typeof password !== "string" || password.length < 2) {
       alert(
         "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
-      );ok = false;
+      );
       return;
     }
-    props.addCustomer(client);
-    setClient({
-      ...client,
-      nom: "test",
-      prenom: "test",
-      mail: "t@gmail.com",
-      password: "123456789",
-      photo: "",
-    });
+    // Vérifions si les mots de pass sont conformes
+    if (password === confirmPassword) {
+      // Alors effectuer l'inscription
+      alert('Inscription réussie !');
+    } else{
+      alert("Veuillez vérifier à ce que les mots de passe puissent etre similaires !");
+    }
+
+    try {
+      const response = await axios.post(
+        SERVER_URL + "client/clientphoto",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      alert("Inscription avec succes.");
+    } catch (error) {
+      alert("Veuilles verifier les champ de renseignement !");
+      console.error(error);
+    }
+    setNom("");
+    setPrenom("");
+    setMail("");
+    setPassword("");
+    setConfirmPassword("");
+    setFile(null);
     handleClose();
   };
-  // if (ok) {
-    const user = {
-        username: client.mail,
-        password: client.password
-      
-    }
-  // }
-  
-  const login = () => {
-    fetch(SERVER_URL + "login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    })
-      .then((res) => {
-        const jwtToken = res.headers.get("Authorization");
-        if (jwtToken != null) {
-          sessionStorage.setItem("jwt", jwtToken);
-          sessionStorage.setItem("isLoggedIn", true);
-          sessionStorage.setItem("UserMail", client.mail);
-          sessionStorage.setItem("n", client.nom);
-        sessionStorage.setItem("p", client.prenom);
-      
-          setAuth(true);
-        } else {
-          setOpen2(true);
-        }
-      })
-      .catch((err) => console.error(err));
-  };
-const token = sessionStorage.getItem("jwt");
-  const gmail = sessionStorage.getItem("UserMail");
-  fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        sessionStorage.setItem("idClient", data.idc);
-      })
-      .catch((err) => console.error(err))
-    .catch((err) => console.log(err));
-  if (isAuthenticated) {
-    // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
-      return (
-        <div>
-          <EventList />
-          {/* <Footer /> */}
-          <ChatComponent />
-        </div>
-      );
-    }else
-  return (
-    <div>
-      {/* <Button variant="contained" onClick={handleOpen}> */}
-      <Button variant="contained" onClick={handleOpen}>
-               <b> JE VEUX ORGANISER UN EVENEMENT</b>
-              </Button>
-        
-      {/* <Box
-        onClick={handleOpen}
-        style={{
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
 
-      </Box> */}
-      {/* </Button> */}
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle> Nouveau client </DialogTitle>
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+  
+
+  return (
+    <>
+      <Button variant="contained" onClick={handleOpen}>
+        <AddCircleOutlinedIcon /> Client
+      </Button>
+      <Dialog open={open} onClose={handleClose}   >
+        <DialogTitle> Nouveau Client </DialogTitle>
         <DialogContent>
-          <Stack spacing={2} mt={1}>
+          <Container>
             <TextField
+              id="nom"
               label="Nom"
-              name="nom"
-              value={client.nom}
-              onChange={handleChange}
+              variant="outlined"
+              type="text"
+              fullWidth
+              onChange={(event) => setNom(event.target.value)}
+              // value={client.nom}
+              margin="normal"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonAdd />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <br />
             <TextField
-              label="Prenom"
-              name="prenom"
-              value={client.prenom}
-              onChange={handleChange}
-            />
-            <br />
-            <TextField
-              label="Adresse e-mail"
-              name="mail"
-              type="email"
-              value={client.mail}
-              onChange={handleChange}
-            />
-            <br />
-            <TextField
-              label=""
+              id="prenom"
+              type="text"
+              // value={client.prenom}
+              label="Prénom"
               variant="outlined"
               fullWidth
-              type="file"
-              value={client.photo}
-              onChange={handleChange}
+              margin="normal"
+              onChange={(event) => setPrenom(event.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <PersonAdd />
+                  </InputAdornment>
+                ),
+              }}
             />
-            <br />
             <TextField
-              label="Mot de pass"
-              name="password"
-              type="password"
-              value={client.password}
-              required
-              onChange={handleChange}
+              id="mail"
+              type="email"
+              label="Email"
+              // value={client.mail}
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Email />
+                  </InputAdornment>
+                ),
+              }}
+              onChange={(event) => setMail(event.target.value)}
             />
-          </Stack>
+            <TextField
+              id="password"
+              label="Mot de passe"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              type="password"
+              // value={client.password}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+              }}
+              onChange={(event) => setPassword(event.target.value)}
+            />
+            <TextField
+              id="confirmPassword"
+              label="Confirmer Mot de passe"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              type="password"
+              // value={client.confirmPassword}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Lock />
+                  </InputAdornment>
+                ),
+              }}
+              onChange={(event) => setConfirmPassword(event.target.value)}
+            />
+            <TextField
+              id="file"
+              label="Fichier"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              type="file"
+              onChange={(event) => setFile(event.target.files[0])}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <FileIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Container>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>
             <CancelSharpIcon color="error" />
           </Button>
-          <Button onClick={() => { handleSave(); login(); }}>
+          <Button onClick={handleSubmit}>
             <CheckCircleOutlineIcon color="success" />
           </Button>
         </DialogActions>
       </Dialog>
-      <Snackbar
-          open={open2}
-          autoHideDuration={3000}
-          onClose={() => setOpen2(false)}
-          message="Login failed: Check your username and password"
-        />
-    </div>
+    </>
   );
 }

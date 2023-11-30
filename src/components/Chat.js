@@ -28,7 +28,7 @@ const ChatComponent = () => {
     try {
       client.connect({}, () => {
         setConnecting(false);
-        client.subscribe("/all/messages", (message) => {
+        client.subscribe("/chat", (message) => {
           const messageText = JSON.parse(message.body);
           setMessages((prevMessages) => [...prevMessages, messageText]);
           console.log("machin" + messages);
@@ -52,7 +52,7 @@ const ChatComponent = () => {
         mail,
         content: message,
       };
-      stompClient.send("/app/application", {}, JSON.stringify(chatMessage));
+      stompClient.send("/topic/messages", {}, JSON.stringify(chatMessage));
       console.log(JSON.stringify(chatMessage));
       // setMessages((prevMessages) => [...prevMessages, JSON.stringify(chatMessage)]);
       setMessages((prevMessages) => [
@@ -83,7 +83,7 @@ const ChatComponent = () => {
     <div>
       {connecting && <CircularProgress />}
 
-      {(messages.length != 0) && (
+      {messages.length != 0 && (
         <List>
           {messages.map((msg, index) => (
             <ListItem key={index}>
