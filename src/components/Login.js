@@ -22,7 +22,19 @@ function Login({ setEstAuthentifie }) {
     username: "",
     password: "",
   });
+
   const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChangeCustomer = (event) => {
+    setIsChecked(event.target.checked);
+    // Vous pouvez effectuer d'autres actions ici en fonction de l'état de la case à cocher.
+  };
+
+  if (isChecked) {
+    navigate("/");
+  }
+
   // const [role, setRole] = useState("");
   const [isAuthenticated, setAuth] = useState(false);
   const handleChange = (event) => {
@@ -118,9 +130,9 @@ function Login({ setEstAuthentifie }) {
   };
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const handleChangeCustomer = () => {
-    <CreatePrestataire />;
-  };
+  // const handleChangeCustomer = () => {
+  //   <CreatePrestataire />;
+  // };
 
   if (isAuthenticated) {
     // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
@@ -186,7 +198,11 @@ function Login({ setEstAuthentifie }) {
               {/* <CreatePrestataire /> */}
               <div style={{ color: "blue" }}>
                 <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
-                {"Creer un compte"}
+                {"Creer un compte client"}
+              </div>
+              <div style={{ color: "blue" }}>
+                <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
+                {"Être prestataire"}
               </div>
               {/* <CreateCustumer /> */}
             </Stack>

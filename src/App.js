@@ -13,6 +13,9 @@ import EventListByClient from "./components/EventListByClient";
 import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnected";
 import HomePageConnected from "./components/HomePageConnected";
 import DemandeList from "./components/DemandeList";
+import CreatePrestataire from "./components/CreatePrestataire";
+import AddPrestataire from "./components/AddPrestataire";
+import AddCustomer from "./components/AddCustumer";
 // import { useNavigate } from "react-router-dom";
 
 function App(props) {
@@ -79,6 +82,8 @@ function App(props) {
         <Route path={"/events"} element={<EventList />} />;
         <Route path={"/prest"} element={<PrestataireList />} />;
         <Route path={"/myevents"} element={<EventListByClient />} />;
+        <Route path={"/addPrest"} element={<AddPrestataire />} />;
+        <Route path={"/addCustom"} element={<AddCustomer />} />;
       </Routes>
     </Router>
   );
