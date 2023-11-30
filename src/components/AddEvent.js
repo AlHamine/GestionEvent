@@ -14,23 +14,23 @@ import "react-datepicker/dist/react-datepicker.module.css";
 
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
-  const gmail = sessionStorage.getItem("UserMail");
-  const token = sessionStorage.getItem("jwt");
-  useEffect(() => {
-    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        sessionStorage.setItem("idClient", data.idc);
-        sessionStorage.setItem("n", data.nom);
-        sessionStorage.setItem("p", data.prenom);
-        // sessionStorage.setItem("client", data);
-        // d = data;
-      })
-      .catch((err) => console.error(err))
-      .catch((err) => console.log(err));
-  }, [gmail, token]);
+  // const gmail = sessionStorage.getItem("UserMail");
+  // const token = sessionStorage.getItem("jwt");
+  // useEffect(() => {
+  //   fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
+  //     headers: { "Content-Type": "application/json", Authorization: token },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       sessionStorage.setItem("idClient", data.idc);
+  //       sessionStorage.setItem("n", data.nom);
+  //       sessionStorage.setItem("p", data.prenom);
+  //       // sessionStorage.setItem("client", data);
+  //       // d = data;
+  //     })
+  //     .catch((err) => console.error(err))
+  //     .catch((err) => console.log(err));
+  // }, [gmail, token]);
 
   const [event, setEvent] = useState({
     nomEvent: "",
@@ -47,7 +47,27 @@ function AddEvent(props) {
   const handleClose = () => {
     setOpen(false);
   };
+  function toDateFr(dateISO) {
+    // Créer un objet Date à partir de la chaîne ISO
+    var dateObj = new Date(dateISO);
 
+    // Options pour le formatage de la date
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      timeZoneName: "short",
+    };
+
+    // Formater la date en français
+    var dateFrancaise = dateObj.toLocaleString("fr-FR", options);
+
+    return dateFrancaise;
+  }
   const handleSave = () => {
     if (event.organisateur.idc !== 0) {
       props.addEvent(event);
@@ -66,7 +86,6 @@ function AddEvent(props) {
     });
     handleClose();
   };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setEvent((prevEvent) => ({
@@ -107,12 +126,20 @@ function AddEvent(props) {
               value={event.nomEvent}
               onChange={handleChange}
             />
+            <label htmlFor="dkdk">Entrer la Date( jj/mm/aa/hh:mm) :</label>
+
             <DatePicker
               name="dkdk"
-              value={event.date}
+              value={
+                event.date == "" ? toDateFr(new Date()) : toDateFr(event.date)
+              }
               onChange={handleDateChange}
-              dateFormat="dd-MM-yyyy"
+              dateFormat="DD/MM/YYYY HH:MM"
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
             />
+
             <TextField
               label="Desciption"
               name="desciption"

@@ -22,7 +22,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 
-function HomePage() {
+function HomePageConnected() {
   const [open, setOpen] = useState(false);
   const gmail = sessionStorage.getItem("UserMail");
   const token = sessionStorage.getItem("jwt");
@@ -381,4 +381,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default HomePageConnected;

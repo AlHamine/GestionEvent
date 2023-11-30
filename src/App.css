@@ -123,3 +123,8 @@
   background-color: #f0f0f0;
   padding: 10px;
 } */
+.image {
+  background-image: url("https: //www.r2iimmobilier.fr/wp-content/uploads/2022/05/PTZ.jpg");
+  height: 800px;
+}
+/* import image from "image/0demande.jpg"; */

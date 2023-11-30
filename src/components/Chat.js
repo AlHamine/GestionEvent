@@ -10,26 +10,34 @@ import {
   ListItemText,
   TextField,
   Typography,
+  CircularProgress,
 } from "@mui/material";
+import "./ChatInterface.css";
 
 const ChatComponent = () => {
   const [stompClient, setStompClient] = useState(null);
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [mail, setMail] = useState("");
+  const [connecting, setConnecting] = useState(true);
 
   useEffect(() => {
-    const socket = new SockJS("http://localhost:8081/websocket");
+    const socket = new SockJS("http://localhost:8080/websocket");
     const client = Stomp.over(socket);
 
-    client.connect({}, () => {
-      client.subscribe("/topic/messages", (message) => {
-        const messageText = JSON.parse(message.body);
-        // Gérez le message reçu ici (côté client)
-        setMessages((prevMessages) => [...prevMessages, messageText]);
+    try {
+      client.connect({}, () => {
+        setConnecting(false);
+        client.subscribe("/all/messages", (message) => {
+          const messageText = JSON.parse(message.body);
+          setMessages((prevMessages) => [...prevMessages, messageText]);
+          console.log("machin" + messages);
+        });
       });
-    });
-    setStompClient(client);
+      setStompClient(client);
+    } catch (error) {
+      console.error("Error connecting to STOMP:", error);
+    }
 
     return () => {
       if (client) {
@@ -37,80 +45,87 @@ const ChatComponent = () => {
       }
     };
   }, []);
-  const handleMailChange = (e) => {
-    setMail(e.target.value);
-  };
-  const handleMessageChange = (e) => {
-    setMessage(e.target.value);
-  };
 
-  const sendtMessage = () => {
-    if (message.trim()) {
+  const sendMessage = () => {
+    if (stompClient && stompClient.connected && message.trim()) {
       const chatMessage = {
         mail,
         content: message,
       };
-      stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
-      sendtMessage("");
+      stompClient.send("/app/application", {}, JSON.stringify(chatMessage));
+      console.log(JSON.stringify(chatMessage));
+      // setMessages((prevMessages) => [...prevMessages, JSON.stringify(chatMessage)]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        JSON.stringify(chatMessage),
+      ]);
+      setMessage("");
+    } else {
+      console.error("STOMP connection not yet established.");
+    }
+  };
+
+  const handleMailChange = (e) => {
+    setMail(e.target.value);
+  };
+
+  const handleMessageChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      sendMessage();
     }
   };
 
   return (
     <div>
-      <List>
-        {messages.map((msg, index) => (
-          <ListItem key={index}>
-            <ListItemAvatar>
-              <Avatar>msg.mail.charAt(0) </Avatar>
+      {connecting && <CircularProgress />}
+
+      {(messages.length != 0) && (
+        <List>
+          {messages.map((msg, index) => (
+            <ListItem key={index}>
+              <ListItemAvatar>
+                <Avatar>{msg.mail.charAt(0)}</Avatar>
+              </ListItemAvatar>
               <ListItemText
                 primary={
                   <Typography variant="subtitle1" gutterBottom>
-                    msg.mail
+                    {msg.mail}
                   </Typography>
                 }
                 secondary={msg.content}
               />
-            </ListItemAvatar>
-          </ListItem>
-        ))}
-      </List>
+            </ListItem>
+          ))}
+        </List>
+      )}
       <div style={{ display: "flex", alignItems: "center" }}>
         <TextField
-          id="standard-basic"
-          label="mail"
+          id="mail"
+          label="Mail"
           variant="standard"
           value={mail}
+          onChange={handleMailChange}
         />
         <TextField
-          id="standard-basic"
-          label="message"
+          id="message"
+          label="Message"
           variant="standard"
           value={message}
+          onChange={handleMessageChange}
+          onKeyPress={handleKeyPress}
         />
         <Button
           variant="contained"
-          onClick={sendtMessage}
-          disabled={!message.trim()}
+          onClick={sendMessage}
+          disabled={!stompClient || !stompClient.connected}
         >
           Envoyer
         </Button>
       </div>
-      {/* <div className="message-list">
-        {messages.map((message, index) => (
-          <div key={index} className="message">
-            {message}
-          </div>
-        ))}
-      </div>
-      <div className="message-input">
-        <input
-          type="text"
-          value={mail}
-          onChange={handleMailChange}
-          placeholder="Type your message..."
-        />
-        <button onClick={() => sendtMessage()}>Send</button>
-      </div> */}
     </div>
   );
 };

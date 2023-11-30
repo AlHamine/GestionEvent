@@ -9,6 +9,11 @@ import Logouter from "./components/Logout";
 import Footer from "./components/Footer";
 import HomePage from "./components/HomePage";
 import PrestataireList from "./components/PrestataireList";
+import EventListByClient from "./components/EventListByClient";
+import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnected";
+import HomePageConnected from "./components/HomePageConnected";
+import DemandeList from "./components/DemandeList";
+// import { useNavigate } from "react-router-dom";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -20,10 +25,11 @@ function App(props) {
   const handleLogout = () => {
     sessionStorage.removeItem("jwt");
     sessionStorage.removetItem("isLoggedIn");
-
     // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
     setEstAuthentifie(false);
   };
+  // const navigate = useNavigate();
+
   return (
     <Router>
       <Routes>
@@ -34,23 +40,45 @@ function App(props) {
           element={
             sessionStorage.getItem("isLoggedIn") ? (
               <div>
-                <ResponsiveAppBar />
-                {/* <EventList /> */}
+                {/* <ResponsiveAppBar /> */}
+                {/* <HomePageConnected /> */}
+                {sessionStorage.getItem("role") === "client" ? (
+                  <div>
+                    {/* <ResponsiveAppBar />
+                    <HomePage />
+                    <Footer /> */}
+                    <EventList></EventList>
+                    {/* <EventListByClient /> */}
+                  </div>
+                ) : (
+                  <DemandeList />
+                )}
+
+                {/* <Footer /> */}
+              </div>
+            ) : (
+              <div>
+                <ResponsiveAppBarNotConnected />
                 <HomePage />
                 <Footer />
               </div>
-            ) : (
-              <Login
-                estAuthentifie={estAuthentifie}
-                setEstAuthentifie={setEstAuthentifie}
-              />
             )
           }
         />
         {/* <Route path="/about" element={<About />} /> */}
+        <Route
+          path="/login"
+          element={
+            <Login
+              estAuthentifie={estAuthentifie}
+              setEstAuthentifie={setEstAuthentifie}
+            />
+          }
+        />
         <Route path="/logout" element={<Logouter />} action={handleLogout} />
         <Route path={"/events"} element={<EventList />} />;
         <Route path={"/prest"} element={<PrestataireList />} />;
+        <Route path={"/myevents"} element={<EventListByClient />} />;
       </Routes>
     </Router>
   );

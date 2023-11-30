@@ -30,8 +30,9 @@ import {
 } from "@mui/material";
 
 import Logout from "./Logout";
+import EventListByClient from "./EventListByClient";
 
-const pages = ["Evenements", "Prestataires", "Populaire"];
+const pages = ["Evenements", "myEvents", "Prestataires"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
@@ -215,6 +216,17 @@ function ResponsiveAppBar() {
                       Prestataires
                     </Link>
                   </Button>
+                ) : page === "myEvents" ? (
+                  <Button color="success">
+                    <Link
+                      to="/myevents"
+                      key={page}
+                      style={{ color: "white", textDecoration: "none" }}
+                      sx={{ my: 2, color: "white", display: "block" }}
+                    >
+                      Mes Evenements
+                    </Link>
+                  </Button>
                 ) : (
                   <Button
                     key={page}
@@ -286,6 +298,9 @@ function ResponsiveAppBar() {
                     ) : setting === "Logout" ? (
                       <Logout />
                     ) : (
+                      //   : setting === "Dashboard" ? (
+                      // <EventListByClient />
+                      //   )
                       <Typography textAlign="center">{setting}</Typography>
                     )}
                   </MenuItem>
@@ -314,7 +329,28 @@ function ResponsiveAppBar() {
             Nouveaux messages
           </div>
         </DialogTitle>
-        <DialogContent></DialogContent>
+        <DialogContent>
+          <Stack spacing={2} sx={{ maxWidth: 600, marginTop: "30px" }}>
+            <SnackbarContent message="I love snacks." action={action} />
+            <SnackbarContent
+              message={
+                "I love candy. I love cookies. I love cupcakes. \
+                 I love cheesecake. I love chocolate."
+              }
+            />
+            <SnackbarContent
+              message="I love candy. I love cookies. I love cupcakes."
+              action={action}
+            />
+            <SnackbarContent
+              message={
+                "I love candy. I love cookies. I love cupcakes. \
+                 I love cheesecake. I love chocolate."
+              }
+              action={action}
+            />
+          </Stack>
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
           {/* <Button onClick={handleSave}>Enregistrer</Button> */}
@@ -343,9 +379,18 @@ function ResponsiveAppBar() {
         // sx={{ width: "100%", position: "absolute", right: 0, height: "100%" }}
         sx={{ position: "absolute", right: 80, top: 8 }}
       >
-        <DialogTitle> Nouvelles notifications</DialogTitle>
+        <DialogTitle>
+          <div
+            style={{
+              position: "absolute",
+              left: "35%",
+            }}
+          >
+            Nouvelles notifications
+          </div>
+        </DialogTitle>
         <DialogContent>
-          <Stack spacing={2} sx={{ maxWidth: 600 }}>
+          <Stack spacing={2} sx={{ maxWidth: 600, marginTop: "30px" }}>
             <SnackbarContent message="I love snacks." action={action} />
             <SnackbarContent
               message={
