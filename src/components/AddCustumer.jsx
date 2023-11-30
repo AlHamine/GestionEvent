@@ -96,7 +96,7 @@ export default function AddCustomer(props) {
   return (
     <>
       <Button variant="contained" onClick={handleOpen}>
-        <AddCircleOutlinedIcon /> Client
+        <b>JE VEUX ORGANISER DANS UN EVENEMENT</b>
       </Button>
       <Dialog open={open} onClose={handleClose}   >
         <DialogTitle> Nouveau Client </DialogTitle>

@@ -95,7 +95,7 @@ export default function AddPrestataire(props) {
   return (
     <>
       <Button variant="contained" onClick={handleOpen}>
-        <AddCircleOutlinedIcon /> Prestataire
+        <b>JE VEUX PRESTER DANS UN EVENEMENT</b>
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Prestataire </DialogTitle>
