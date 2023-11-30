@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { SERVER_URL } from "../../constants";
+import { SERVER_URL } from "../constants";
 
 import Email from "@mui/icons-material/Email";
 import StarRate from "@mui/icons-material/StarRate";
@@ -27,11 +27,11 @@ const ReviewForm = () => {
   const [submissionError, setSubmissionError] = useState(null);
   const [open, setOpen] = useState(false);
 
-  console.log(sessionStorage.getItem("UserMail"));
   const handleSubmit = async () => {
     setLoading(true);
     setSubmissionError(null);
-
+    setEmailClient(sessionStorage.getItem("UserMail"));
+    console.log(emailClient);
     try {
       const response = await fetch(SERVER_URL + "prestataires/reviews", {
         method: "POST",

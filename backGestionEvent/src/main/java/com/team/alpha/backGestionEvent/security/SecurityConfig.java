@@ -26,7 +26,7 @@ import com.team.alpha.backGestionEvent.security.*;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
@@ -43,6 +43,7 @@ public class SecurityConfig {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 		return http
@@ -53,10 +54,13 @@ public class SecurityConfig {
 				.authorizeRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
 								"/event",
-								"/websocket/*")
+								"/websocket/**")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto",
+								"prestataires/reviews")
+						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires").permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,

@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -30,19 +31,16 @@ public class PrestataireService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private FileDataRepository fileDataRepository;
 
     @Autowired
     private DemandeService dService;
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private EvenementRepository eRepository;
-
-    @Autowired
-    private FileDataRepository fileDataRepository;
-
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
@@ -72,6 +70,21 @@ public class PrestataireService {
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
     }
+    // List<Prestataire> liste=new ArrayList<Prestataire>();
+
+    public ArrayList<Prestataire> prestataireByEvent(Evenement e) {
+        ArrayList<Prestataire> l = new ArrayList<Prestataire>();
+        prestataireRepository.findAll().forEach(p -> {
+            if (!e.getPrestataires().contains(p)) {
+                l.add(p);
+            }
+        });
+
+        return l;
+    }
+    // public Iterable<Prestataire> findPrestataireNotYetDemande(Evenement e) {
+    // return prestataireRepository.findPrestataireNotYetDemande(e.getIdEvent());
+    // }
 
     public Optional<Prestataire> getPrestataireById(Long id) {
         return prestataireRepository.findById(id);

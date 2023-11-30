@@ -1,11 +1,13 @@
 package com.team.alpha.backGestionEvent.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import java.util.Date;
 
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Demande;
@@ -40,5 +42,9 @@ public interface DemandeRepository extends CrudRepository<Demande, Long> {
 
     Optional<Demande> findByClientPrestataireEvent(@Param("idp") Long idp,
             @Param("idEvent") Long idEvent);
+
+    @Query("SELECT e FROM Demande e WHERE e.prestataire.id=:idp")
+
+    Iterable<Demande> findDemandeByPrestataire(@Param("idp") Long idp);
 
 }

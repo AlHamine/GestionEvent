@@ -70,6 +70,14 @@ public class DemandeController {
         return dService.getDemandeByPrestataireEvenement(prestataireExistant, evenement);
     }
 
+    @GetMapping("/{mail}")
+    public Iterable<Demande> getDemandeIdByPrestatireEvent(@PathVariable String mail) {
+        // Vérifiez si le prestataire existe
+        Prestataire prestataireExistant = prestataireRepository.findByMail(mail).get();
+        // Récupérez l'événement existant de la base de données
+        return dService.getDemandeByPrestataire(prestataireExistant);
+    }
+
     @PostMapping("/{idE}/{idp}")
     public Long ajoutDemande(@PathVariable Long idp,
             @PathVariable Long idE) {

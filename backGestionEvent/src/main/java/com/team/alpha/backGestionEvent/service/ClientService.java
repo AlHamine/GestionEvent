@@ -71,6 +71,7 @@ public class ClientService {
         // Enregistrez le client en base de données
         return clientRepository.save(client);
     }
+    // A Ameliorer
 
     // Création d'un client en ajoutant la photo de profile
     public Client createClient(MultipartFile file, String nom, String prenom,
