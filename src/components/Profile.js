@@ -156,7 +156,12 @@ const Profile = () => {
               Message
             </button>
             {sessionStorage.getItem("role") === "client" && (
-              <button className="profile-card__button button--orange">
+              <button
+                className="profile-card__button button--orange"
+                onClick={() => {
+                  window.location.href = "/review";
+                }}
+              >
                 Noter les prestations
               </button>
             )}

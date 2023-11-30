@@ -28,7 +28,7 @@ const ChatComponent = () => {
     try {
       client.connect({}, () => {
         setConnecting(false);
-        client.subscribe("/chat", (message) => {
+        client.subscribe("/topic/messages", (message) => {
           const messageText = JSON.parse(message.body);
           setMessages((prevMessages) => [...prevMessages, messageText]);
           console.log("machin" + messages);
@@ -52,7 +52,7 @@ const ChatComponent = () => {
         mail,
         content: message,
       };
-      stompClient.send("/topic/messages", {}, JSON.stringify(chatMessage));
+      stompClient.send("/app/chat", {}, JSON.stringify(chatMessage));
       console.log(JSON.stringify(chatMessage));
       // setMessages((prevMessages) => [...prevMessages, JSON.stringify(chatMessage)]);
       setMessages((prevMessages) => [
@@ -83,17 +83,17 @@ const ChatComponent = () => {
     <div>
       {connecting && <CircularProgress />}
 
-      {messages.length != 0 && (
+      {messages.length !== 0 && (
         <List>
           {messages.map((msg, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
-                <Avatar>{msg.mail.charAt(0)}</Avatar>
+                <Avatar>{msg.mail ? msg.mail.charAt(0) : ""}</Avatar>
               </ListItemAvatar>
               <ListItemText
                 primary={
                   <Typography variant="subtitle1" gutterBottom>
-                    {msg.mail}
+                    {msg.mail || "Unknown User"}
                   </Typography>
                 }
                 secondary={msg.content}
@@ -102,6 +102,7 @@ const ChatComponent = () => {
           ))}
         </List>
       )}
+
       <div style={{ display: "flex", alignItems: "center" }}>
         <TextField
           id="mail"

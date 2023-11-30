@@ -32,6 +32,7 @@ import {
 
 import Logout from "./Logout";
 import EventListByClient from "./EventListByClient";
+import ChatComponent from "./Chat.js";
 
 const pages = ["Evenements", "myEvents", "Prestataires", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -326,11 +327,12 @@ function ResponsiveAppBar() {
         <DialogTitle>
           <div
             style={{
-              position: "absolute",
-              left: "35%",
+              // position: "absolute",
+              // left: "35%",
             }}
           >
             Nouveaux messages
+            <ChatComponent/>
           </div>
         </DialogTitle>
         <DialogContent></DialogContent>

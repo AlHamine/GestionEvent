@@ -121,7 +121,7 @@ function Login({ setEstAuthentifie }) {
         <div>
           <EventList/>
           {/* <Footer /> */}
-          <ChatComponent />
+          {/* <ChatComponent /> */}
         </div>
       );
     } else
@@ -129,7 +129,7 @@ function Login({ setEstAuthentifie }) {
         <div>
           <DemandeList />
           {/* <Footer /> */}
-          <ChatComponent />
+          {/* <ChatComponent /> */}
         </div>
       );
   } else {

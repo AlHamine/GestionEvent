@@ -13,6 +13,7 @@ import EventListByClient from "./components/EventListByClient";
 import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnected";
 import HomePageConnected from "./components/HomePageConnected";
 import DemandeList from "./components/DemandeList";
+import ReviewForm from "./components/ReviewForm";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -39,8 +40,14 @@ function App(props) {
               <div>
                 {/* <ResponsiveAppBar /> */}
                 {/* <HomePageConnected /> */}
-                {sessionStorage.getItem("role") === "client" ?(<div><EventList></EventList></div>):( <DemandeList />)}
-               
+                {sessionStorage.getItem("role") === "client" ? (
+                  <div>
+                    <EventList></EventList>
+                  </div>
+                ) : (
+                  <DemandeList />
+                )}
+
                 {/* <Footer /> */}
               </div>
             ) : (
@@ -69,6 +76,7 @@ function App(props) {
         <Route path={"/events"} element={<EventList />} />;
         <Route path={"/prest"} element={<PrestataireList />} />;
         <Route path={"/myevents"} element={<EventListByClient />} />;
+        <Route path={"/review"} element={<ReviewForm />} />; 
       </Routes>
     </Router>
   );
