@@ -60,9 +60,10 @@ function EventListByClient() {
   //     .then((data) => setPrestataires(data))
   //     .catch((err) => console.error(err));
   // };
-  const fetchPrestataires = () => {
+  // fetch(SERVER_URL + "prestataires", {  /notEvent/${idE}
+  const fetchPrestataires = (idE) => {
     const token = sessionStorage.getItem("jwt");
-    fetch(SERVER_URL + "prestataires", {
+    fetch(SERVER_URL + `prestataires/notEvent/${idE}`, {
       headers: { Authorization: token },
     })
       .then((response) => response.json())
@@ -85,11 +86,10 @@ function EventListByClient() {
   useEffect(() => {
     fetchEvents();
   }, []);
-
+// const 
   const fetchEvents = () => {
     const token = sessionStorage.getItem("jwt");
-    const id = sessionStorage.getItem("idc");
-    fetch(SERVER_URL + `event/org/${sessionStorage.getItem("idClient")}`, {
+    fetch(SERVER_URL + `event/org/${sessionStorage.getItem("UserMail")}`, {
       headers: { Authorization: token },
     })
       .then((response) => response.json())
@@ -149,7 +149,7 @@ function EventListByClient() {
               alert("Prestation annulee");
               setListSelected(removeSubString(ListSelected, `[${e}, ${idp}]`));
               console.log(ListSelected);
-              fetchPrestataires();
+              fetchPrestataires(e);
               fetch(SERVER_URL + `demandes/${e}/${idp}`, {
                 headers: { Authorization: token },
               })
@@ -189,7 +189,7 @@ function EventListByClient() {
             // setSelectedPrestataires([]); // Clear selected prestataires after adding the event
             // ListSelected.push([e, idp]);
             console.log(ListSelected);
-            fetchPrestataires();
+            fetchPrestataires(e);
           } else {
             alert("Something went wrong");
           }
@@ -200,9 +200,9 @@ function EventListByClient() {
       setClick(false);
     }
   };
-  const ajoutPrestataire = () => {
+  const ajoutPrestataire = (e) => {
     SetEstSelected(true);
-    fetchPrestataires();
+    fetchPrestataires(e);
     setOpen2(true);
   };
   const handleClickSelect = (event) => {
@@ -237,10 +237,10 @@ function EventListByClient() {
     setSelectedEvent(event);
     setOpen(true);
   };
-  const handlePrestataireSelection = (prestataire, e) => {
-    setSelectedPrestataires((prevSelected) => [...prevSelected, prestataire]);
-    choisirPrestataire(prestataire, selectedEvent);
-  };
+  // const handlePrestataireSelection = (prestataire, e) => {
+  //   setSelectedPrestataires((prevSelected) => [...prevSelected, prestataire]);
+  //   choisirPrestataire(prestataire, selectedEvent);
+  // };
   const dialogStyle = {
     backgroundColor: "skyblue",
     width: "90%",
@@ -372,7 +372,11 @@ function EventListByClient() {
                 <Typography variant="body2" color="text.secondary">
                   Date : {toDateFr(event.date)}
                 </Typography>
-                <Button onClick={() => handleClickEvent(event)}>
+                <Button
+                  onClick={() => {
+                    handleClickEvent(event);
+                  }}
+                >
                   Voir les détails
                 </Button>
               </CardContent>
@@ -413,7 +417,9 @@ function EventListByClient() {
                       <Button
                         color="primary"
                         variant="contained"
-                        onClick={ajoutPrestataire}
+                        onClick={() => {
+                          ajoutPrestataire(selectedEvent.idEvent);
+                        }}
                       >
                         Ajouter des prestataires
                       </Button>

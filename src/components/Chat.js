@@ -21,42 +21,49 @@ const ChatComponent = () => {
   const [mail, setMail] = useState("");
   const [connecting, setConnecting] = useState(true);
 
-useEffect(() => {
-  const socket = new SockJS("http://localhost:8080/websocket");
-  const client = Stomp.over(socket);
+  useEffect(() => {
+    const socket = new SockJS("http://localhost:8080/websocket");
+    const client = Stomp.over(socket);
 
-  try {
-    client.connect({}, () => {
-      setConnecting(false); // La connexion est établie, plus besoin de l'indicateur de chargement
-      client.subscribe("/topic/messages", (message) => {
-        const messageText = JSON.parse(message.body);
-        setMessages((prevMessages) => [...prevMessages, messageText]);
+    try {
+      client.connect({}, () => {
+        setConnecting(false);
+        client.subscribe("/all/messages", (message) => {
+          const messageText = JSON.parse(message.body);
+          setMessages((prevMessages) => [...prevMessages, messageText]);
+          console.log("machin" + messages);
+        });
       });
-    });
-    setStompClient(client);
-  } catch (error) {
-    console.error("Error connecting to STOMP:", error);
-  }
+      setStompClient(client);
+    } catch (error) {
+      console.error("Error connecting to STOMP:", error);
+    }
 
-  return () => {
-    if (client) {
-      client.disconnect();
+    return () => {
+      if (client) {
+        client.disconnect();
+      }
+    };
+  }, []);
+
+  const sendMessage = () => {
+    if (stompClient && stompClient.connected && message.trim()) {
+      const chatMessage = {
+        mail,
+        content: message,
+      };
+      stompClient.send("/app/application", {}, JSON.stringify(chatMessage));
+      console.log(JSON.stringify(chatMessage));
+      // setMessages((prevMessages) => [...prevMessages, JSON.stringify(chatMessage)]);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        JSON.stringify(chatMessage),
+      ]);
+      setMessage("");
+    } else {
+      console.error("STOMP connection not yet established.");
     }
   };
-}, []);
-
-const sendMessage = () => {
-  if (stompClient && stompClient.connected && message.trim()) {
-    const chatMessage = {
-      mail,
-      content: message,
-    };
-    stompClient.send("/client-chat", {}, JSON.stringify(chatMessage));
-    setMessage("");
-  } else {
-    console.error("STOMP connection not yet established.");
-  }
-};
 
   const handleMailChange = (e) => {
     setMail(e.target.value);
@@ -66,43 +73,35 @@ const sendMessage = () => {
     setMessage(e.target.value);
   };
 
-  const handleSendMessage = () => {
-    if (message.trim()) {
-      const chatMessage = {
-        mail,
-        content: message,
-      };
-      stompClient.send("/client-chat", {}, JSON.stringify(chatMessage));
-      setMessage("");
-    }
-  };
-
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      handleSendMessage();
+      sendMessage();
     }
   };
 
   return (
     <div>
-      {connecting && <CircularProgress />} {/* Indicateur de chargement */}
-      <List>
-        {messages.map((msg, index) => (
-          <ListItem key={index}>
-            <ListItemAvatar>
-              <Avatar>{msg.mail.charAt(0)}</Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={
-                <Typography variant="subtitle1" gutterBottom>
-                  {msg.mail}
-                </Typography>
-              }
-              secondary={msg.content}
-            />
-          </ListItem>
-        ))}
-      </List>
+      {connecting && <CircularProgress />}
+
+      {(messages.length != 0) && (
+        <List>
+          {messages.map((msg, index) => (
+            <ListItem key={index}>
+              <ListItemAvatar>
+                <Avatar>{msg.mail.charAt(0)}</Avatar>
+              </ListItemAvatar>
+              <ListItemText
+                primary={
+                  <Typography variant="subtitle1" gutterBottom>
+                    {msg.mail}
+                  </Typography>
+                }
+                secondary={msg.content}
+              />
+            </ListItem>
+          ))}
+        </List>
+      )}
       <div style={{ display: "flex", alignItems: "center" }}>
         <TextField
           id="mail"

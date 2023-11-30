@@ -1,4 +1,5 @@
 import { Button, Stack, TextField } from "@mui/material";
+import EventListByClient from "./EventListByClient";
 import { jwtDecode } from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import { SERVER_URL } from "../constants";
@@ -49,7 +50,7 @@ function Login({ setEstAuthentifie }) {
         if (jwtToken != null) {
           sessionStorage.setItem("jwt", jwtToken);
           sessionStorage.setItem("isLoggedIn", true);
-          sessionStorage.setItem("idClient", user.idc);
+          // sessionStorage.setItem("idClient", user.idc);
           sessionStorage.setItem("UserMail", user.username);
           const decodedToken = jwtDecode(jwtToken);
           const role = decodedToken.role;
@@ -79,26 +80,31 @@ function Login({ setEstAuthentifie }) {
   //   .catch((err) => console.error(err))
   //   .catch((err) => console.log(err));
   // const role = sessionStorage.getItem("role");
-  fetch(
-    SERVER_URL + (sessionStorage.getItem("role") === "client")
-      ? `client/mail?mail=${gmail}`
-      : `prestataires/mail?mail=${gmail}`,
-    {
+  // : 
+  // console.log(sessionStorage.getItem("role") === "client");
+  if (sessionStorage.getItem("role") === "client") {
+    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
       headers: { "Content-Type": "application/json", Authorization: token },
-    }
-  )
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        sessionStorage.setItem("idClient", data.idc);
+        sessionStorage.setItem("n", data.nom);
+        sessionStorage.setItem("p", data.prenom);
+      })
+      .catch((err) => console.error(err))
+      .catch((err) => console.log(err));
+  }else{fetch(SERVER_URL + `prestataires/mail?mail=${gmail}`, {
+    headers: { "Content-Type": "application/json", Authorization: token },
+  })
     .then((response) => response.json())
     .then((data) => {
-      sessionStorage.getItem("role") === "client"
-        ? sessionStorage.setItem("idClient", data.idc)
-        : sessionStorage.setItem("idPretataire", data.idp);
-      console.log(sessionStorage.setItem("idClient", data.idc));
-      console.log(sessionStorage.setItem("idPretataire", data.idp));
+      sessionStorage.setItem("idPrestataire", data.idp);
       sessionStorage.setItem("n", data.nom);
       sessionStorage.setItem("p", data.prenom);
     })
     .catch((err) => console.error(err))
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err));}
 
   const onLogout = () => {
     sessionStorage.removeItem("jwt");
@@ -110,7 +116,7 @@ function Login({ setEstAuthentifie }) {
     if (sessionStorage.getItem("role") === "client") {
       return (
         <div>
-          <EventList />
+          <EventListByClient />
           {/* <Footer /> */}
           <ChatComponent />
         </div>
