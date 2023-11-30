@@ -28,6 +28,7 @@ import {
 import Button from "@mui/material/Button";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
+import RatingStars from "./RatingStars.jsx";
 
 function EventListByClient() {
   const [events, setEvents] = useState([]);
@@ -451,7 +452,7 @@ function EventListByClient() {
                       <SnackbarContent
                         message={`Date : ${toDateFr(selectedEvent.date)}`}
                       />
-                      <SnackbarContent message={`Plus de details : $}`} />
+                      {/* <SnackbarContent message={`Plus de details : $}`} /> */}
                       <Button
                         color="primary"
                         variant="contained"
@@ -496,7 +497,8 @@ function EventListByClient() {
                                     <td sx={styles.td}>
                                       <CardMedia
                                         component="img"
-                                        height="200"
+                                        height="280"
+                                        width="100"
                                         image={
                                           prest.photo == null
                                             ? "https://animations-innovantes.fr/wp-content/uploads/2019/02/Social-Wall-Digital.jpg"
@@ -519,6 +521,20 @@ function EventListByClient() {
                                         />
                                         <SnackbarContent
                                           message={`Service : ${prest.service}`}
+                                        />
+                                        <SnackbarContent
+                                          message={
+                                            prest.note ? (
+                                              <div>
+                                                Note :{" "}
+                                                <RatingStars
+                                                  rating={prest.note}
+                                                />
+                                              </div>
+                                            ) : (
+                                              ""
+                                            )
+                                          }
                                         />
                                         {!estPresent(
                                           ListSelected,

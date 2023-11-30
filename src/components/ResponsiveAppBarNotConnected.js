@@ -228,17 +228,7 @@ function ResponsiveAppBarNotConnected() {
                 )
               )}
             </Box>
-            {/* 
-            <IconButton
-              size="large"
-              aria-label="show new mails"
-              sx={{ display: { xs: "none", md: "block" } }}
-            >
-              <Badge badgeContent={4} color="error" onClick={handleClickOpen}>
-                <MailIcon />
-              </Badge>
-            </IconButton>
-                */}
+            
             <Button variant="contained">
               <Link color="white" to="/login">
                 <SensorOccupiedIcon />

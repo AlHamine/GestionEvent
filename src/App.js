@@ -12,6 +12,7 @@ import PrestataireList from "./components/PrestataireList";
 import EventListByClient from "./components/EventListByClient";
 import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnected";
 import HomePageConnected from "./components/HomePageConnected";
+import Propos from "./components/Propos";
 import DemandeList from "./components/DemandeList";
 import ReviewForm from "./components/ReviewForm";
 import CreatePrestataire from "./components/CreatePrestataire";
@@ -85,6 +86,7 @@ function App(props) {
         <Route path={"/review"} element={<ReviewForm />} />; 
         <Route path={"/addPrest"} element={<AddPrestataire />} />;
         <Route path={"/addCustom"} element={<AddCustomer />} />;
+        <Route path={"/propos"} element={<Propos/>} />;
       </Routes>
     </Router>
   );

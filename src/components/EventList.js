@@ -25,6 +25,7 @@ import {
 import Button from "@mui/material/Button";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
+import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -49,9 +50,12 @@ function EventList() {
 
   const fetchEvents = () => {
     const token = sessionStorage.getItem("jwt");
-    fetch(SERVER_URL + "event", {
-      headers: { Authorization: token },
-    })
+    fetch(
+      SERVER_URL + "event"
+      // , {
+      // headers: { Authorization: token },
+      // }
+    )
       .then((response) => response.json())
       .then((data) => setEvents(data))
       .catch((err) => console.error(err));
@@ -122,7 +126,11 @@ function EventList() {
   ];
   return (
     <React.Fragment>
-      <ResponsiveAppBar />
+      {sessionStorage.getItem("isLoggedIn") ? (
+        <ResponsiveAppBar />
+      ) : (
+        <ResponsiveAppBarNotConnected />
+      )}
       <Stack mt={2} mb={2}>
         <AddEvent addEvent={addEvent} />
         {/* <HomePage addEvent={addEvent} /> */}
@@ -199,9 +207,7 @@ function EventList() {
               <CardMedia
                 component="img"
                 height="200"
-                image={
-                  tabImage[Math.floor(Math.random() * tabImage.length)]
-                }
+                image={tabImage[Math.floor(Math.random() * tabImage.length)]}
                 alt={event.nomEvent}
               />
               <CardContent>

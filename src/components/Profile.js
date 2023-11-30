@@ -152,9 +152,9 @@ const Profile = () => {
           </div>
 
           <div className="profile-card-ctr">
-            <button className="profile-card__button button--blue js-message-btn">
+            {/* <button className="profile-card__button button--blue js-message-btn">
               Message
-            </button>
+            </button> */}
             {sessionStorage.getItem("role") === "client" && (
               <button
                 className="profile-card__button button--orange"

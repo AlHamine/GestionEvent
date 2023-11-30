@@ -7,6 +7,7 @@ import "../index.css";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import CardMedia from "@mui/material/CardMedia";
+import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
 export default function PrestataireList() {
   const [prestataires, setPrestataires] = useState([]);
   useEffect(() => {
@@ -14,12 +15,14 @@ export default function PrestataireList() {
   }, []);
 
   const fetchPrestataires = () => {
-    const token = sessionStorage.getItem("jwt");
-    fetch(SERVER_URL + "api/prestataires", {
-      headers: { Authorization: token },
-    })
+    // const token = sessionStorage.getItem("jwt");
+    fetch(SERVER_URL + "prestataires"
+      // {
+      // headers: { Authorization: token },
+    // }
+    )
       .then((response) => response.json())
-      .then((data) => setPrestataires(data._embedded.prestataires))
+      .then((data) => setPrestataires(data))
       .catch((err) => console.error(err));
   };
 const tabImage = [
@@ -31,7 +34,7 @@ const tabImage = [
 ];
   return (
     <>
-      <ResponsiveAppBar />
+      {sessionStorage.getItem("isLoggedIn") ? (<ResponsiveAppBar />):(<ResponsiveAppBarNotConnected />)}
       <div style={{ display: "flex", flexWrap: "wrap" }}>
         {prestataires.map((prestataire) => (
           <Card key={prestataire.id} style={{ margin: "16px", width: 300 }}>
