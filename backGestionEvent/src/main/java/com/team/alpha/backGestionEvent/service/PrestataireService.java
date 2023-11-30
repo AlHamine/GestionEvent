@@ -36,6 +36,7 @@ import java.nio.file.Files;
 =======
 import java.util.ArrayList;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Iterator;
 import java.util.List;
 >>>>>>> 2494790 (Acception DE DEMANDE)
@@ -45,6 +46,9 @@ import java.util.ArrayList;
 =======
 import java.util.List;
 >>>>>>> 1ca6e02 (clean code)
+=======
+import java.util.List;
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -86,6 +90,7 @@ public class PrestataireService {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -121,6 +126,8 @@ public class PrestataireService {
     // }
 =======
 >>>>>>> 1ca6e02 (clean code)
+=======
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
     public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
 >>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
         E.suprimerDemande(demande);
@@ -246,8 +253,11 @@ public class PrestataireService {
         return images;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 =======
+=======
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 
     public List<Prestataire> findPrestatairesNotInEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesNotInEvenement(e.getIdEvent());
@@ -255,7 +265,10 @@ public class PrestataireService {
     public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
     }
+<<<<<<< HEAD
 >>>>>>> 1ca6e02 (clean code)
+=======
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"

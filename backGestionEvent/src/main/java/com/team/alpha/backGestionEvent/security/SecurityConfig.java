@@ -237,6 +237,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement(management -> management
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
 								"/event",
 								"/websocket/*")
@@ -345,6 +346,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
 						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
+=======
+						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
+								"/event")
+						.permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto")
+						.permitAll()
+						.requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+						.requestMatchers("/websocket/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,

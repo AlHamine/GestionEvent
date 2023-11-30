@@ -2,6 +2,7 @@ package com.team.alpha.backGestionEvent.repository;
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.util.Optional;
 
@@ -15,6 +16,12 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 >>>>>>> 1ca6e02 (clean code)
+=======
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 import org.springframework.data.jpa.repository.Query;
 >>>>>>> 2494790 (Acception DE DEMANDE)
 =======
@@ -50,6 +57,12 @@ public interface PrestataireRepository extends CrudRepository<Prestataire, Long>
 
     @Query(value = "SELECT * FROM prestataire EXCEPT (SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId) ", nativeQuery = true)
     List<Prestataire> findPrestatairesNotInEvenement(@Param("evenementId") Long idEvent);
+<<<<<<< HEAD
+=======
+
+@Query(value = "SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId", nativeQuery = true)
+    List<Prestataire> findPrestatairesByEvenement(@Param("evenementId") Long idEvent);
+>>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 
 @Query(value = "SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId", nativeQuery = true)
     List<Prestataire> findPrestatairesByEvenement(@Param("evenementId") Long idEvent);
