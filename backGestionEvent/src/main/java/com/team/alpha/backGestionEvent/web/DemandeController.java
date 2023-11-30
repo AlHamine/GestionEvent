@@ -1,6 +1,7 @@
 package com.team.alpha.backGestionEvent.web;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -66,6 +67,12 @@ public class DemandeController {
 
     public Iterable<Demande> getAllDemande() {
         return dService.getAllDemande();
+    }
+
+    @GetMapping("contrat/{mail}")
+    public List<Demande> contrat(@PathVariable String mail) {
+        Prestataire prestataireExistant = prestataireRepository.findByMail(mail).orElseThrow();
+        return dService.contrat(prestataireExistant);
     }
 
     @GetMapping("/{idE}/{idp}")

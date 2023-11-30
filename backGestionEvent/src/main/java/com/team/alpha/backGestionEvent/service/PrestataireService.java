@@ -35,13 +35,18 @@ import java.nio.file.Files;
 <<<<<<< HEAD
 =======
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.Iterator;
 import java.util.List;
 >>>>>>> 2494790 (Acception DE DEMANDE)
 =======
 import java.util.ArrayList;
 >>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
+=======
+import java.util.List;
+>>>>>>> 1ca6e02 (clean code)
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PrestataireService {
@@ -80,6 +85,7 @@ public class PrestataireService {
         this.prestataireRepository = prestataireRepository;
     }
 
+<<<<<<< HEAD
     // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -113,6 +119,8 @@ public class PrestataireService {
 <<<<<<< HEAD
 
     // }
+=======
+>>>>>>> 1ca6e02 (clean code)
     public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
 >>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
         E.suprimerDemande(demande);
@@ -237,7 +245,17 @@ public class PrestataireService {
         byte[] images = Files.readAllBytes(new File(filePath).toPath());
         return images;
     }
+<<<<<<< HEAD
 >>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
+=======
+
+    public List<Prestataire> findPrestatairesNotInEvenement(Evenement e) {
+        return prestataireRepository.findPrestatairesNotInEvenement(e.getIdEvent());
+    }
+    public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
+        return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
+    }
+>>>>>>> 1ca6e02 (clean code)
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"

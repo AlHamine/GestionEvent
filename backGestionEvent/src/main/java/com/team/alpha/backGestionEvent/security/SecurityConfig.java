@@ -443,6 +443,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement(management -> management
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeRequests(authorizeRequests -> authorizeRequests
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
 								"/event",
 								"/websocket/**")
@@ -452,9 +453,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto",
 								"prestataires/reviews")
 >>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
+=======
+						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
+								"/event")
+>>>>>>> 1ca6e02 (clean code)
 						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+<<<<<<< HEAD
 						.requestMatchers(HttpMethod.GET, "/prestataires").permitAll()
+=======
+						.requestMatchers("/websocket/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
+>>>>>>> 1ca6e02 (clean code)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,

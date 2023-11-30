@@ -1,6 +1,7 @@
 package com.team.alpha.backGestionEvent.repository;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.util.Optional;
 
@@ -8,6 +9,12 @@ import java.util.Optional;
 <<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
+=======
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+>>>>>>> 1ca6e02 (clean code)
 import org.springframework.data.jpa.repository.Query;
 >>>>>>> 2494790 (Acception DE DEMANDE)
 =======
@@ -17,6 +24,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.team.alpha.backGestionEvent.model.Demande;
+import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 
 /**
@@ -24,7 +32,7 @@ import com.team.alpha.backGestionEvent.model.Prestataire;
  * EXCEPT (SELECT e.prestataire FROM Evenement e WHERE
  * e.prestataire.id=:idEvent)
  * 
- * (SELECT p FROM Prestataire p join
+ * (SELECT p FROM Prestataire p
  * 
  * where p.id<>e.prestataire.id
  */
@@ -40,10 +48,11 @@ public interface PrestataireRepository extends CrudRepository<Prestataire, Long>
 =======
 >>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 
-    // @Query("SELECT p FROM Evenement p ")
-    // @Query("SELECT p FROM Prestataire p,evenement_prestataires ep where ep.evenement_id_event=:idEventSelected and prestataires_idp=p.idp")
-    // @Query("SELECT e FROM Evenement_Prestataires e")
-    // Iterable<Prestataire> findPrestataireNotYetDemande(@Param("idEventSelected") Long idp);
+    @Query(value = "SELECT * FROM prestataire EXCEPT (SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId) ", nativeQuery = true)
+    List<Prestataire> findPrestatairesNotInEvenement(@Param("evenementId") Long idEvent);
+
+@Query(value = "SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId", nativeQuery = true)
+    List<Prestataire> findPrestatairesByEvenement(@Param("evenementId") Long idEvent);
 
 <<<<<<< HEAD
 >>>>>>> 2494790 (Acception DE DEMANDE)

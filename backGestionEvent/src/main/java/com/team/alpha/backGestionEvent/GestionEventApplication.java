@@ -67,6 +67,7 @@ public class GestionEventApplication implements CommandLineRunner {
 		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
 				"nagato@gmail.com",
 				null);
+<<<<<<< HEAD
 		prepository.saveAll(Arrays.asList(p1, p2, p3));
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -84,18 +85,55 @@ public class GestionEventApplication implements CommandLineRunner {
 >>>>>>> 8e0880c (Backend updated)
 =======
 >>>>>>> 27aa8ab (Revision du projet dans le github)
+=======
+		Prestataire p4 = prestataireService.createPrestataire("SOW", "Aïssatou", "Cuisinière", "456",
+				"aissatou@gmail.com", null);
+		Prestataire p5 = prestataireService.createPrestataire("TOURE", "Sékou", "Serveur", "789", "sekou@gmail.com",
+				null);
+		Prestataire p6 = prestataireService.createPrestataire("DIALLO", "Mariam", "Barmaid", "111", "mariam@gmail.com",
+				null);
+		Prestataire p7 = prestataireService.createPrestataire("KOUADIO", "Koffi", "Pâtissier", "222", "koffi@gmail.com",
+				null);
+		Prestataire p8 = prestataireService.createPrestataire("MBOW", "Oumar", "Sommelier", "333", "oumar@gmail.com",
+				null);
+		Prestataire p9 = prestataireService.createPrestataire("NKOSI", "Thandiwe", "Chef de cuisine", "444",
+				"thandiwe@gmail.com", null);
+		Prestataire p10 = prestataireService.createPrestataire("DUBE", "Sipho", "Serveuse", "555", "sipho@gmail.com",
+				null);
+		Prestataire p11 = prestataireService.createPrestataire("AYI", "Kwame", "Maître d'hôtel", "666",
+				"kwame@gmail.com", null);
+
+		prepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
+>>>>>>> 1ca6e02 (clean code)
 
 		Evenement ev1 = new Evenement("Bapteme", new Date(),
 				"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);
 
 		Evenement ev2 = new Evenement("Fineraille", new Date(),
 				"Il s'agit d'inhumer un corps humain afin de lui rendre à Dieu", "Yoff", c2);
-		Evenement ev3 = new Evenement("Thiante", new Date(), "Il s'agit de donner de dire louage à Dieu", "Madina Baye",
+		Evenement ev3 = new Evenement("Fête Religieuse", new Date(), "Célébration spirituelle et chants dédiés à Dieu",
+				"Touba",
 				c1);
+
 		Evenement ev4 = new Evenement("Gamou", new Date(),
 				"Il s'agit de célébrer la naissance du prophète Seydina Mouhamadou Al Hamine", "Madina Baye", c2);
 
-		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4)); // Sauvegarder les Evenements
+		Evenement ev5 = new Evenement("Mariage", new Date(),
+				"Célébration de l'union sacrée entre deux personnes", "Dakar", c2);
+
+		Evenement ev6 = new Evenement("Conférence", new Date(),
+				"Réunion de personnes pour discuter de sujets spécifiques", "Plateau", c1);
+
+		Evenement ev7 = new Evenement("Festival de Musique", new Date(),
+				"Événement musical avec divers artistes et genres de musique", "Ngor", c2);
+
+		Evenement ev8 = new Evenement("Exposition d'Art", new Date(),
+				"Présentation d'œuvres artistiques et créatives", "Ouakam", c2);
+
+		Evenement ev9 = new Evenement("Séminaire d'Entreprise", new Date(),
+				"Réunion professionnelle pour discuter de stratégies et de plans d'affaires", "Almadies", c1);
+
+		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4, ev5, ev6, ev7, ev8, ev9)); // Sauvegarder les Evenements
 		// Demande d1 = new Demande(c2, p3, ev4);
 		// Demande d2 = new Demande(c1, p1, ev1);
 		// dRepository.saveAll(Arrays.asList(d1, d2));
