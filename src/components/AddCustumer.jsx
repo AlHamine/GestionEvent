@@ -11,6 +11,7 @@ import FileIcon from "@mui/icons-material/FileCopy";
 import { SERVER_URL } from "../constants";
 import axios from "axios";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import Snackbar from "@mui/material/Snackbar";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import "./UserProfile.css";
@@ -21,7 +22,7 @@ export default function AddCustomer(props) {
   const [mail, setMail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  
+  let ok;
   const [open, setOpen] = useState(false);
 
   const handleSubmit = async (event) => {
@@ -36,11 +37,13 @@ export default function AddCustomer(props) {
 
     if (nom === "" || prenom === "" || mail === "" || password === "" || confirmPassword === "" ) {
       alert("Veuillez remplir tous les champs.");
+       ok = false;
       return;
     }
     // Vérifier si le champ `mail` est de type `email`
     if (!mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
       alert("L'adresse e-mail n'est pas valide.");
+      ok = false;
       return;
     }
 
@@ -48,7 +51,7 @@ export default function AddCustomer(props) {
     if (typeof password !== "string" || password.length < 2) {
       alert(
         "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
-      );
+      );ok = false;
       return;
     }
     // Vérifions si les mots de pass sont conformes

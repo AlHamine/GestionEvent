@@ -1,7 +1,5 @@
 import { Button, Stack, TextField } from "@mui/material";
 import EventListByClient from "./EventListByClient";
-import EventList from "./EventList";
-
 import { jwtDecode } from "jwt-decode";
 import React, { useState, useEffect } from "react";
 import { SERVER_URL } from "../constants";
@@ -12,11 +10,29 @@ import Backdrop from "@mui/material/Backdrop";
 import DemandeList from "./DemandeList.jsx";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Email,Lock } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import HomePage from "./HomePage.jsx";
+import Checkbox from "@mui/material/Checkbox";
+import EventList from "./EventList.js";
+
 function Login({ setEstAuthentifie }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
+
+  const navigate = useNavigate();
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleChangeCustomer = (event) => {
+    setIsChecked(event.target.checked);
+    // Vous pouvez effectuer d'autres actions ici en fonction de l'état de la case à cocher.
+  };
+
+  if (isChecked) {
+    navigate("/");
+  }
+
   // const [role, setRole] = useState("");
   const [isAuthenticated, setAuth] = useState(false);
   const handleChange = (event) => {
@@ -114,6 +130,11 @@ function Login({ setEstAuthentifie }) {
     setAuth(false);
   };
 
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  // const handleChangeCustomer = () => {
+  //   <CreatePrestataire />;
+  // };
+
   if (isAuthenticated) {
     // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
     if (sessionStorage.getItem("role") === "client") {
@@ -195,6 +216,14 @@ function Login({ setEstAuthentifie }) {
                 Login
               </Button>
               {/* <CreatePrestataire /> */}
+              <div style={{ color: "blue" }}>
+                <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
+                {"Creer un compte client"}
+              </div>
+              <div style={{ color: "blue" }}>
+                <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
+                {"Être prestataire"}
+              </div>
               {/* <CreateCustumer /> */}
             </Stack>
           </Box>

@@ -14,6 +14,10 @@ import ResponsiveAppBarNotConnected from "./components/ResponsiveAppBarNotConnec
 import HomePageConnected from "./components/HomePageConnected";
 import DemandeList from "./components/DemandeList";
 import ReviewForm from "./components/ReviewForm";
+import CreatePrestataire from "./components/CreatePrestataire";
+import AddPrestataire from "./components/AddPrestataire";
+import AddCustomer from "./components/AddCustumer";
+// import { useNavigate } from "react-router-dom";
 
 function App(props) {
   const [estAuthentifie, setEstAuthentifie] = useState(false);
@@ -28,6 +32,8 @@ function App(props) {
     // Mettez à jour isAuthenticated avec la nouvelle valeur (false pour la déconnexion)
     setEstAuthentifie(false);
   };
+  // const navigate = useNavigate();
+
   return (
     <Router>
       <Routes>
@@ -77,6 +83,8 @@ function App(props) {
         <Route path={"/prest"} element={<PrestataireList />} />;
         <Route path={"/myevents"} element={<EventListByClient />} />;
         <Route path={"/review"} element={<ReviewForm />} />; 
+        <Route path={"/addPrest"} element={<AddPrestataire />} />;
+        <Route path={"/addCustom"} element={<AddCustomer />} />;
       </Routes>
     </Router>
   );

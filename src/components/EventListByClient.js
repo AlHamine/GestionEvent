@@ -659,10 +659,7 @@ function EventListByClient() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>plus de details</td>
-                  <td>plus de ...</td>
-                </tr>
+                <tr></tr>
               </tbody>
             </table>
           </DialogContent>

@@ -102,7 +102,6 @@ const ChatComponent = () => {
           ))}
         </List>
       )}
-
       <div style={{ display: "flex", alignItems: "center" }}>
         <TextField
           id="mail"
