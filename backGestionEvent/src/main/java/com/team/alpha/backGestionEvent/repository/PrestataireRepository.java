@@ -5,10 +5,14 @@ package com.team.alpha.backGestionEvent.repository;
 import java.util.Optional;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
 import org.springframework.data.jpa.repository.Query;
 >>>>>>> 2494790 (Acception DE DEMANDE)
+=======
+import org.springframework.data.jpa.repository.Query;
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -30,13 +34,19 @@ public interface PrestataireRepository extends CrudRepository<Prestataire, Long>
 =======
     Optional<Prestataire> findByMail(String mail);
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 27aa8ab (Revision du projet dans le github)
 =======
+=======
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 
     // @Query("SELECT p FROM Evenement p ")
     // @Query("SELECT p FROM Prestataire p,evenement_prestataires ep where ep.evenement_id_event=:idEventSelected and prestataires_idp=p.idp")
     // @Query("SELECT e FROM Evenement_Prestataires e")
     // Iterable<Prestataire> findPrestataireNotYetDemande(@Param("idEventSelected") Long idp);
 
+<<<<<<< HEAD
 >>>>>>> 2494790 (Acception DE DEMANDE)
+=======
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 }

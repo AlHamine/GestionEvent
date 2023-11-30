@@ -87,7 +87,6 @@ public class PrestataireController {
 
     @Autowired
     private PrestataireRepository prestataireRepository;
-
     @Autowired
     private EventService eService;
 
@@ -199,6 +198,13 @@ public class PrestataireController {
     public Iterable<Prestataire> getAllPrestataires() {
         return prestataireRepository.findAll();
 >>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
+    }
+
+    @GetMapping("/notEvent/{idE}")
+    public Iterable<Prestataire> findPrestataireNotYetDemande(@PathVariable Long idE) {
+        Evenement evenement = eService.getEvenementById(idE);
+
+        return prestataireService.prestataireByEvent(evenement);
     }
 
     @GetMapping("/notEvent/{idE}")
@@ -324,7 +330,8 @@ public class PrestataireController {
                 reviwRepository.save(review);
                 prestataireRepository.save(prestataire);
                 return true;
-            }
+            } else
+                return false;
         }
 
         return false;

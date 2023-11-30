@@ -54,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -72,6 +73,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// .httpBasic(withDefaults())
 	// http.build();
 
+=======
+	@SuppressWarnings("deprecation")
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 <<<<<<< HEAD
@@ -442,9 +446,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
 								"/event",
 								"/websocket/**")
+<<<<<<< HEAD
+=======
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto").permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto",
+								"prestataires/reviews")
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
+						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires").permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,

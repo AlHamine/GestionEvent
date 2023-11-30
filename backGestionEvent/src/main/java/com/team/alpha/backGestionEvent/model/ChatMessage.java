@@ -45,4 +45,9 @@ public class ChatMessage {
     public void setTo(String to) {
         this.to = to;
     }
+<<<<<<< HEAD
+=======
+
+   
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 }

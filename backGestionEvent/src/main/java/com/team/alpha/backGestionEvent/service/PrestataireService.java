@@ -32,11 +32,15 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+<<<<<<< HEAD
 =======
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 >>>>>>> 2494790 (Acception DE DEMANDE)
+=======
+import java.util.ArrayList;
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
 import java.util.Optional;
 
 @Service
@@ -46,6 +50,8 @@ public class PrestataireService {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private FileDataRepository fileDataRepository;
 
     @Autowired
     private DemandeService dService;
@@ -55,9 +61,9 @@ public class PrestataireService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private EvenementRepository eRepository;
+<<<<<<< HEAD
 
     @Autowired
 <<<<<<< HEAD
@@ -66,6 +72,8 @@ public class PrestataireService {
 =======
     private EvenementRepository eRepository;
 >>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
+=======
+>>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
