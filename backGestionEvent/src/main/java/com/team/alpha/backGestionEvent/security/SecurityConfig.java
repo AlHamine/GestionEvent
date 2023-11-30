@@ -53,6 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	// http.csrf().disable().cors().and()
 	// .authorizeHttpRequests().anyRequest().permitAll();
 	// return
@@ -426,6 +427,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Moins de security
 =======
 >>>>>>> 4375bcb (Redefinition du chemin pour le stockage de la photo automatiquement)
+=======
+	@SuppressWarnings("deprecation")
+>>>>>>> 93092c5 (mise a jour secu)
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 <<<<<<< HEAD
@@ -437,7 +441,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests(authorizeRequests -> authorizeRequests
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
 								"/event",
-								"/websocket/*")
+								"/websocket/**")
 						.permitAll()
 						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto").permitAll()
 						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
@@ -470,7 +474,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// return http.build();
 	// }
 
+<<<<<<< HEAD
 >>>>>>> 4375bcb (Redefinition du chemin pour le stockage de la photo automatiquement)
+=======
+>>>>>>> 93092c5 (mise a jour secu)
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
