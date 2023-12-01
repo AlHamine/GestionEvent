@@ -360,7 +360,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
 						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
+<<<<<<< HEAD
 >>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
+=======
+						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
+>>>>>>> 465679f (Second Rapport)
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
