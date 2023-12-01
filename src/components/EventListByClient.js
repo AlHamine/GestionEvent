@@ -597,7 +597,7 @@ function EventListByClient() {
                           style={dialogStyle}
                         >
                           <DialogTitle>
-                            <h1>Les Prestataires Disponibles</h1>
+                            <h1>Les Prestataires Engages qui ont accepte</h1>
                           </DialogTitle>
                           <DialogContent>
                             <table sx={styles.table}>
