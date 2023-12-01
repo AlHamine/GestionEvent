@@ -61,9 +61,7 @@ function App(props) {
               <div>
                 <ResponsiveAppBarNotConnected />
                 <HomePage />
-                <br />
-                <br />
-                <br />
+
                 <Footer />
               </div>
             )
@@ -83,10 +81,10 @@ function App(props) {
         <Route path={"/events"} element={<EventList />} />;
         <Route path={"/prest"} element={<PrestataireList />} />;
         <Route path={"/myevents"} element={<EventListByClient />} />;
-        <Route path={"/review"} element={<ReviewForm />} />; 
+        <Route path={"/review"} element={<ReviewForm />} />;
         <Route path={"/addPrest"} element={<AddPrestataire />} />;
         <Route path={"/addCustom"} element={<AddCustomer />} />;
-        <Route path={"/propos"} element={<Propos/>} />;
+        <Route path={"/propos"} element={<Propos />} />;
       </Routes>
     </Router>
   );

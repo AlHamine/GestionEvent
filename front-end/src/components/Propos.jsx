@@ -7,6 +7,7 @@ import Lottie from "lottie-react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
+import Footer from "./Footer.js";
 function Propos() {
   
   return (
@@ -178,7 +179,7 @@ function Propos() {
           <Lottie animationData={Prestation} />
         </div>
       </div>
-<footer/>
+<Footer/>
     </div>
   );
 }
