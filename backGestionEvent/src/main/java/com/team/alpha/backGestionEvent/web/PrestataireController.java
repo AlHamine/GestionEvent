@@ -197,6 +197,8 @@ public class PrestataireController {
 
             // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
             // si le prestataire a accepte la demande puis noter
+            System.out.println("Controle " + demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED"));
+
             if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
                     && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED") == 0) {
                 reviwRepository.save(review);

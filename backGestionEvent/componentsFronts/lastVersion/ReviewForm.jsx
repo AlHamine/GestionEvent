@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import { SERVER_URL } from "../../constants";
+import { SERVER_URL } from "../constants";
 
 import Email from "@mui/icons-material/Email";
 import StarRate from "@mui/icons-material/StarRate";
@@ -25,13 +25,13 @@ const ReviewForm = () => {
   const [note, setNote] = useState("");
   const [loading, setLoading] = useState(false);
   const [submissionError, setSubmissionError] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
 
-  console.log(sessionStorage.getItem("UserMail"));
   const handleSubmit = async () => {
     setLoading(true);
     setSubmissionError(null);
-
+    setEmailClient(sessionStorage.getItem("UserMail"));
+    console.log(emailClient);
     try {
       const response = await fetch(SERVER_URL + "prestataires/reviews", {
         method: "POST",
@@ -55,7 +55,8 @@ const ReviewForm = () => {
       setEmailClient("");
       setComment("");
       setNote("");
-      alert("La revue a été soumise avec succès.");
+        alert("La revue a été soumise avec succès.");
+        window.location.href = "/profile";
     } catch (error) {
       console.error("Erreur lors de la soumission de la revue", error);
       setSubmissionError(
@@ -71,14 +72,15 @@ const ReviewForm = () => {
   };
 
   const handleClose = () => {
-    setOpen(false);
+      setOpen(false);
+      window.location.href = "/profile";
   };
 
   return (
-    <>
-      <Button variant="contained" onClick={handleOpen}>
-        <CommentBankTwoToneIcon /> Commentaire
-      </Button>
+      <>
+      {/* <Button className="profile-card__button button--orange" variant="contained" onClick={handleOpen}>
+        <CommentBankTwoToneIcon /> Noter les prestations
+      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Commentaire </DialogTitle>
         <DialogContent>
@@ -164,3 +166,4 @@ const ReviewForm = () => {
 };
 
 export default ReviewForm;
+
