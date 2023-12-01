@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
 						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
 						.anyRequest().authenticated())
 				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 				.addFilterBefore(authenticationFilter,
