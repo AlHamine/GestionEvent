@@ -1,0 +1,39 @@
+/* ChatInterface.css */
+
+.cc-1hqb {
+    width: 400px !important;
+}
+
+.cc-1tyx {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cc-1tyx textarea {
+    width: 320px !important;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.cc-1xqi {
+    margin-left: 10px;
+}
+
+.cc-fpwe {
+    cursor: pointer;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background-color: #007bff;
+    /* Change the background color as needed */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 30px;
+}
+
+/* Add any other styles as needed for the rest of your interface elements */
