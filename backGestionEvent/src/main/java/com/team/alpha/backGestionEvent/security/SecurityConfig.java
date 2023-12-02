@@ -2,8 +2,6 @@ package com.team.alpha.backGestionEvent.security;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-import java.util.Arrays;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +20,6 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.team.alpha.backGestionEvent.service.UserDetailsServiceImpl;
-import com.team.alpha.backGestionEvent.security.*;
 
 @Configuration
 @EnableWebSecurity
@@ -55,14 +52,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
 								"/event")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto")
+						.requestMatchers(HttpMethod.POST, "/prestataires",
+								"prestataires/prestatairephoto",
+								"prestataires/reviews")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
-						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+						// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client",
+								"/client/clientphoto")
+						.permitAll()
 						.requestMatchers("/websocket/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**",
+								"prestataires/reviews")
+						.permitAll()
 						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+						// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
 						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
 						.anyRequest().authenticated())
