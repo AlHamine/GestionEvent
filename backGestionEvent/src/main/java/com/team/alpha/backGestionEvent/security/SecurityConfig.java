@@ -347,14 +347,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
 								"/event")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto")
+						.requestMatchers(HttpMethod.POST, "/prestataires",
+								"prestataires/prestatairephoto",
+								"prestataires/reviews")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
-						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
+						// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client",
+								"/client/clientphoto")
+						.permitAll()
 						.requestMatchers("/websocket/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**",
+								"prestataires/reviews")
+						.permitAll()
 						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+						// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
 						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
 <<<<<<< HEAD

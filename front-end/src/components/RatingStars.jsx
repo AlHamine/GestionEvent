@@ -8,6 +8,10 @@ const RatingStars = ({ rating }) => {
 
   const renderStars = () => {
     const stars = [];
+<<<<<<< HEAD
+=======
+    stars.push("Star : ")
+>>>>>>> 503d393 (Modification du backend et insertion du front modifiee)
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(<StarIcon key={i} />);

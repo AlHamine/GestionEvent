@@ -313,6 +313,8 @@ public class PrestataireController {
 
     // *******************************************************************************************************************
     @PostMapping("/reviews")
+    @CrossOrigin(origins = "*", methods = { RequestMethod.POST,
+            RequestMethod.GET, RequestMethod.OPTIONS })
     public boolean createReview(
             @RequestParam("emailPrestataire") String emailPrestataire,
             @RequestParam("emailClient") String emailClient,
@@ -339,9 +341,9 @@ public class PrestataireController {
 
             // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
             // si le prestataire a accepte la demande puis noter
-            System.out.println("Controle " + demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED"));
 
-            if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande())
+            if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande()
+                    || demande.getEvenement() != demande.getEvenement())
                     && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED") == 0) {
                 reviwRepository.save(review);
                 prestataireRepository.save(prestataire);
