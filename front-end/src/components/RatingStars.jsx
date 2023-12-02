@@ -8,6 +8,10 @@ const RatingStars = ({ rating }) => {
 
   const renderStars = () => {
     const stars = [];
+<<<<<<< HEAD
+=======
+    stars.push("Star : ")
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(<StarIcon key={i} />);

@@ -526,7 +526,10 @@ function EventListByClient() {
                                           message={
                                             prest.note ? (
                                               <div>
+<<<<<<< HEAD
                                                 Note :{" "}
+=======
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da
                                                 <RatingStars
                                                   rating={prest.note}
                                                 />
@@ -637,6 +640,22 @@ function EventListByClient() {
                                         <SnackbarContent
                                           message={`Service : ${prest.service}`}
                                         />
+<<<<<<< HEAD
+=======
+                                        <SnackbarContent
+                                          message={
+                                            prest.note ? (
+                                              <div>
+                                                <RatingStars
+                                                  rating={prest.note}
+                                                />
+                                              </div>
+                                            ) : (
+                                              ""
+                                            )
+                                          }
+                                        />
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da
 
                                         {/* <Button
                                             color="success"

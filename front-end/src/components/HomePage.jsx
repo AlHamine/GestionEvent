@@ -142,7 +142,7 @@ function HomePage() {
 
   return (
     <div>
-      <div
+      <div id="veux"
         style={{
           display: "flex",
           boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
@@ -172,22 +172,6 @@ function HomePage() {
             
             </div>
 
-            {/* <Stack direction="row" spacing={2}>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                CREER UN EVENEMENT
-              </Button>
-            </Stack> */}
-
-            {/* <Stack direction="row-reverse" spacing={2}>
-              <Button variant="contained" onClick={handleClickOpen}>
-                JE VEUX ORGANISER UN EVENEMENT
-              </Button>
-            </Stack> */}
-            {/* <Stack direction="row"   height="100px" spacing={4} mt={1}>
-              <Button variant="contained"  color="success" onClick={handleClickOpen}>
-               <b> JE VEUX PRESTER DANS UN EVENEMENT</b>
-              </Button>
-            </Stack> */}
           </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
@@ -201,7 +185,7 @@ function HomePage() {
       >
         <div style={{ flex: 1, marginLeft: "30px" }}>
           {/* Contenu texte à gauche */}
-          <h1
+          <h1 id="propos"
             style={{ color: "#8171df", textAlign: "center", marginTop: "40px" }}
           >
             À PROPOS DE NOUS
@@ -231,7 +215,7 @@ function HomePage() {
       >
         <div style={{ flex: 1 }}>
           {/* Contenu texte à gauche */}
-          <h1
+          <h1 id="event"
             style={{
               color: "#827ca4",
               textAlign: "center",
@@ -284,7 +268,7 @@ function HomePage() {
       >
         <div style={{ flex: 1, backgroundColor: "#fff" }}>
           {/* Contenu texte à gauche */}
-          <h1
+          <h1 id="prest"
             style={{
               color: "blue",
               textAlign: "center",

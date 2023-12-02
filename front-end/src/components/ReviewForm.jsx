@@ -55,8 +55,13 @@ const ReviewForm = () => {
       setEmailClient("");
       setComment("");
       setNote("");
+<<<<<<< HEAD
         alert("La revue a été soumise avec succès.");
         window.location.href = "/profile";
+=======
+      alert("La revue a été soumise avec succès.");
+      window.location.href = "/profile";
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da
     } catch (error) {
       console.error("Erreur lors de la soumission de la revue", error);
       setSubmissionError(
@@ -72,12 +77,21 @@ const ReviewForm = () => {
   };
 
   const handleClose = () => {
+<<<<<<< HEAD
       setOpen(false);
       window.location.href = "/profile";
   };
 
   return (
       <>
+=======
+    setOpen(false);
+    window.location.href = "/profile";
+  };
+
+  return (
+    <>
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da
       {/* <Button className="profile-card__button button--orange" variant="contained" onClick={handleOpen}>
         <CommentBankTwoToneIcon /> Noter les prestations
       </Button> */}
@@ -165,4 +179,8 @@ const ReviewForm = () => {
   );
 };
 
+<<<<<<< HEAD
 export default ReviewForm;
+=======
+export default ReviewForm;
+>>>>>>> 503d3932705f1682978b13a09b40178a196df1da

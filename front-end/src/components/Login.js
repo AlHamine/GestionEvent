@@ -291,20 +291,17 @@ function Login({ setEstAuthentifie }) {
                 onChange={handleChange}
                 sx={{ p: "10px" }} // Ajustez la marge intérieure pour le TextField
               />
-              <Button variant="outlined" color="primary" onClick={login}>
-                Login
-              </Button>
-
-              {/* <div style={{ color: "blue" }}>
-                <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
-                {"Creer un compte client"}
-              </div>
-              <div style={{ color: "blue" }}>
-                <Checkbox {...label} onChange={handleChangeCustomer} />{" "}
-                {"Être prestataire"}
-              </div> */}
-              <CreatePrestataire />
-              <CreateCustumer />
+              <button
+                className="profile-card__button button--orange"
+                onClick={login}
+              >
+                Se connecter{" "}
+              </button>
+              <span>
+                {" "}
+                <CreatePrestataire />
+                <CreateCustumer />
+              </span>
             </Stack>
             {/* </Box> */}
           </Box>

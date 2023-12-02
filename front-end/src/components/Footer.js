@@ -48,10 +48,42 @@ function Footer() {
                     <text>Votre satisfaction notre bien être</text>
                   </th>
                   <th></th>
-                  <th>Tous les evenements </th>
-                  <th>Mes evenements</th>
-                  <th>Mes demandes</th>
-                  <th>LEGAL</th>
+                  <th>
+                    <a style={{ color: "white" }} href="/#veux">
+                      Je veux...
+                    </a>
+                  </th>
+                  <th>
+                    <a style={{ color: "white" }} href="/#propos">
+                      À PROPOS DE NOUS
+                    </a>
+                  </th>
+                  <th>
+                    <a style={{ color: "white" }} href="/#event">
+                      L'événement
+                    </a>
+                  </th>
+                  <th>
+                    <a style={{ color: "white" }} href="/#prest">
+                      Préstation
+                    </a>
+                  </th>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th></th>
+                  <th>
+                    {" "}
+                    <a style={{ color: "white" }} href="/events">
+                      Tous les evenements
+                    </a>
+                  </th>
+                  <th></th>
+                  <th>
+                    <a style={{ color: "white" }} href="/prest">
+                      Tous les prestataires
+                    </a>{" "}
+                  </th>
                 </tr>
               </thead>
               <tbody>
