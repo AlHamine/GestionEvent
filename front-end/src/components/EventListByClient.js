@@ -393,7 +393,7 @@ function EventListByClient() {
               <CardMedia
                 component="img"
                 height="200"
-                image={tabImage[Math.floor(Math.random() * tabImage.length)]} // Remplacez par l'URL de l'image de la voiture
+                image={tabImage[Math.floor(Math.random() * tabImage.length)]}
                 alt={event.nomEvent}
               />
               <CardContent>
@@ -526,10 +526,6 @@ function EventListByClient() {
                                           message={
                                             prest.note ? (
                                               <div>
-<<<<<<< HEAD
-                                                Note :{" "}
-=======
->>>>>>> 503d3932705f1682978b13a09b40178a196df1da
                                                 <RatingStars
                                                   rating={prest.note}
                                                 />
@@ -640,8 +636,6 @@ function EventListByClient() {
                                         <SnackbarContent
                                           message={`Service : ${prest.service}`}
                                         />
-<<<<<<< HEAD
-=======
                                         <SnackbarContent
                                           message={
                                             prest.note ? (
@@ -655,7 +649,6 @@ function EventListByClient() {
                                             )
                                           }
                                         />
->>>>>>> 503d3932705f1682978b13a09b40178a196df1da
 
                                         {/* <Button
                                             color="success"
