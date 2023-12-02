@@ -55,13 +55,15 @@ const ReviewForm = () => {
       setEmailClient("");
       setComment("");
       setNote("");
-<<<<<<< HEAD
         alert("La revue a été soumise avec succès.");
         window.location.href = "/profile";
+<<<<<<< HEAD
 =======
       alert("La revue a été soumise avec succès.");
       window.location.href = "/profile";
 >>>>>>> 503d393 (Modification du backend et insertion du front modifiee)
+=======
+>>>>>>> f7774ee (update profile)
     } catch (error) {
       console.error("Erreur lors de la soumission de la revue", error);
       setSubmissionError(
@@ -77,13 +79,13 @@ const ReviewForm = () => {
   };
 
   const handleClose = () => {
-<<<<<<< HEAD
       setOpen(false);
       window.location.href = "/profile";
   };
 
   return (
       <>
+<<<<<<< HEAD
 =======
     setOpen(false);
     window.location.href = "/profile";
@@ -92,6 +94,8 @@ const ReviewForm = () => {
   return (
     <>
 >>>>>>> 503d393 (Modification du backend et insertion du front modifiee)
+=======
+>>>>>>> f7774ee (update profile)
       {/* <Button className="profile-card__button button--orange" variant="contained" onClick={handleOpen}>
         <CommentBankTwoToneIcon /> Noter les prestations
       </Button> */}
@@ -179,8 +183,10 @@ const ReviewForm = () => {
   );
 };
 
-<<<<<<< HEAD
 export default ReviewForm;
+<<<<<<< HEAD
 =======
 export default ReviewForm;
 >>>>>>> 503d393 (Modification du backend et insertion du front modifiee)
+=======
+>>>>>>> f7774ee (update profile)

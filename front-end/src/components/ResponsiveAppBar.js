@@ -84,8 +84,9 @@ function ResponsiveAppBar() {
   );
   let im = "";
   if (sessionStorage.getItem("role") == "client")
-    im = `${SERVER_URL}` + `prestataires/${sessionStorage.getItem("photo")}`;
-  else im = `${SERVER_URL}` + `client/${sessionStorage.getItem("photo")}`;
+    im = `${SERVER_URL}` + `client/${sessionStorage.getItem("photo")}`;
+  else im =
+    `${SERVER_URL}` + `prestataires/${sessionStorage.getItem("photo")}`;
   return (
     <div>
       <AppBar position="static">
