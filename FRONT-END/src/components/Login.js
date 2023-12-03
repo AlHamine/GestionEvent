@@ -312,7 +312,7 @@ function Login({ setEstAuthentifie }) {
           onClose={() => setOpen(false)}
           message="Login failed: Check your username and password"
         />
-        {/* Pour le mdp f*/}
+        {/* Pour le mfdp f*/}
       </div>
     );
   }
