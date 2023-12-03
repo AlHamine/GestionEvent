@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "../constants.js";
 import Card from "@mui/material/Card";
-import SnackbarContent from "@mui/material/SnackbarContent";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Dialog,
   DialogActions,
@@ -17,7 +15,6 @@ import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import CardMedia from "@mui/material/CardMedia";
 import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
-import Stack from "@mui/material/Stack";
 import RatingStars from "./RatingStars.jsx";
 
 export default function PrestataireList() {
@@ -134,7 +131,6 @@ export default function PrestataireList() {
           </Dialog>
         )}
       </div>
-      {/* <br></br><br></br><br></br> */}
       <Footer />
     </>
   );

@@ -6,13 +6,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-// import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import Badge from "@mui/material/Badge";
 import MailIcon from "@mui/icons-material/Mail";
@@ -38,20 +36,14 @@ const pages = ["Evenements", "myEvents", "Prestataires", "Propos"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const [open, setOpen] = useState(false);
   const [openNotif, setOpenNotif] = useState(false);
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
+  
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  // const handleCloseNavMenu = () => {
-  //   setAnchorElNav(null);
-  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -242,9 +234,7 @@ function ResponsiveAppBar() {
                     ) : setting === "Logout" ? (
                       <Logout />
                     ) : (
-                      //   : setting === "Dashboard" ? (
-                      // <EventListByClient />
-                      //   )
+
                       <Typography textAlign="center">{setting}</Typography>
                     )}
                   </MenuItem>
@@ -260,7 +250,6 @@ function ResponsiveAppBar() {
         onClose={handleClose}
         fullWidth
         maxWidth="sm"
-        // sx={{ width: "100%", position: "absolute", right: 0, height: "100%" }}
         sx={{ position: "absolute", right: 80, top: 8 }}
       >
         <DialogTitle>

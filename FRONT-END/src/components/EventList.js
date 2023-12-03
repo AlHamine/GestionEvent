@@ -52,9 +52,7 @@ function EventList() {
     const token = sessionStorage.getItem("jwt");
     fetch(
       SERVER_URL + "event"
-      // , {
-      // headers: { Authorization: token },
-      // }
+      
     )
       .then((response) => response.json())
       .then((data) => setEvents(data))
@@ -166,7 +164,6 @@ function EventList() {
               size="sm"
               value={selectedValue}
               onChange={handleClickSelect}
-              // sx={{ marginRight: "auto", flexShrink: 0 }}
               defaultValue="Tous les événements"
               sx={{
                 marginRight: "auto",
@@ -192,17 +189,10 @@ function EventList() {
             event.nomEvent.toLowerCase().includes(searchTerm.toLowerCase())
           )
           .filter((event) =>
-            // selectedValue === "" ? true : event.value === selectedValue
             event.nomEvent.toLowerCase().includes(selectedValue.toLowerCase())
           )
           .map((event) => (
-            // <Link
-            //   key={event.idEvent} // Ajoutez une clé unique
-            //   to={`/events/${idEventFuc(event._links.self.href)}`}
-            //   onClick={() =>
-            //     handleClickEvent(idEventFuc(event._links.self.href))
-            //   }
-            // >
+            
             <Card
               key={event.idEvent}
               style={{ margin: "16px", width: "300", marginLeft: "5%" }}

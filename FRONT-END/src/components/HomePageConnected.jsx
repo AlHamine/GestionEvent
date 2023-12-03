@@ -1,6 +1,5 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Animefront from "./Animefront.json";
-// import Animefront2 from "./Animefront2.json";
 import Animation1 from "./Animation1.json";
 import Prestation from "./Prestation.json";
 import Lottie from "lottie-react";
@@ -26,7 +25,6 @@ function HomePageConnected() {
   const [open, setOpen] = useState(false);
   const gmail = sessionStorage.getItem("UserMail");
   const token = sessionStorage.getItem("jwt");
-  // const [events, setEvents] = useState([]);
   const [event, setEvent] = useState({
     nomEvent: "",
     date: "",
@@ -44,28 +42,11 @@ function HomePageConnected() {
         sessionStorage.setItem("idClient", data.idc);
         sessionStorage.setItem("n", data.nom);
         sessionStorage.setItem("p", data.prenom);
-        // sessionStorage.setItem("client", data);
-        // d = data;
       })
       .catch((err) => console.error(err))
       .catch((err) => console.log(err));
   }, [gmail, token]);
 
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
-
-  // const fetchEvents = () => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   fetch(SERVER_URL + "api/evenements", {
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setEvents(data._embedded.evenements))
-  //     .catch((err) => console.error(err));
-  //   console.log(token);
-  // };
-  // const history = useHistory();
   const navigate = useNavigate();
 
   const addEvent = (event) => {
@@ -94,14 +75,12 @@ function HomePageConnected() {
 
   const handleSave = () => {
     if (event.organisateur.idc !== 0) {
-      // props.addEvent(event);
       addEvent(event);
     } else {
       event.organisateur.idc = Number(sessionStorage.getItem("idClient"));
       setEvent(event);
-      // props.addEvent(event);
+
       addEvent(event);
-      // alert("Veuillez re-essayez encore   ");
     }
     setEvent({
       nomEvent: "",
@@ -112,19 +91,6 @@ function HomePageConnected() {
     });
     handleClose();
   };
-  // const addPrestataire = (prestataire) => {
-  //   fetch(SERVER_URL + "prestataires", {
-  //     headers: { "Content-Type": "application/json" },
-  //     method: "POST",
-  //     body: JSON.stringify(prestataire),
-  //   })
-  //     .then((reponse) => {
-  //       if (reponse.ok) {
-  //         // fetchPrestataires();
-  //       } else alert("Something went wrong !");
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -167,32 +133,12 @@ function HomePageConnected() {
           </p>
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
-              <Lottie animationData={Animation1} />{" "}
-                <CreatePrestataire />
-            
+              <Lottie animationData={Animation1} /> <CreatePrestataire />
             </div>
-
-            {/* <Stack direction="row" spacing={2}>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                CREER UN EVENEMENT
-              </Button>
-            </Stack> */}
-
-            {/* <Stack direction="row-reverse" spacing={2}>
-              <Button variant="contained" onClick={handleClickOpen}>
-                JE VEUX ORGANISER UN EVENEMENT
-              </Button>
-            </Stack> */}
-            {/* <Stack direction="row"   height="100px" spacing={4} mt={1}>
-              <Button variant="contained"  color="success" onClick={handleClickOpen}>
-               <b> JE VEUX PRESTER DANS UN EVENEMENT</b>
-              </Button>
-            </Stack> */}
           </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
-          <Lottie animationData={Animefront} />{" "}
-            <CreateCustumer/>
+          <Lottie animationData={Animefront} /> <CreateCustumer />
         </div>
       </div>
 

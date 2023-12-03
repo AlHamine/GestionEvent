@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Animefront from "./Animefront.json";
-// import Animefront2 from "./Animefront2.json";
 import Animation1 from "./Animation1.json";
 import Prestation from "./Prestation.json";
 import Lottie from "lottie-react";
@@ -44,28 +43,11 @@ function HomePage() {
         sessionStorage.setItem("idClient", data.idc);
         sessionStorage.setItem("n", data.nom);
         sessionStorage.setItem("p", data.prenom);
-        // sessionStorage.setItem("client", data);
-        // d = data;
       })
       .catch((err) => console.error(err))
       .catch((err) => console.log(err));
   }, [gmail, token]);
 
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
-
-  // const fetchEvents = () => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   fetch(SERVER_URL + "api/evenements", {
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setEvents(data._embedded.evenements))
-  //     .catch((err) => console.error(err));
-  //   console.log(token);
-  // };
-  // const history = useHistory();
   const navigate = useNavigate();
 
   const addEvent = (event) => {
@@ -94,14 +76,11 @@ function HomePage() {
 
   const handleSave = () => {
     if (event.organisateur.idc !== 0) {
-      // props.addEvent(event);
       addEvent(event);
     } else {
       event.organisateur.idc = Number(sessionStorage.getItem("idClient"));
       setEvent(event);
-      // props.addEvent(event);
       addEvent(event);
-      // alert("Veuillez re-essayez encore   ");
     }
     setEvent({
       nomEvent: "",
@@ -112,19 +91,6 @@ function HomePage() {
     });
     handleClose();
   };
-  // const addPrestataire = (prestataire) => {
-  //   fetch(SERVER_URL + "prestataires", {
-  //     headers: { "Content-Type": "application/json" },
-  //     method: "POST",
-  //     body: JSON.stringify(prestataire),
-  //   })
-  //     .then((reponse) => {
-  //       if (reponse.ok) {
-  //         // fetchPrestataires();
-  //       } else alert("Something went wrong !");
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
 
   const handleChange = (event) => {
     const { name, value } = event.target;

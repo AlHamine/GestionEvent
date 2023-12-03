@@ -38,21 +38,15 @@ export default function UpdateCustomer(props) {
     if (
       nom === "" ||
       prenom === "" ||
-      mail === "" ||
       password === "" ||
       confirmPassword === ""
     ) {
       alert("Veuillez remplir tous les champs.");
       return;
     }
-    // Vérifier si le champ `mail` est de type `email`
-    if (!mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
-      alert("L'adresse e-mail n'est pas valide.");
-      return;
-    }
 
     // Vérifier si le champ `password` est de type `string` et a au moins 8 caractères
-    if (typeof password !== "string" || password.length < 2) {
+    if (typeof password !== "string" || password.length < 8) {
       alert(
         "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
       );
@@ -65,7 +59,14 @@ export default function UpdateCustomer(props) {
       );
       return;
     }
+    // Vérifier que le password est robust et contient au moins 8 caractères
+    if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/)) {
+      alert("Votre mot de passe doit être robuste.");
+      return;
+    }
+
     try {
+      // Envoyer les donnees aux serveurs
       const response = await axios.put(SERVER_URL + "client/update", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
@@ -114,7 +115,6 @@ export default function UpdateCustomer(props) {
               type="text"
               fullWidth
               onChange={(event) => setNom(event.target.value)}
-              // value={client.nom}
               margin="normal"
               InputProps={{
                 startAdornment: (
@@ -127,7 +127,6 @@ export default function UpdateCustomer(props) {
             <TextField
               id="prenom"
               type="text"
-              // value={client.prenom}
               label="Prénom"
               variant="outlined"
               fullWidth
@@ -149,7 +148,6 @@ export default function UpdateCustomer(props) {
               fullWidth
               margin="normal"
               type="password"
-              // value={client.password}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -166,7 +164,6 @@ export default function UpdateCustomer(props) {
               fullWidth
               margin="normal"
               type="password"
-              // value={client.confirmPassword}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -206,4 +203,3 @@ export default function UpdateCustomer(props) {
     </>
   );
 }
-

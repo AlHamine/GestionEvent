@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { SERVER_URL } from "../constants.js";
 
 function EventDetails(props) {
-  //   console.log("Details : " + props);
   const [event, setEvent] = useState([]);
   useEffect(() => {
     fetchEvents();

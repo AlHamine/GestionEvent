@@ -31,9 +31,6 @@ export default function CustomerList() {
               <Typography variant="h6" component="div">
                 {client.nom} {client.prenom}
               </Typography>
-              {/* <Typography variant="body2" color="text.secondary">
-                prenom : {client.prenom}
-              </Typography> */}
               <Typography variant="body2" color="text.secondary">
                 email : {client.mail}
               </Typography>

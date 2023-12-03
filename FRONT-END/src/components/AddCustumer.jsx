@@ -10,8 +10,6 @@ import { PersonAdd, Email, Lock } from "@mui/icons-material";
 import FileIcon from "@mui/icons-material/FileCopy";
 import { SERVER_URL } from "../constants";
 import axios from "axios";
-import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
-import Snackbar from "@mui/material/Snackbar";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import "./UserProfile.css";
@@ -35,7 +33,7 @@ export default function AddCustomer(props) {
     formData.append("password", password);
     formData.append("confirmPassword", confirmPassword);
 
-  if (
+    if (
       nom === "" ||
       prenom === "" ||
       mail === "" ||
@@ -52,10 +50,15 @@ export default function AddCustomer(props) {
     }
 
     // Vérifier si le champ `password` est de type `string` et a au moins 8 caractères
-    if (typeof password !== "string" || password.length < 2) {
+    if (typeof password !== "string" || password.length < 8) {
       alert(
         "Le mot de passe doit être une chaîne de caractères de 8 caractères minimum."
       );
+      return;
+    }
+    // Vérifier que le password est robust et contient au moins 8 caractères
+    if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/)) {
+      alert("Votre mot de passe doit être robuste.");
       return;
     }
     // Vérifions si les mots de pass sont conformes
@@ -97,11 +100,16 @@ export default function AddCustomer(props) {
   const handleClose = () => {
     setOpen(false);
   };
-  
 
   return (
-    <><button className="profile-card__button button--blue js-message-btn " onClick={handleOpen}><b>JE VEUX ORGANISER UN EVENEMENT</b></button>
-      <Dialog open={open} onClose={handleClose}   >
+    <>
+      <button
+        className="profile-card__button button--blue js-message-btn "
+        onClick={handleOpen}
+      >
+        <b>JE VEUX ORGANISER UN EVENEMENT</b>
+      </button>
+      <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Client </DialogTitle>
         <DialogContent>
           <Container>

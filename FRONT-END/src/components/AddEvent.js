@@ -14,23 +14,6 @@ import "react-datepicker/dist/react-datepicker.module.css";
 
 function AddEvent(props) {
   const [open, setOpen] = useState(false);
-  // const gmail = sessionStorage.getItem("UserMail");
-  // const token = sessionStorage.getItem("jwt");
-  // useEffect(() => {
-  //   fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-  //     headers: { "Content-Type": "application/json", Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       sessionStorage.setItem("idClient", data.idc);
-  //       sessionStorage.setItem("n", data.nom);
-  //       sessionStorage.setItem("p", data.prenom);
-  //       // sessionStorage.setItem("client", data);
-  //       // d = data;
-  //     })
-  //     .catch((err) => console.error(err))
-  //     .catch((err) => console.log(err));
-  // }, [gmail, token]);
 
   const [event, setEvent] = useState({
     nomEvent: "",
@@ -69,6 +52,14 @@ function AddEvent(props) {
     return dateFrancaise;
   }
   const handleSave = () => {
+    if (event.nomEvent  === ""||
+      event.date === "" ||
+      event.desciption  === "" ||
+      event.lieu === "" ){
+      alert("Veuillez remplir tous les champs.");
+      return;
+    }
+
     if (event.organisateur.idc !== 0) {
       props.addEvent(event);
     } else {
@@ -112,8 +103,6 @@ function AddEvent(props) {
           Créer un événement
         </Button>
       </div>
-
-      {/* </Box> */}
 
       <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
         <DialogTitle>Nouvel événement</DialogTitle>

@@ -73,14 +73,12 @@ const ReviewForm = () => {
 
   const handleClose = () => {
     setOpen(false);
+    // Rediriger per /profile apres la fermeture
     window.location.href = "/profile";
   };
 
   return (
     <>
-      {/* <Button className="profile-card__button button--orange" variant="contained" onClick={handleOpen}>
-        <CommentBankTwoToneIcon /> Noter les prestations
-      </Button> */}
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Commentaire </DialogTitle>
         <DialogContent>

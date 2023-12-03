@@ -17,7 +17,6 @@ function Footer() {
   return (
     <footer
       className="footer2"
-      // style={{ position: "fixed", bottom: 0, width: "100%" }}
     >
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
@@ -89,12 +88,7 @@ function Footer() {
               <tbody>
                 <tr>
                   <td></td>
-                  {/* 
-                  <td></td>
-                  <td>Components</td>
-                  <td>Documentation</td>
-                  <td>About</td>
-                  <td>Terms</td> */}
+                  
                 </tr>
                 <tr>
                   <td>
@@ -121,15 +115,11 @@ function Footer() {
                     </div>
                   </td>
                   <td></td>
-                  {/* <td>Pricing</td>
-
-                  <td>Discord serveur</td>
-                  <td>Careers</td>
-                  <td>Privacy</td> */}
+                  
                 </tr>
               </tbody>
               <tfoot>
-                <tr>{/* <td colspan="3">Pied de page</td> */}</tr>
+                <tr></tr>
                 <tr></tr>
               </tfoot>
             </table>

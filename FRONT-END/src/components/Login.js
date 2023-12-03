@@ -161,20 +161,8 @@ function Login({ setEstAuthentifie }) {
   };
   const token = sessionStorage.getItem("jwt");
 
-  // sessionStorage.setItem("roleUser", role);
   const gmail = sessionStorage.getItem("UserMail");
-  // fetch(SERVER_URL + `login/mail?mail=${gmail}`, {
-  //   headers: { "Content-Type": "application/json", Authorization: token },
-  // })
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     setRole(data.role);
-  //   })
-  //   .catch((err) => console.error(err))
-  //   .catch((err) => console.log(err));
-  // const role = sessionStorage.getItem("role");
-  // :
-  // console.log(sessionStorage.getItem("role") === "client");
+  
   if (sessionStorage.getItem("role") === "client") {
     fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
       headers: { "Content-Type": "application/json", Authorization: token },
@@ -210,26 +198,20 @@ function Login({ setEstAuthentifie }) {
   };
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  // const handleChangeCustomer = () => {
-  //   <CreatePrestataire />;
-  // };
-
+// Verifier l'authentication
   if (isAuthenticated) {
-    // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
     if (sessionStorage.getItem("role") === "client") {
       return (
         <div>
           <EventList />
-          {/* <Footer /> */}
-          {/* <ChatComponent /> */}
+
         </div>
       );
     } else
       return (
         <div>
           <DemandeList />
-          {/* <Footer /> */}
-          {/* <ChatComponent /> */}
+
         </div>
       );
   } else {

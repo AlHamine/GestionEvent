@@ -8,6 +8,7 @@ const RatingStars = ({ rating }) => {
 
   const renderStars = () => {
     const stars = [];
+    //  Stockage des notes dans stars
     stars.push("Note : ");
 
     for (let i = 0; i < fullStars; i++) {

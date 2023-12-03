@@ -1,6 +1,5 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Animefront from "./Animefront.json";
-// import Animefront2 from "./Animefront2.json";
 import Animation1 from "./Animation1.json";
 import Prestation from "./Prestation.json";
 import Lottie from "lottie-react";
@@ -9,10 +8,9 @@ import DoneAllIcon from "@mui/icons-material/DoneAll";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 function Propos() {
-  
   return (
     <div id="veux">
-      <ResponsiveAppBar/>  
+      <ResponsiveAppBar />
       <div
         style={{
           display: "flex",
@@ -39,15 +37,11 @@ function Propos() {
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
               <Lottie animationData={Animation1} />{" "}
-                
-            
             </div>
-
           </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
           <Lottie animationData={Animefront} />{" "}
-            
         </div>
       </div>
 
@@ -56,7 +50,8 @@ function Propos() {
       >
         <div style={{ flex: 1, marginLeft: "30px" }}>
           {/* Contenu texte à gauche */}
-          <h1 id="propos"
+          <h1
+            id="propos"
             style={{ color: "#8171df", textAlign: "center", marginTop: "40px" }}
           >
             À PROPOS DE NOUS
@@ -139,7 +134,8 @@ function Propos() {
       >
         <div style={{ flex: 1, backgroundColor: "#fff" }}>
           {/* Contenu texte à gauche */}
-          <h1 id="prest"
+          <h1
+            id="prest"
             style={{
               color: "blue",
               textAlign: "center",
@@ -149,7 +145,8 @@ function Propos() {
           >
             Préstation
           </h1>
-          <div id="event"
+          <div
+            id="event"
             style={{ lineHeight: "2", color: "#747379", marginLeft: "30px" }}
           >
             <div
@@ -179,7 +176,7 @@ function Propos() {
           <Lottie animationData={Prestation} />
         </div>
       </div>
-<Footer/>
+      <Footer />
     </div>
   );
 }

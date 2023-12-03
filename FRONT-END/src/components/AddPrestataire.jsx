@@ -10,7 +10,6 @@ import { PersonAdd, Email, Lock, Work } from "@mui/icons-material";
 import FileIcon from "@mui/icons-material/FileCopy";
 import { SERVER_URL } from "../constants";
 import axios from "axios";
-import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import CancelSharpIcon from "@mui/icons-material/CancelSharp";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
@@ -94,8 +93,13 @@ export default function AddPrestataire(props) {
   };
   return (
     <>
-      <button className="profile-card__button button--blue js-message-btn " onClick={handleOpen}><b>JE VEUX PRESTER DANS UN EVENEMENT</b></button>
-      
+      <button
+        className="profile-card__button button--blue js-message-btn "
+        onClick={handleOpen}
+      >
+        <b>JE VEUX PRESTER DANS UN EVENEMENT</b>
+      </button>
+
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle> Nouveau Prestataire </DialogTitle>
         <DialogContent>
@@ -107,7 +111,6 @@ export default function AddPrestataire(props) {
               type="text"
               fullWidth
               onChange={(event) => setNom(event.target.value)}
-              // value={client.nom}
               margin="normal"
               InputProps={{
                 startAdornment: (
@@ -120,7 +123,6 @@ export default function AddPrestataire(props) {
             <TextField
               id="prenom"
               type="text"
-              // value={client.prenom}
               label="Prénom"
               variant="outlined"
               fullWidth
@@ -173,7 +175,6 @@ export default function AddPrestataire(props) {
               fullWidth
               margin="normal"
               type="password"
-              // value={client.password}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -190,7 +191,6 @@ export default function AddPrestataire(props) {
               type="password"
               fullWidth
               margin="normal"
-              // value={client.password}
               onChange={(event) => setPasswordConfirmation(event.target.value)}
               InputProps={{
                 startAdornment: (

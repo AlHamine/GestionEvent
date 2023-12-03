@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
 import { SERVER_URL } from "../constants.js";
 import "../index.css";
 import "./UserProfile.css";
-import Chip from "@mui/material/Chip";
 import Stack from "@mui/material/Stack";
 import Card from "@mui/material/Card";
-import Avatar from "@mui/material/Avatar";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
@@ -44,27 +41,7 @@ function EventListByClient() {
   const [estSelected2, SetEstSelected2] = useState(false);
   const [ListSelected, setListSelected] = useState("");
   const [idD, setIdD] = useState(-1);
-  // var ListSelected = ""; //On y met les id deja selectionnes
-  // const fetchDemandes = () => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   fetch(SERVER_URL + "api/demandes", {
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setPrestataires(data._embedded.prestataires))
-  //     .catch((err) => console.error(err));
-  // };
-
-  // const fetchPrestataires = () => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   fetch(SERVER_URL + "prestataires", {
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setPrestataires(data))
-  //     .catch((err) => console.error(err));
-  // };
-  // fetch(SERVER_URL + "prestataires", {  /notEvent/${idE}
+  
   const fetchPrestataires = (idE) => {
     const token = sessionStorage.getItem("jwt");
     fetch(SERVER_URL + `prestataires/notEvent/${idE}`, {
@@ -101,13 +78,11 @@ function EventListByClient() {
     })
       .then((response) => response.json())
       .then((data) => setEvents(data));
-    // .catch((err) => console.error(err));
-    // console.log(token);
+
     sessionStorage.setItem("nbEvent", events.length);
   };
 
   const addEvent = (event) => {
-    // event.prestataires = selectedPrestataires;
     fetch(SERVER_URL + "event", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -116,7 +91,6 @@ function EventListByClient() {
       .then((response) => {
         if (response.ok) {
           fetchEvents();
-          // setSelectedPrestataires([]); // Clear selected prestataires after adding the event
         } else {
           alert("Something went wrong");
         }
@@ -124,8 +98,6 @@ function EventListByClient() {
       .catch((err) => console.error(err));
   };
   function removeSubString(mainString, subString) {
-    // Utilisation de la méthode replace
-    // let nouvelleChaine = mainString.replace(subString, "");
 
     // Utilisation de découpage et de concaténation
     let debut = mainString.indexOf(subString);
@@ -139,7 +111,6 @@ function EventListByClient() {
     return T.includes(sT);
   };
   const annulerChoixPrestataire = (idp, e) => {
-    // if (estPresent(ListSelected, `[${e}, ${idp}]`) === true) {
     const token = sessionStorage.getItem("jwt");
     let g = 0;
     fetch(SERVER_URL + `demandes/${e}/${idp}`, {
@@ -150,7 +121,6 @@ function EventListByClient() {
         fetch(SERVER_URL + `api/demandes/${data.idDemande}`, {
           method: "DELETE",
           headers: { "Content-Type": "application/json", Authorization: token },
-          // body: "{}",
         })
           .then((response) => {
             if (response.ok) {
@@ -173,16 +143,12 @@ function EventListByClient() {
       })
       .then((data) => setIdD(data.idDemande))
       .catch((err) => console.log(err));
-    // console.log(idD);
-    // } else {
-    //   alert("Prestataire inexistant");
-    // }
+    
   };
 
   const choisirPrestataire = (idp, e) => {
     if (estPresent(ListSelected, `[${e}, ${idp}]`) === false) {
-      // ListSelected.push(ListSelected.push([e, idp]));
-      // ListSelected += `[${e}, ${idp}]`;
+      
       setListSelected(ListSelected + `[${e}, ${idp}]`);
       setClick(true);
       const token = sessionStorage.getItem("jwt");
@@ -193,9 +159,6 @@ function EventListByClient() {
       })
         .then((response) => {
           if (response.ok) {
-            // fetchEvents();
-            // setSelectedPrestataires([]); // Clear selected prestataires after adding the event
-            // ListSelected.push([e, idp]);
             console.log(ListSelected);
             fetchPrestataires(e);
           } else {
@@ -250,10 +213,7 @@ function EventListByClient() {
     setSelectedEvent(event);
     setOpen(true);
   };
-  // const handlePrestataireSelection = (prestataire, e) => {
-  //   setSelectedPrestataires((prevSelected) => [...prevSelected, prestataire]);
-  //   choisirPrestataire(prestataire, selectedEvent);
-  // };
+
   const dialogStyle = {
     backgroundColor: "skyblue",
     width: "90%",
@@ -287,13 +247,7 @@ function EventListByClient() {
       width: 100,
       height: "auto",
     },
-    // .prestataire-details: {
-    //   maxWidth: 600,
-    //   margin: '0 auto',
-    // },
-    // .selection-button: {
-    //   margin: '10px 0',
-    // },
+
   };
   const prestatairesSelonEvent = (idE) => {
     const token = sessionStorage.getItem("jwt");
@@ -649,20 +603,6 @@ function EventListByClient() {
                                             )
                                           }
                                         />
-
-                                        {/* <Button
-                                            color="success"
-                                            variant="contained"
-                                            onClick={() => {
-                                              choisirPrestataire(
-                                                prest.idp,
-                                                selectedEvent.idEvent
-                                              );
-                                              // setClick(true);
-                                            }}
-                                          >
-                                            Selectionner
-                                          </Button> */}
                                       </Stack>
                                     </td>
                                   </tr>

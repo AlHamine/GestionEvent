@@ -6,7 +6,7 @@ import {
   DialogContent,
   DialogTitle,
 } from "@mui/material";
-import { PersonAdd, Email, Lock, Work } from "@mui/icons-material";
+import { PersonAdd, Lock, Work } from "@mui/icons-material";
 import FileIcon from "@mui/icons-material/FileCopy";
 import { SERVER_URL } from "../constants";
 import axios from "axios";
@@ -38,16 +38,10 @@ export default function UpdatePrestataire(props) {
     if (
       nom === "" ||
       prenom === "" ||
-      mail === "" ||
       password === "" ||
       passwordConfirmation === ""
     ) {
       alert("Veuillez remplir tous les champs.");
-      return;
-    }
-    // Vérifier si le champ `mail` est de type `email`
-    if (!mail.match(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/)) {
-      alert("L'adresse e-mail n'est pas valide.");
       return;
     }
 
@@ -63,6 +57,7 @@ export default function UpdatePrestataire(props) {
     }
 
     try {
+      // Envoyer les donnees aux serveurs avec axios
       const response = await axios.put(
         SERVER_URL + "prestataires/update",
         formData,
@@ -114,7 +109,6 @@ export default function UpdatePrestataire(props) {
               type="text"
               fullWidth
               onChange={(event) => setNom(event.target.value)}
-              // value={client.nom}
               margin="normal"
               InputProps={{
                 startAdornment: (
@@ -127,7 +121,6 @@ export default function UpdatePrestataire(props) {
             <TextField
               id="prenom"
               type="text"
-              // value={client.prenom}
               label="Prénom"
               variant="outlined"
               fullWidth
@@ -164,7 +157,6 @@ export default function UpdatePrestataire(props) {
               fullWidth
               margin="normal"
               type="password"
-              // value={client.password}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -181,7 +173,6 @@ export default function UpdatePrestataire(props) {
               type="password"
               fullWidth
               margin="normal"
-              // value={client.password}
               onChange={(event) => setPasswordConfirmation(event.target.value)}
               InputProps={{
                 startAdornment: (
