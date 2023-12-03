@@ -49,22 +49,22 @@ function Footer() {
                   </th>
                   <th></th>
                   <th>
-                    <a style={{ color: "white" }} href="/#veux">
+                    <a style={{ color: "white" }} href="/propos/#veux">
                       Je veux...
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#propos">
+                    <a style={{ color: "white" }} href="/propos/#propos">
                       À PROPOS DE NOUS
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#event">
+                    <a style={{ color: "white" }} href="/propos/#event">
                       L'événement
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#prest">
+                    <a style={{ color: "white" }} href="/propos/#prest">
                       Préstation
                     </a>
                   </th>

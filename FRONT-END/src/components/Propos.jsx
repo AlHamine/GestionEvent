@@ -6,143 +6,14 @@ import Prestation from "./Prestation.json";
 import Lottie from "lottie-react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import { SERVER_URL } from "../constants.js";
-import TextField from "@mui/material/TextField";
-import DatePicker from "react-datepicker";
-import { useNavigate } from "react-router-dom";
-import CreatePrestataire from "./CreatePrestataire.jsx";
-import CreateCustumer from "./CreateCustumer.jsx";
-
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
-
-function HomePage() {
-  const [open, setOpen] = useState(false);
-  const gmail = sessionStorage.getItem("UserMail");
-  const token = sessionStorage.getItem("jwt");
-  // const [events, setEvents] = useState([]);
-  const [event, setEvent] = useState({
-    nomEvent: "",
-    date: "",
-    desciption: "",
-    lieu: "",
-    organisateur: { idc: Number(sessionStorage.getItem("idClient")) },
-  });
-
-  useEffect(() => {
-    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        sessionStorage.setItem("idClient", data.idc);
-        sessionStorage.setItem("n", data.nom);
-        sessionStorage.setItem("p", data.prenom);
-        // sessionStorage.setItem("client", data);
-        // d = data;
-      })
-      .catch((err) => console.error(err))
-      .catch((err) => console.log(err));
-  }, [gmail, token]);
-
-  // useEffect(() => {
-  //   fetchEvents();
-  // }, []);
-
-  // const fetchEvents = () => {
-  //   const token = sessionStorage.getItem("jwt");
-  //   fetch(SERVER_URL + "api/evenements", {
-  //     headers: { Authorization: token },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setEvents(data._embedded.evenements))
-  //     .catch((err) => console.error(err));
-  //   console.log(token);
-  // };
-  // const history = useHistory();
-  const navigate = useNavigate();
-
-  const addEvent = (event) => {
-    fetch(SERVER_URL + "event", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(event),
-    })
-      .then((response) => {
-        if (response.ok) {
-          navigate("/events");
-        } else {
-          alert("Something went wrong");
-        }
-      })
-      .catch((err) => console.error(err));
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleSave = () => {
-    if (event.organisateur.idc !== 0) {
-      // props.addEvent(event);
-      addEvent(event);
-    } else {
-      event.organisateur.idc = Number(sessionStorage.getItem("idClient"));
-      setEvent(event);
-      // props.addEvent(event);
-      addEvent(event);
-      // alert("Veuillez re-essayez encore   ");
-    }
-    setEvent({
-      nomEvent: "",
-      date: "",
-      desciption: "",
-      lieu: "",
-      organisateur: { idc: Number(sessionStorage.getItem("idCient")) },
-    });
-    handleClose();
-  };
-  // const addPrestataire = (prestataire) => {
-  //   fetch(SERVER_URL + "prestataires", {
-  //     headers: { "Content-Type": "application/json" },
-  //     method: "POST",
-  //     body: JSON.stringify(prestataire),
-  //   })
-  //     .then((reponse) => {
-  //       if (reponse.ok) {
-  //         // fetchPrestataires();
-  //       } else alert("Something went wrong !");
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setEvent((prevEvent) => ({
-      ...prevEvent,
-      [name]: value,
-    }));
-  };
-  const handleDateChange = (date) => {
-    setEvent((prevEvent) => ({
-      ...prevEvent,
-      date,
-    }));
-  };
-
+import ResponsiveAppBar from "./ResponsiveAppBar.js";
+import Footer from "./Footer.js";
+function Propos() {
+  
   return (
-    <div>
-      <div id="veux"
+    <div id="veux">
+      <ResponsiveAppBar/>  
+      <div
         style={{
           display: "flex",
           boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
@@ -168,7 +39,7 @@ function HomePage() {
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
               <Lottie animationData={Animation1} />{" "}
-                <CreatePrestataire />
+                
             
             </div>
 
@@ -176,7 +47,7 @@ function HomePage() {
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
           <Lottie animationData={Animefront} />{" "}
-            <CreateCustumer/>
+            
         </div>
       </div>
 
@@ -215,7 +86,7 @@ function HomePage() {
       >
         <div style={{ flex: 1 }}>
           {/* Contenu texte à gauche */}
-          <h1 id="event"
+          <h1
             style={{
               color: "#827ca4",
               textAlign: "center",
@@ -278,7 +149,7 @@ function HomePage() {
           >
             Préstation
           </h1>
-          <div
+          <div id="event"
             style={{ lineHeight: "2", color: "#747379", marginLeft: "30px" }}
           >
             <div
@@ -308,61 +179,9 @@ function HomePage() {
           <Lottie animationData={Prestation} />
         </div>
       </div>
-
-      <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
-        <DialogTitle>Nouvel événement</DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} mt={1}>
-            <TextField
-              label="Nom de l'événement"
-              name="nomEvent"
-              autoFocus
-              variant="standard"
-              value={event.nomEvent}
-              onChange={handleChange}
-            />
-            <DatePicker
-              name="dkdk"
-              value={event.date}
-              onChange={handleDateChange}
-              dateFormat="dd-MM-yyyy"
-            />
-            <TextField
-              label="Desciption"
-              name="desciption"
-              variant="standard"
-              value={event.desciption}
-              onChange={handleChange}
-            />
-            <TextField
-              label="Lieu"
-              name="lieu"
-              variant="standard"
-              value={event.lieu}
-              onChange={handleChange}
-            />
-          </Stack>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Annuler</Button>
-          <Button onClick={handleSave}>Enregistrer</Button>
-        </DialogActions>
-      </Dialog>
-      {open && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            background: "rgba(0, 0, 0, 0.5)",
-            zIndex: 1000,
-          }}
-        ></div>
-      )}
+<Footer/>
     </div>
   );
 }
 
-export default HomePage;
+export default Propos;

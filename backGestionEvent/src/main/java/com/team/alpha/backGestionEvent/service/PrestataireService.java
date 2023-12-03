@@ -4,10 +4,12 @@ import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
+import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
+import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -35,6 +37,9 @@ public class PrestataireService {
     private UserService userService;
     @Autowired
     private FileDataRepository fileDataRepository;
+
+  @Autowired
+    private ReviwRepository reviwRepository;
 
     @Autowired
     private DemandeService dService;
@@ -175,6 +180,11 @@ public class PrestataireService {
     public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
     }
+    public List<Review> commenListByPrest(Prestataire p) {
+        return  reviwRepository.commentListeByPrestataire(p.getMail());
+    }
+
+
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"
