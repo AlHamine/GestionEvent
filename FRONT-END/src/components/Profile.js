@@ -3,6 +3,8 @@ import "./UserProfile.css";
 import { SERVER_URL } from "../constants.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
+import UpdatePrestataire from "./UpdatePrestataire.jsx";
+
 const Profile = () => {
   
   let im = "";
@@ -171,6 +173,11 @@ const Profile = () => {
                   Noter les prestations
                 </button>
               )}
+
+              {sessionStorage.getItem("role") === "prestataire" && (
+                <UpdatePrestataire />
+              )}
+
               <button
                 className="profile-card__button button--blue js-message-btn"
                 onClick={() => {

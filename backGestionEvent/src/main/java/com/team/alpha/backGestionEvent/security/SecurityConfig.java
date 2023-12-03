@@ -40,55 +40,59 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
-	// @SuppressWarnings("deprecation")
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// 	return http
-	// 			.csrf(csrf -> csrf.disable())
-	// 			.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
-	// 			.sessionManagement(management -> management
-	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
-	// 					.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
-	// 							"/event")
-	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/prestataires",
-	// 							"prestataires/prestatairephoto",
-	// 							"prestataires/reviews")
-	// 					.permitAll()
-	// 					// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/client",
-	// 							"/client/clientphoto")
-	// 					.permitAll()
-	// 					.requestMatchers("/websocket/**").permitAll()
-	// 					.requestMatchers(HttpMethod.GET, "/prestataires/**")
-	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.GET,
-	// 							"prestataires/reviews/{id}")
-	// 					.permitAll()
-
-	// 					.requestMatchers(HttpMethod.PUT, "prestataires/reviews")
-	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
-	// 					// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
-	// 					.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
-	// 					.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
-	// 					.anyRequest().authenticated())
-	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// 			.addFilterBefore(authenticationFilter,
-	// 					UsernamePasswordAuthenticationFilter.class)
-	// 			.httpBasic(withDefaults())
-	// 			.build();
-	// }
-
-	// Moins de security
+	@SuppressWarnings("deprecation")
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// Add this row
-	http.csrf().disable().cors().and()
-	.authorizeHttpRequests().anyRequest().permitAll();
-	return http.build();
+		return http
+				.csrf(csrf -> csrf.disable())
+				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
+				.sessionManagement(management -> management
+						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.authorizeRequests(authorizeRequests -> authorizeRequests
+						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
+								"/event")
+						.permitAll()
+						.requestMatchers(HttpMethod.POST, "/prestataires",
+								"prestataires/prestatairephoto",
+								"prestataires/reviews")
+						.permitAll()
+						// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.POST, "/client",
+								"/client/clientphoto")
+						.permitAll()
+						.requestMatchers("/websocket/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/**")
+						.permitAll()
+						.requestMatchers(HttpMethod.GET,
+								"prestataires/reviews/{id}")
+						.permitAll()
+
+						.requestMatchers(HttpMethod.PUT, "prestataires/reviews")
+						.permitAll()
+						.requestMatchers(HttpMethod.PUT, "prestataires/update")
+						.permitAll()
+						.requestMatchers(HttpMethod.PUT, "client/update")
+						.permitAll()
+						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
+						// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
+						.anyRequest().authenticated())
+				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
+				.addFilterBefore(authenticationFilter,
+						UsernamePasswordAuthenticationFilter.class)
+				.httpBasic(withDefaults())
+				.build();
 	}
+
+	// Moins de security
+	// @Bean
+	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+	// // Add this row
+	// http.csrf().disable().cors().and()
+	// .authorizeHttpRequests().anyRequest().permitAll();
+	// return http.build();
+	// }
 
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {

@@ -21,6 +21,7 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
+
     @Transactional
     public User createUser(String mail, String password, String photo, String role) {
         // Vérifiez si un utilisateur avec la même adresse e-mail existe déjà
@@ -43,9 +44,10 @@ public class UserService {
     }
 
     public Optional<User> getClientByMail(String mail) {
-       return userRepository.findByMail(mail);
+        return userRepository.findByMail(mail);
 
     }
+
     @Transactional
     public User updateUser(Long userId, String newMail, String newPassword, String newPhoto, String newRole) {
         // Recherchez l'utilisateur existant par son ID
@@ -56,6 +58,29 @@ public class UserService {
 
             // Mettez à jour les propriétés de l'utilisateur avec les nouvelles valeurs
             user.setMail(newMail);
+            user.setPassword(passwordEncoder.encode(newPassword));
+            user.setPhoto(newPhoto);
+            user.setRole(newRole);
+
+            // Enregistrez les modifications en base de données
+            return userRepository.save(user);
+        } else {
+            // L'utilisateur avec l'ID spécifié n'a pas été trouvé
+            throw new RuntimeException("L'utilisateur n'a pas été trouvé.");
+        }
+    }
+
+    // Modification de l'utilisateur en y ajoutant la photo
+    @Transactional
+    public User updateUser(String newMail, String newPassword, String newPhoto, String newRole) {
+        // Recherchez l'utilisateur existant par son ID
+        Optional<User> existingUser = userRepository.findByMail(newMail);
+
+        if (existingUser.isPresent()) {
+            User user = existingUser.get();
+
+            // Mettez à jour les propriétés de l'utilisateur avec les nouvelles valeurs
+            // user.setMail(newMail);
             user.setPassword(passwordEncoder.encode(newPassword));
             user.setPhoto(newPhoto);
             user.setRole(newRole);
@@ -81,9 +106,11 @@ public class UserService {
             throw new RuntimeException("L'utilisateur n'a pas été trouvé.");
         }
     }
+
     public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
+
     public User findByUsername(String username) {
         return userRepository.findByMail(username).get();
     }
