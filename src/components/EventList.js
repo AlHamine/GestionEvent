@@ -15,7 +15,6 @@ import Select from "@mui/material/Select";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import SnackbarContent from "@mui/material/SnackbarContent";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import {
   Dialog,
   DialogActions,
@@ -26,18 +25,15 @@ import Button from "@mui/material/Button";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
+import Checkbox from "@mui/material/Checkbox";
+import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
+import Favorite from "@mui/icons-material/Favorite";
 
 function EventList() {
   const [events, setEvents] = useState([]);
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajoutez cet état pour le terme de recherche
   const [selectedValue, setSelectedValue] = useState("");
-  const [isClicked, setIsClicked] = useState(false);
-
-  const handleButtonClick = () => {
-    setIsClicked(!isClicked);
-  };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -110,6 +106,7 @@ function EventList() {
     setSelectedEvent(event);
     setOpen(true);
   };
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
   const tabImage = [
     "https://i.ytimg.com/vi/asqojHCK8cU/maxresdefault.jpg",
     "https://www.webmarketing-com.com/wp-content/uploads/2022/05/faire-appel-a-une-agence-evenement-1.jpg",
@@ -133,8 +130,6 @@ function EventList() {
       )}
       <Stack mt={2} mb={2}>
         <AddEvent addEvent={addEvent} />
-        {/* <HomePage addEvent={addEvent} /> */}
-
         <Stack mt={-4} mb={2}>
           <Box
             sx={{
@@ -166,7 +161,6 @@ function EventList() {
               size="sm"
               value={selectedValue}
               onChange={handleClickSelect}
-              // sx={{ marginRight: "auto", flexShrink: 0 }}
               defaultValue="Tous les événements"
               sx={{
                 marginRight: "auto",
@@ -192,20 +186,12 @@ function EventList() {
             event.nomEvent.toLowerCase().includes(searchTerm.toLowerCase())
           )
           .filter((event) =>
-            // selectedValue === "" ? true : event.value === selectedValue
             event.nomEvent.toLowerCase().includes(selectedValue.toLowerCase())
           )
           .map((event) => (
-            // <Link
-            //   key={event.idEvent} // Ajoutez une clé unique
-            //   to={`/events/${idEventFuc(event._links.self.href)}`}
-            //   onClick={() =>
-            //     handleClickEvent(idEventFuc(event._links.self.href))
-            //   }
-            // >
             <Card
               key={event.idEvent}
-              style={{ margin: "16px", width: "300", marginLeft: "5%" }}
+              style={{ margin: "16px", width: 300, marginLeft: "3%" }}
             >
               <CardMedia
                 component="img"
@@ -215,17 +201,14 @@ function EventList() {
               />
               <CardContent>
                 <Typography variant="h6" component="div">
-                  {event.nomEvent}
-                  <Button
-                    sx={{ marginLeft: "10px" }}
-                    onClick={handleButtonClick}
-                  >
-                    {isClicked ? (
-                      <FavoriteBorderIcon style={{ color: "red" }} />
-                    ) : (
-                      <FavoriteBorderIcon />
-                    )}
-                  </Button>
+                  <div style={{ marginLeft: "5px" }}>
+                    {event.nomEvent}
+                    <Checkbox
+                      {...label}
+                      icon={<FavoriteBorder />}
+                      checkedIcon={<Favorite />}
+                    />
+                  </div>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Lieu : {event.lieu}
@@ -249,7 +232,6 @@ function EventList() {
                 </button>
               </CardContent>
             </Card>
-            // </Link>
           ))}
       </div>
 
@@ -295,8 +277,6 @@ function EventList() {
                   <SnackbarContent
                     message={`Description : ${selectedEvent.desciption}`}
                   />
-                  {/* <td>plus de details</td>
-                  <td>plus de ...</td> */}
                 </tr>
               </tbody>
             </table>
