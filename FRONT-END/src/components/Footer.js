@@ -19,6 +19,7 @@ function Footer() {
       className="footer2"
       // style={{ position: "fixed", bottom: 0, width: "100%" }}
     >
+      {/* Liaison avec la single page ie avec les id a savoir veux, prest,event,propos */}
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
           <Container maxWidth="xl">
