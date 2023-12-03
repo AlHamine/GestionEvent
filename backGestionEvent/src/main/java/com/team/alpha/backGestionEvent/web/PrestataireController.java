@@ -46,8 +46,6 @@ public class PrestataireController {
     @Autowired
     private EventService eService;
 
-
-
     @Autowired
     private FileDataRepository fileDataRepository;
 
@@ -120,6 +118,7 @@ public class PrestataireController {
 
         return prestataireService.findPrestatairesNotInEvenement(evenement);
     }
+
     @GetMapping("/byEvent/{idE}")
     public List<Prestataire> findPrestataireByEvent(@PathVariable Long idE) {
         Evenement evenement = eService.getEvenementById(idE);
