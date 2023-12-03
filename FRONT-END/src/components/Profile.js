@@ -4,6 +4,7 @@ import { SERVER_URL } from "../constants.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import UpdatePrestataire from "./UpdatePrestataire.jsx";
+import UpdateCustomer from "./UpdateCustomer.jsx"
 
 const Profile = () => {
   
@@ -164,6 +165,7 @@ const Profile = () => {
               Message
             </button> */}
               {sessionStorage.getItem("role") === "client" && (
+                <>
                 <button
                   className="profile-card__button button--orange"
                   onClick={() => {
@@ -172,6 +174,8 @@ const Profile = () => {
                 >
                   Noter les prestations
                 </button>
+                <UpdateCustomer/>
+                </>
               )}
 
               {sessionStorage.getItem("role") === "prestataire" && (
