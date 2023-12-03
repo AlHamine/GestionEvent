@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Animefront from "./Animefront.json";
 // import Animefront2 from "./Animefront2.json";
 import Animation1 from "./Animation1.json";
@@ -143,6 +143,7 @@ function HomePage() {
   return (
     <div>
       <div
+        id="veux"
         style={{
           display: "flex",
           boxShadow: "0px 5px 10px rgba(0, 0, 0, 0.5)",
@@ -167,32 +168,12 @@ function HomePage() {
           </p>
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
-              <Lottie animationData={Animation1} />{" "}
-                <CreatePrestataire />
-            
+              <Lottie animationData={Animation1} /> <CreatePrestataire />
             </div>
-
-            {/* <Stack direction="row" spacing={2}>
-              <Button variant="outlined" onClick={handleClickOpen}>
-                CREER UN EVENEMENT
-              </Button>
-            </Stack> */}
-
-            {/* <Stack direction="row-reverse" spacing={2}>
-              <Button variant="contained" onClick={handleClickOpen}>
-                JE VEUX ORGANISER UN EVENEMENT
-              </Button>
-            </Stack> */}
-            {/* <Stack direction="row"   height="100px" spacing={4} mt={1}>
-              <Button variant="contained"  color="success" onClick={handleClickOpen}>
-               <b> JE VEUX PRESTER DANS UN EVENEMENT</b>
-              </Button>
-            </Stack> */}
           </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
-          <Lottie animationData={Animefront} />{" "}
-            <CreateCustumer/>
+          <Lottie animationData={Animefront} /> <CreateCustumer />
         </div>
       </div>
 
@@ -202,6 +183,7 @@ function HomePage() {
         <div style={{ flex: 1, marginLeft: "30px" }}>
           {/* Contenu texte à gauche */}
           <h1
+            id="propos"
             style={{ color: "#8171df", textAlign: "center", marginTop: "40px" }}
           >
             À PROPOS DE NOUS
@@ -232,6 +214,7 @@ function HomePage() {
         <div style={{ flex: 1 }}>
           {/* Contenu texte à gauche */}
           <h1
+            id="event"
             style={{
               color: "#827ca4",
               textAlign: "center",
@@ -285,6 +268,7 @@ function HomePage() {
         <div style={{ flex: 1, backgroundColor: "#fff" }}>
           {/* Contenu texte à gauche */}
           <h1
+            id="prest"
             style={{
               color: "blue",
               textAlign: "center",

@@ -393,7 +393,7 @@ function EventListByClient() {
               <CardMedia
                 component="img"
                 height="200"
-                image={tabImage[Math.floor(Math.random() * tabImage.length)]} // Remplacez par l'URL de l'image de la voiture
+                image={tabImage[Math.floor(Math.random() * tabImage.length)]}
                 alt={event.nomEvent}
               />
               <CardContent>

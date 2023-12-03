@@ -34,7 +34,7 @@ const ReviewForm = () => {
     console.log(emailClient);
     try {
       const response = await fetch(SERVER_URL + "prestataires/reviews", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },

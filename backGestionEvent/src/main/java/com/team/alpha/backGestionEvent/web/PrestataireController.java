@@ -169,9 +169,9 @@ public class PrestataireController {
     }
 
     // *******************************************************************************************************************
-    @PostMapping("/reviews")
+    @PutMapping("/reviews")
     @CrossOrigin(origins = "*", methods = { RequestMethod.POST,
-            RequestMethod.GET, RequestMethod.OPTIONS })
+            RequestMethod.GET, RequestMethod.OPTIONS, RequestMethod.PUT })
     public boolean createReview(
             @RequestParam("emailPrestataire") String emailPrestataire,
             @RequestParam("emailClient") String emailClient,
@@ -181,13 +181,14 @@ public class PrestataireController {
         Client client = clientRepository.findByMail(emailClient).orElse(null);
         Prestataire prestataire = prestataireRepository.findByMail(emailPrestataire).orElse(null);
 
-        Demande demande = demandeRepository.findByClient(client).orElse(null);
-        Demande demande_SeachPrestataire = demandeRepository.findByPrestataire(prestataire).orElse(null);
+        if ((demandeRepository.estLierDemande(prestataire.getIdp(), client.getIdc())) != null) {
+            int rating = 0;
+            if (prestataire.getNote() == 0) {
+                prestataire.setNote(note);
 
-        if (prestataire != null || client != null) {
-            int rating;
-
-            rating = prestataire.getNote() + note;
+            } else {
+                rating = (prestataire.getNote() + note) / 2;
+            }
             prestataire.setNote(rating);
 
             Review review = new Review();
@@ -199,17 +200,21 @@ public class PrestataireController {
             // demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTER") verefier
             // si le prestataire a accepte la demande puis noter
 
-            if ((demande.getIdDemande() == demande_SeachPrestataire.getIdDemande()
-                    || demande.getEvenement() != demande.getEvenement())
-                    && demande_SeachPrestataire.getStatus().compareToIgnoreCase("ACCEPTED") == 0) {
-                reviwRepository.save(review);
-                prestataireRepository.save(prestataire);
-                return true;
-            }
+            reviwRepository.save(review);
+            prestataireRepository.save(prestataire);
+            return true;
+
         }
 
         return false;
 
+    }
+
+    @GetMapping("reviews/{id}")
+    public List<Review> commentListeByPrestataire(@PathVariable Long id) {
+        Prestataire prest = prestataireRepository.findById(id).get();
+
+       return prestataireService.commenListByPrest(prest);
     }
 
     // *******************************************************************************************************************
