@@ -100,6 +100,7 @@ const ReviewForm = () => {
                       </InputAdornment>
                     ),
                   }}
+                  required
                 />
               </div>
               <div>
@@ -128,7 +129,7 @@ const ReviewForm = () => {
                   fullWidth
                   margin="normal"
                   onChange={(e) => setNote(e.target.value)}
-                  inputProps={{ min: 0, max: 5 }}
+                  inputProps={{ min: 1, max: 5 }}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -136,6 +137,7 @@ const ReviewForm = () => {
                       </InputAdornment>
                     ),
                   }}
+                  required
                 />
               </div>
               {submissionError && (

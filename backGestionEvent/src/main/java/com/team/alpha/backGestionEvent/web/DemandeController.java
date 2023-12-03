@@ -1,37 +1,24 @@
 package com.team.alpha.backGestionEvent.web;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.team.alpha.backGestionEvent.model.ChatMessage;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
-import com.team.alpha.backGestionEvent.repository.ReviwRepository;
-import com.team.alpha.backGestionEvent.repository.UserRepository;
 import com.team.alpha.backGestionEvent.service.ClientService;
 import com.team.alpha.backGestionEvent.service.DemandeService;
 import com.team.alpha.backGestionEvent.service.EventService;
-import com.team.alpha.backGestionEvent.service.PrestataireService;
 
 @RestController
 @RequestMapping("/demandes")
@@ -40,20 +27,12 @@ public class DemandeController {
     DemandeService dService;
 
     @Autowired
-    private PrestataireService prestataireService;
-
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private PrestataireRepository prestataireRepository;
     @Autowired
     private EventService eService;
 
     @Autowired
     private ClientService cService;
-
-    @Autowired
-    private ReviwRepository reviwRepository;
 
     @GetMapping
 

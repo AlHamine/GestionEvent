@@ -87,7 +87,6 @@ public class ClientService {
     }
 
     // A Ameliorer
-
     public Client updateClient(Long id, Client updatedClient) {
         Optional<Client> existingClient = clientRepository.findById(id);
         if (existingClient.isPresent()) {
@@ -100,6 +99,29 @@ public class ClientService {
             client.setMail(updatedClient.getMail());
             Optional<User> updatedUser = userRepository.findByMail(existingClient.get().getMail());
             User user = userService.updateUser(id, client.getMail(), client.getPassword(), client.getPhoto(), "client");
+            // Vous pouvez ajouter d'autres champs ici
+            return clientRepository.save(client);
+        } else {
+            // Le client avec l'ID spécifié n'a pas été trouvé
+            return null;
+        }
+    }
+
+    // Modification d'un client en y ajoutant la photo de profil
+    public Client updateClient(MultipartFile file, String nom, String prenom,
+            String mail, String password) {
+        Optional<Client> existingClient = clientRepository.findByMail(mail);
+        if (existingClient.isPresent()) {
+            // Mettre à jour les champs nécessaires de l'objet Client existant
+            Client client = existingClient.get();
+            client.setNom(nom);
+            client.setPrenom(prenom);
+            client.setPhoto(file.getOriginalFilename());
+            client.setPassword(passwordEncoder.encode(password));
+            Optional<User> updatedUser = userRepository.findByMail(existingClient.get().getMail());
+            User user = userService.updateUser(client.getMail(),
+                    password, file.getOriginalFilename(), "client");
+            user.setPhoto(file.getOriginalFilename());
             // Vous pouvez ajouter d'autres champs ici
             return clientRepository.save(client);
         } else {

@@ -91,6 +91,27 @@ public class ClientController {
         return clientService.updateClient(id, updatedClient);
     }
 
+    // Controller permettant la modification du client et de televerser la photo
+    // dans le dossier de stockage des images
+    @PutMapping("/update")
+    @CrossOrigin(origins = "*", methods = { RequestMethod.POST,
+            RequestMethod.GET, RequestMethod.OPTIONS })
+    public Client updateClient(@RequestParam("file") MultipartFile file,
+            @RequestParam("nom") String nom, @RequestParam("mail") String mail,
+            @RequestParam("prenom") String prenom,
+            @RequestParam("password") String password) throws Exception {
+
+        String filePath = FOLDER_PATH + file.getOriginalFilename();
+
+        FileData fileData = fileDataRepository.save(FileData.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .filePath(filePath).build());
+        file.transferTo(new File(filePath));
+
+        return clientService.updateClient(file, nom, prenom, mail, password);
+    }
+
     @DeleteMapping("/{id}")
     public boolean deleteClient(@PathVariable Long id) {
         return clientService.deleteClient(id);

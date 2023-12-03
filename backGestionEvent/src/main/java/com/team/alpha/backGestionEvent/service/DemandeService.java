@@ -7,7 +7,6 @@ import com.team.alpha.backGestionEvent.model.Prestataire;
 import com.team.alpha.backGestionEvent.repository.DemandeRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,9 +71,11 @@ public class DemandeService {
     public Iterable<Demande> getDemandeByPrestataire(Prestataire p) {
         return dRepository.findDemandeByPrestataire(p.getIdp());
     }
-public List<Demande> contrat(Prestataire p) {
-    return dRepository.contrat(p.getIdp());
+
+    public List<Demande> contrat(Prestataire p) {
+        return dRepository.contrat(p.getIdp());
     }
+
     public Demande createDemande(Demande demande, Evenement E, Prestataire prestataire) {
         if (!existeDemande(prestataire, E)) {
             Client clientOrganisateur = E.getOrganisateur();

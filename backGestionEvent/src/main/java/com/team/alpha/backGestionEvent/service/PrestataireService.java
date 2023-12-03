@@ -26,7 +26,6 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class PrestataireService {
@@ -38,7 +37,7 @@ public class PrestataireService {
     @Autowired
     private FileDataRepository fileDataRepository;
 
-  @Autowired
+    @Autowired
     private ReviwRepository reviwRepository;
 
     @Autowired
@@ -151,6 +150,30 @@ public class PrestataireService {
 
     }
 
+    // Modifer le prestataire en y inserant la photo de profile
+    public Prestataire updatePrestataire(MultipartFile file, String nom, String prenom,
+            String mail, String password, String service) {
+        Optional<Prestataire> existingPrestataire = prestataireRepository.findByMail(mail);
+        if (existingPrestataire.isPresent()) {
+            // Mettre à jour les champs nécessaires de l'objet prestaire existant
+            Prestataire prestaire = existingPrestataire.get();
+            prestaire.setNom(nom);
+            prestaire.setPrenom(prenom);
+            prestaire.setPhoto(file.getOriginalFilename());
+            prestaire.setPassword(passwordEncoder.encode(password));
+            prestaire.setService(service);
+            Optional<User> updatedUser = userRepository.findByMail(existingPrestataire.get().getMail());
+            User user = userService.updateUser(prestaire.getMail(),
+                    password, file.getOriginalFilename(), "prestaire");
+            user.setPhoto(file.getOriginalFilename());
+            // Vous pouvez ajouter d'autres champs ici
+            return prestataireRepository.save(prestaire);
+        } else {
+            // Le prestataire avec l'ID spécifié n'a pas été trouvé
+            return null;
+        }
+    }
+
     public boolean deletePrestataire(Long id) {
         Optional<Prestataire> prestataire = prestataireRepository.findById(id);
         if (prestataire.isPresent()) {
@@ -177,13 +200,14 @@ public class PrestataireService {
     public List<Prestataire> findPrestatairesNotInEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesNotInEvenement(e.getIdEvent());
     }
+
     public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
     }
-    public List<Review> commenListByPrest(Prestataire p) {
-        return  reviwRepository.commentListeByPrestataire(p.getMail());
-    }
 
+    public List<Review> commenListByPrest(Prestataire p) {
+        return reviwRepository.commentListeByPrestataire(p.getMail());
+    }
 
 }
 /*

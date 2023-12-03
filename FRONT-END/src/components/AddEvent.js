@@ -126,6 +126,7 @@ function AddEvent(props) {
               variant="standard"
               value={event.nomEvent}
               onChange={handleChange}
+              required
             />
             <label htmlFor="dkdk">Entrer la Date( jj/mm/aa/hh:mm) :</label>
 
@@ -139,6 +140,7 @@ function AddEvent(props) {
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={15}
+              required
             />
 
             <TextField
@@ -154,6 +156,7 @@ function AddEvent(props) {
               variant="standard"
               value={event.lieu}
               onChange={handleChange}
+              required
             />
           </Stack>
         </DialogContent>

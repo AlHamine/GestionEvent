@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.http.MediaType;
 
 import com.team.alpha.backGestionEvent.model.Client;
-import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
 import com.team.alpha.backGestionEvent.model.FileData;
 import com.team.alpha.backGestionEvent.model.Prestataire;
@@ -214,10 +213,32 @@ public class PrestataireController {
     public List<Review> commentListeByPrestataire(@PathVariable Long id) {
         Prestataire prest = prestataireRepository.findById(id).get();
 
-       return prestataireService.commenListByPrest(prest);
+        return prestataireService.commenListByPrest(prest);
     }
 
     // *******************************************************************************************************************
+    // Updater le prestataire et inserer la photo dans le dossier permettant le
+    // stockage
+    @PutMapping("/update")
+    @CrossOrigin(origins = "*", methods = { RequestMethod.POST,
+            RequestMethod.GET, RequestMethod.OPTIONS })
+    public Prestataire updatePrestataire(@RequestParam("file") MultipartFile file,
+            @RequestParam("nom") String nom, @RequestParam("mail") String mail,
+            @RequestParam("prenom") String prenom,
+            @RequestParam("password") String password, String service) throws Exception {
+
+        String filePath = FOLDER_PATH + file.getOriginalFilename();
+
+        FileData fileData = fileDataRepository.save(FileData.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .filePath(filePath).build());
+        file.transferTo(new File(filePath));
+
+        return prestataireService.updatePrestataire(file, nom, prenom,
+                mail, password, service);
+    }
+
     @GetMapping("/mail")
     public Prestataire getClientByMail(@RequestParam String mail) {
         return prestataireService.getPrestataireByMail(mail).get();

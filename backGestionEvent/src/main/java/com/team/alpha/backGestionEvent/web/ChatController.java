@@ -3,7 +3,6 @@ package com.team.alpha.backGestionEvent.web;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -16,6 +15,7 @@ import com.team.alpha.backGestionEvent.model.ChatMessage;
 public class ChatController {
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
+
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
     public ChatMessage sendMessage(@Payload ChatMessage message) {
