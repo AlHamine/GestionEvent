@@ -1,4 +1,4 @@
-  import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Animefront from "./Animefront.json";
 // import Animefront2 from "./Animefront2.json";
 import Animation1 from "./Animation1.json";
@@ -167,16 +167,12 @@ function HomePage() {
           </p>
           <div>
             <div style={{ width: "50%", marginLeft: "15px" }}>
-              <Lottie animationData={Animation1} />{" "}
-                <CreatePrestataire />
-            
+              <Lottie animationData={Animation1} /> <CreatePrestataire />
             </div>
-
           </div>
         </div>
         <div style={{ flex: 1, marginTop: "50px", marginBottom: "40px" }}>
-          <Lottie animationData={Animefront} />{" "}
-            <CreateCustumer/>
+          <Lottie animationData={Animefront} /> <CreateCustumer />
         </div>
       </div>
 

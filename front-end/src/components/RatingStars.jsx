@@ -8,7 +8,11 @@ const RatingStars = ({ rating }) => {
 
   const renderStars = () => {
     const stars = [];
+<<<<<<< HEAD
     stars.push("Note : ")
+=======
+    stars.push("Note : ");
+>>>>>>> origin/back-end-tinkin
 
     for (let i = 0; i < fullStars; i++) {
       stars.push(<StarIcon key={i} />);
