@@ -1,2 +1,0 @@
-Pour l'utilisation de ce composant on aura besoin d'installer axios sur les dependances deja existante.
-	npm install axios
