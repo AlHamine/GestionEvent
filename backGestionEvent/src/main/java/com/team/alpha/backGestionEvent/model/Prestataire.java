@@ -1,31 +1,5 @@
 package com.team.alpha.backGestionEvent.model;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-
-<<<<<<< HEAD
-=======
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
->>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import com.team.alpha.backGestionEvent.service.UserService;
-
-=======
->>>>>>> 3145185 (Revision de la structure du backend)
-=======
-import jakarta.persistence.Column;
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
-
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
->>>>>>> 8e0880c (Backend updated)
-=======
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
->>>>>>> 27aa8ab (Revision du projet dans le github)
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -61,22 +34,11 @@ public class Prestataire {
     private String mail;
 
     private String photo;
-<<<<<<< HEAD
-=======
     // Pour pouvoir ajouter la note a prestataire
     // **************************************************
     private Integer note = 0; // Initialisation de la note
     // **************************************************
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 27aa8ab (Revision du projet dans le github)
-
-=======
     private String role = "prestataire";
->>>>>>> a9816e1 (mise mineur acceptation Demande)
-=======
-    private String role = "prestataire";
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     // @ManyToOne
     // @JoinColumn(name = "evenement")
     @ManyToMany(cascade = CascadeType.MERGE)
@@ -153,25 +115,6 @@ public class Prestataire {
         this.photo = photo;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Evenement getEvenement() {
-        return evenement;
-    }
-
-    public void setEvenement(Evenement evenement) {
-        this.evenement = evenement;
-    }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-=======
->>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
-=======
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     public Integer getNote() {
         return note;
     }
@@ -180,12 +123,6 @@ public class Prestataire {
         return idp;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 8e0880c (Backend updated)
-=======
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
     public void setIdp(long idp) {
         this.idp = idp;
     }
@@ -206,15 +143,6 @@ public class Prestataire {
         this.requetes = requetes;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> e2d9b8a (Ajout de la fonctionnalite de demande de prestation)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-=======
-=======
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     public List<Evenement> getEvenement() {
         return evenement;
     }
@@ -229,15 +157,6 @@ public class Prestataire {
 
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
-=======
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
-=======
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public void ajoutDemande(Demande E) {
         if (!this.requetes.contains(E))
             this.requetes.add(E);
@@ -248,8 +167,4 @@ public class Prestataire {
         if (!this.requetes.contains(d))
             this.requetes.remove(d);
     }
-<<<<<<< HEAD
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 }

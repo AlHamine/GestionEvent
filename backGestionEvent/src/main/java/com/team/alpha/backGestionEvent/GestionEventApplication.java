@@ -53,13 +53,6 @@ public class GestionEventApplication implements CommandLineRunner {
 		Client c2 = clientService.createClient("NDIAYE", "Mouhamadou", "smah.n@univ.zig.sn", null, "123");
 		crepository.saveAll(Arrays.asList(c1, c2));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 8e0880c (Backend updated)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
 		Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
 				null);
 		Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
@@ -67,28 +60,6 @@ public class GestionEventApplication implements CommandLineRunner {
 		Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
 				"nagato@gmail.com",
 				null);
-<<<<<<< HEAD
-<<<<<<< HEAD
-		prepository.saveAll(Arrays.asList(p1, p2, p3));
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-	// 	Prestataire p1 = prestataireService.createPrestataire("DIOP", "May", "Restauratrice", "123", "diop@gmail.com",
-	// 			null);
-	// 	Prestataire p2 = prestataireService.createPrestataire("SOUARE", "KEBA", "Receptrice", "123",
-	// 			"keba@gmail.com", null);
-	// 	Prestataire p3 = prestataireService.createPrestataire("naruto", "boruto", "MangoMike", "123",
-	// 			"nagato@gmail.com",
-	// 			null);
-	// 	prepository.saveAll(Arrays.asList(p1, p2, p3));
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
->>>>>>> 8e0880c (Backend updated)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-=======
-=======
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 		Prestataire p4 = prestataireService.createPrestataire("SOW", "Aïssatou", "Cuisinière", "456",
 				"aissatou@gmail.com", null);
 		Prestataire p5 = prestataireService.createPrestataire("TOURE", "Sékou", "Serveur", "789", "sekou@gmail.com",
@@ -107,10 +78,6 @@ public class GestionEventApplication implements CommandLineRunner {
 				"kwame@gmail.com", null);
 
 		prepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
-<<<<<<< HEAD
->>>>>>> 1ca6e02 (clean code)
-=======
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 
 		Evenement ev1 = new Evenement("Bapteme", new Date(),
 				"Il s'agit de donner un nom a un bb afin de celebrer sa naissance", "Dakar", c1);
@@ -140,15 +107,9 @@ public class GestionEventApplication implements CommandLineRunner {
 				"Réunion professionnelle pour discuter de stratégies et de plans d'affaires", "Almadies", c1);
 
 		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4, ev5, ev6, ev7, ev8, ev9)); // Sauvegarder les Evenements
-<<<<<<< HEAD
-		// Demande d1 = new Demande(c2, p3, ev4);
-		// Demande d2 = new Demande(c1, p1, ev1);
-		// dRepository.saveAll(Arrays.asList(d1, d2));
-=======
 		Demande d1 = new Demande(c2, p3, ev4);
 		Demande d2 = new Demande(c1, p1, ev1);
 		dRepository.saveAll(Arrays.asList(d1, d2));
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 		// Envoyer l-email
 
 		// emailController.sendReponse("abdourahamanetinkindjeeri99@gmail.com",

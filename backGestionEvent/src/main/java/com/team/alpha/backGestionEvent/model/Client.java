@@ -139,11 +139,6 @@ public class Client {
         this.requetes = requetes;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public void ajoutDemande(Demande E) {
         if (!this.requetes.contains(E))
             this.requetes.add(E);
@@ -155,8 +150,4 @@ public class Client {
             this.requetes.remove(d);
     }
 
-<<<<<<< HEAD
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 }

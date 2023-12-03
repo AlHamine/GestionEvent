@@ -42,15 +42,7 @@ public class DemandeController {
     @Autowired
     private PrestataireService prestataireService;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    @Autowired  
-=======
     @Autowired
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
-=======
-    @Autowired
->>>>>>> 2494790 (Acception DE DEMANDE)
     private UserRepository userRepository;
     @Autowired
     private PrestataireRepository prestataireRepository;

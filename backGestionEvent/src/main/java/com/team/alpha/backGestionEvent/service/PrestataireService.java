@@ -2,22 +2,14 @@ package com.team.alpha.backGestionEvent.service;
 
 import com.team.alpha.backGestionEvent.model.Demande;
 import com.team.alpha.backGestionEvent.model.Evenement;
-<<<<<<< HEAD
-=======
 import com.team.alpha.backGestionEvent.model.FileData;
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 import com.team.alpha.backGestionEvent.model.Prestataire;
+import com.team.alpha.backGestionEvent.model.Review;
 import com.team.alpha.backGestionEvent.model.User;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 import com.team.alpha.backGestionEvent.repository.EvenementRepository;
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 import com.team.alpha.backGestionEvent.repository.FileDataRepository;
-=======
-import com.team.alpha.backGestionEvent.repository.EvenementRepository;
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
+import com.team.alpha.backGestionEvent.repository.ReviwRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -28,27 +20,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
-<<<<<<< HEAD
-<<<<<<< HEAD
-import java.util.Iterator;
 import java.util.List;
->>>>>>> 2494790 (Acception DE DEMANDE)
-=======
-import java.util.ArrayList;
->>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
-=======
-import java.util.List;
->>>>>>> 1ca6e02 (clean code)
-=======
-import java.util.List;
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -62,8 +38,8 @@ public class PrestataireService {
     @Autowired
     private FileDataRepository fileDataRepository;
 
-    @Autowired
-    private DemandeService dService;
+  @Autowired
+    private ReviwRepository reviwRepository;
 
     @Autowired
     private DemandeService dService;
@@ -72,74 +48,21 @@ public class PrestataireService {
     private UserRepository userRepository;
     @Autowired
     private EvenementRepository eRepository;
-<<<<<<< HEAD
-
-    @Autowired
-<<<<<<< HEAD
-    private FileDataRepository fileDataRepository;
-
-=======
-    private EvenementRepository eRepository;
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
-=======
->>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
     private final PrestataireRepository prestataireRepository;
 
     public PrestataireService(PrestataireRepository prestataireRepository) {
         this.prestataireRepository = prestataireRepository;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    // public void suprimmerDemande(Demande demande, Evenement E, Prestataire p) {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //     E.suprimerDemande(demande);
-    //     p.suprimerDemande(demande);
-    //     E.getOrganisateur().suprimerDemande(demande);
-    //     eRepository.save(E);
-    //     prestataireRepository.save(p);
-    //     dService.deleteDemande(demande.getIdDemande());
-
-    // }
- public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
-=======
-=======
-    // E.suprimerDemande(demande);
-    // p.suprimerDemande(demande);
-    // E.getOrganisateur().suprimerDemande(demande);
-    // eRepository.save(E);
-    // prestataireRepository.save(p);
-    // dService.deleteDemande(demande.getIdDemande());
-
-    // }
-    // public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
->>>>>>> 2494790 (Acception DE DEMANDE)
-    // E.suprimerDemande(demande);
-    // p.suprimerDemande(demande);
-    // E.getOrganisateur().suprimerDemande(demande);
-    // eRepository.save(E);
-    // prestataireRepository.save(p);
-    // dService.deleteDemande(demande.getIdDemande());
-<<<<<<< HEAD
-
-    // }
-=======
->>>>>>> 1ca6e02 (clean code)
-=======
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
     public void accepterDemande(Demande demande, Evenement E, Prestataire p) {
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
         E.suprimerDemande(demande);
         p.suprimerDemande(demande);
         E.getOrganisateur().suprimerDemande(demande);
         eRepository.save(E);
         prestataireRepository.save(p);
         dService.deleteDemande(demande.getIdDemande());
-=======
->>>>>>> 2494790 (Acception DE DEMANDE)
 
-    // }
+    }
 
     // @GetMapping
     public Iterable<Prestataire> getAllPrestataires() {
@@ -242,8 +165,6 @@ public class PrestataireService {
     public Optional<Prestataire> getPrestataireByMail(String mail) {
         return prestataireRepository.findByMail(mail);
     }
-<<<<<<< HEAD
-=======
 
     // Recuperer l'image pour pouvoir l'exploiter
     public byte[] downloadImageFromFileSystem(String fileName) throws IOException {
@@ -252,12 +173,6 @@ public class PrestataireService {
         byte[] images = Files.readAllBytes(new File(filePath).toPath());
         return images;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
-=======
-=======
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
 
     public List<Prestataire> findPrestatairesNotInEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesNotInEvenement(e.getIdEvent());
@@ -265,10 +180,11 @@ public class PrestataireService {
     public List<Prestataire> findPrestatairesByEvenement(Evenement e) {
         return prestataireRepository.findPrestatairesByEvenement(e.getIdEvent());
     }
-<<<<<<< HEAD
->>>>>>> 1ca6e02 (clean code)
-=======
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
+    public List<Review> commenListByPrest(Prestataire p) {
+        return  reviwRepository.commentListeByPrestataire(p.getMail());
+    }
+
+
 }
 /*
  * http POST :8080/api/prestataires nom="DIA" prenom="Mamadou"

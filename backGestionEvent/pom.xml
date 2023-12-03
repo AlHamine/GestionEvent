@@ -55,46 +55,6 @@
 			<scope>runtime</scope>
 		</dependency>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <!-- Spring Boot Starter for Hibernate -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-data-jpa</artifactId>
-    </dependency>
-<<<<<<< HEAD
-
-	</dependencies>
-=======
-	<!-- Dependences pour les messageries -->
-	<!-- Dépendance pour Spring WebSocket et Spring Messaging -->
-	 <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-websocket</artifactId>
-    </dependency>
-	  <!-- Dépendance pour SockJS (JavaScript library pour WebSocket) -->
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>sockjs-client</artifactId>
-        <version>1.0.2</version>
-    </dependency>
-<!-- Dépendance pour Spring Messaging -->
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-websocket</artifactId>
-        <version>3.1.5</version> <!-- Utilisez la version compatible avec votre Spring Boot -->
-    </dependency>
-	  <!-- Dépendance pour STOMP (Simple Text Oriented Messaging Protocol) -->
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>stomp-websocket</artifactId>
-        <version>2.3.3</version>
-    </dependency>
-    </dependencies>
->>>>>>> a0cd38b (Version omega du systeme de messagerie)
-=======
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -151,10 +111,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-<<<<<<< HEAD
->>>>>>> 65c6d69 (Remise a jour du github)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
 
 	<build>
 		<plugins>

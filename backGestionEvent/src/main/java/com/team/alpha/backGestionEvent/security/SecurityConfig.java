@@ -40,491 +40,56 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// http.csrf().disable().cors().and()
-	// .authorizeHttpRequests().anyRequest().permitAll();
-	// return
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults())
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// http.build();
-
-=======
-	@SuppressWarnings("deprecation")
->>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
-	@Bean
-	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-		http.csrf().disable().cors().and()
-				.authorizeHttpRequests().anyRequest().permitAll();
-		return http
-<<<<<<< HEAD
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults())
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers(HttpMethod.POST, "/login").permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/client").permitAll()
-=======
-
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// return http
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults())
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login").permitAll()
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// .build();
-	// }
-
-	// A decommenter une fois qu'on lance la partie front
-=======
->>>>>>> 8e0880c (Backend updated)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-	@Bean
-	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-<<<<<<< HEAD
-<<<<<<< HEAD
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*").permitAll()
-						.requestMatchers(HttpMethod.POST, "/event").permitAll()
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*", "/event",
-								"/websocket/*")
-						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
-<<<<<<< HEAD
->>>>>>> 8e0880c (Backend updated)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-						.anyRequest().authenticated())
-				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-				.addFilterBefore(authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class)
-				.httpBasic(withDefaults())
-<<<<<<< HEAD
-=======
-				// .csrf(csrf -> csrf.disable())
-				// .cors(withDefaults())
-				// .sessionManagement(management -> management
-				// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				// .authorizeRequests(authorizeRequests -> authorizeRequests
-				// .requestMatchers(HttpMethod.POST, "/login").permitAll()
-				// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-				// .requestMatchers(HttpMethod.POST, "/client").permitAll()
-				// .anyRequest().authenticated())
-				// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-				// .addFilterBefore(authenticationFilter,
-				// UsernamePasswordAuthenticationFilter.class)
-				// .httpBasic(withDefaults())
->>>>>>> 4e71276 (Mettre a niveau mon repertoire avant le prochain pull)
-				.build();
-	}
-
-=======
-
-=======
-				.build();
-	}
-
->>>>>>> 27aa8ab (Revision du projet dans le github)
-	// Moins de security
-=======
->>>>>>> 2fd3c3a (updating users->client et user->prestataires)
+	// @SuppressWarnings("deprecation")
 	// @Bean
 	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
 	// 	return http
 	// 			.csrf(csrf -> csrf.disable())
-	// 			.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-	// 			.sessionManagement(management -> management
-	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
-	// 					.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*", "/event",
-	// 							"/websocket/*")
-	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// 					.anyRequest().authenticated())
-	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// 			.addFilterBefore(authenticationFilter,
-	// 					UsernamePasswordAuthenticationFilter.class)
-	// 			.httpBasic(withDefaults())
-	// 			.build();
-	// }
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// @Bean
-	// CorsConfigurationSource corsConfigurationSource() {
-	// 	UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-	// 	CorsConfiguration config = new CorsConfiguration();
-	// 	config.setAllowedOrigins(Arrays.asList("*"));
-	// 	config.setAllowedMethods(Arrays.asList("*"));
-	// 	config.setAllowedHeaders(Arrays.asList("*"));
-	// 	config.setAllowCredentials(false);
-	// 	config.applyPermitDefaultValues();
-
-	// 	source.registerCorsConfiguration("/**", config);
-	// 	return source;
-	// }
-
-	
-	
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
->>>>>>> 8e0880c (Backend updated)
-=======
->>>>>>> 27aa8ab (Revision du projet dans le github)
-=======
-	// Moins de security
-=======
->>>>>>> 310dff7 (Ajout du rapport)
-	@Bean
-	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-=======
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
->>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-<<<<<<< HEAD
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-								"/event",
-								"/websocket/*")
-						.permitAll()
-<<<<<<< HEAD
-						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
-=======
-						.requestMatchers(HttpMethod.POST,
-								"/prestataires", "prestataires/prestatairephoto")
-						.permitAll()
-						.requestMatchers(HttpMethod.POST,
-								"/client", "/client/clientphoto")
-						.permitAll()
->>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
-						.anyRequest().authenticated())
-				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-				.addFilterBefore(authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class)
-				.httpBasic(withDefaults())
-				.build();
-<<<<<<< HEAD
-=======
-	return http
-	.csrf(csrf -> csrf.disable())
-	.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
-	.sessionManagement(management -> management
-	.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	.authorizeRequests(authorizeRequests -> authorizeRequests
-	.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-	"/event",
-	"/websocket/*")
-	.permitAll()
-	.requestMatchers(HttpMethod.POST, "/prestataires","prestataires/prestatairephoto").permitAll()
-	.requestMatchers(HttpMethod.POST, "/client","/client/clientphoto").permitAll()
-	.anyRequest().authenticated())
-	.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	.addFilterBefore(authenticationFilter,
-	UsernamePasswordAuthenticationFilter.class)
-	.httpBasic(withDefaults())
-	.build();
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
-=======
->>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
-	}
-
-<<<<<<< HEAD
->>>>>>> 2fd3c3a (updating users->client et user->prestataires)
-=======
-	// Moins de security
-=======
->>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-<<<<<<< HEAD
-	// 	return http
-	// 			.csrf(csrf -> csrf.disable())
-	// 			.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-	// 			.sessionManagement(management -> management
-	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
-	// 					.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-	// 							"/event",
-	// 							"/websocket/*")
-	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// 					.anyRequest().authenticated())
-	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// 			.addFilterBefore(authenticationFilter,
-	// 					UsernamePasswordAuthenticationFilter.class)
-	// 			.httpBasic(withDefaults())
-	// 			.build();
-=======
-	// 	// Add this row
-	// 	http.csrf().disable().cors().and()
-	// 			.authorizeHttpRequests().anyRequest().permitAll();
-	// 	return http.build();
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
-=======
-	// // Add this row
-	// http.csrf().disable().cors().and()
-	// .authorizeHttpRequests().anyRequest().permitAll();
-	// return http.build();
->>>>>>> 40865c7 (Mise a jout de UI pour le prestataire)
-	// }
-
-<<<<<<< HEAD
->>>>>>> 310dff7 (Ajout du rapport)
-=======
-	// Moins de security
-=======
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
-	@Bean
-	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-								"/event",
-								"/websocket/*")
-						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-						.requestMatchers(HttpMethod.POST, "/clients").permitAll()
-=======
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
-								"/event")
-						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires",
-								"prestataires/prestatairephoto",
-								"prestataires/reviews")
-						.permitAll()
-						// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
-						.requestMatchers(HttpMethod.POST, "/client",
-								"/client/clientphoto")
-						.permitAll()
-						.requestMatchers("/websocket/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/**",
-								"prestataires/reviews")
-						.permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
-						// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
-						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
-<<<<<<< HEAD
->>>>>>> 7088867 (Adapter le systeme permettant de donner l'avis.)
-=======
-						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
->>>>>>> 465679f (Second Rapport)
-						.anyRequest().authenticated())
-				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-				.addFilterBefore(authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class)
-				.httpBasic(withDefaults())
-				.build();
-	}
-
-<<<<<<< HEAD
->>>>>>> 7e33b82 (Mise a jour majeur->ameliorer la coherence)
-=======
-	// Moins de security
-=======
->>>>>>> a9816e1 (mise mineur acceptation Demande)
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// return http
-	// .csrf(csrf -> csrf.disable())
-	// .cors(withDefaults()) // Assurez-vous que cette ligne n'est pas encommentaire
-	// .sessionManagement(management -> management
-	// .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-	// .authorizeRequests(authorizeRequests -> authorizeRequests
-	// .requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-	// "/event",
-	// "/websocket/*")
-	// .permitAll()
-<<<<<<< HEAD
-	// .requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// .requestMatchers(HttpMethod.POST, "/clients").permitAll()
-	// .requestMatchers(HttpMethod.GET,"/api/evenements").permitAll()
-=======
-	// .requestMatchers(HttpMethod.POST,
-	// "/prestataires", "prestataires/prestatairephoto")
-	// .permitAll()
-	// .requestMatchers(HttpMethod.POST,
-	// "/client", "/client/clientphoto")
-	// .permitAll()
-	// .requestMatchers(HttpMethod.GET, "/api/evenements").permitAll()
-
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
-	// .anyRequest().authenticated())
-	// .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-	// .addFilterBefore(authenticationFilter,
-	// UsernamePasswordAuthenticationFilter.class)
-	// .httpBasic(withDefaults())
-	// .build();
-=======
-	@SuppressWarnings("deprecation")
-
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// 	return http
-	// 			.csrf(csrf -> csrf.disable())
-	// 			.cors(withDefaults())
+	// 			.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
 	// 			.sessionManagement(management -> management
 	// 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 	// 			.authorizeRequests(authorizeRequests -> authorizeRequests
 	// 					.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
-	// 							"/event",
-	// 							"/websocket/**")
+	// 							"/event")
 	// 					.permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/prestataires").permitAll()
-	// 					.requestMatchers(HttpMethod.POST, "/client").permitAll()
+	// 					.requestMatchers(HttpMethod.POST, "/prestataires",
+	// 							"prestataires/prestatairephoto",
+	// 							"prestataires/reviews")
+	// 					.permitAll()
+	// 					// .requestMatchers(HttpMethod.POST, "prestataires/reviews").permitAll()
+	// 					.requestMatchers(HttpMethod.POST, "/client",
+	// 							"/client/clientphoto")
+	// 					.permitAll()
 	// 					.requestMatchers("/websocket/**").permitAll()
+	// 					.requestMatchers(HttpMethod.GET, "/prestataires/**")
+	// 					.permitAll()
+	// 					.requestMatchers(HttpMethod.GET,
+	// 							"prestataires/reviews/{id}")
+	// 					.permitAll()
 
-	// 					.requestMatchers(HttpMethod.GET, "/api/evenements").permitAll()
+	// 					.requestMatchers(HttpMethod.PUT, "prestataires/reviews")
+	// 					.permitAll()
+	// 					.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
+	// 					// .requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
+	// 					.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
+	// 					.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
 	// 					.anyRequest().authenticated())
 	// 			.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
 	// 			.addFilterBefore(authenticationFilter,
 	// 					UsernamePasswordAuthenticationFilter.class)
 	// 			.httpBasic(withDefaults())
 	// 			.build();
->>>>>>> 2494790 (Acception DE DEMANDE)
 	// }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> d72ab0d (Mise a jour=>Gestion des Demandes de prestations)
-=======
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
 	// Moins de security
-=======
->>>>>>> 4375bcb (Redefinition du chemin pour le stockage de la photo automatiquement)
-=======
-	@SuppressWarnings("deprecation")
->>>>>>> 93092c5 (mise a jour secu)
 	@Bean
 	SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-<<<<<<< HEAD
-		return http
-				.csrf(csrf -> csrf.disable())
-				.cors(withDefaults()) // Assurez-vous que cette ligne n'est pas en commentaire
-				.sessionManagement(management -> management
-						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-				.authorizeRequests(authorizeRequests -> authorizeRequests
-<<<<<<< HEAD
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/*",
-								"/event",
-								"/websocket/**")
-<<<<<<< HEAD
-=======
-						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires", "prestataires/prestatairephoto",
-								"prestataires/reviews")
->>>>>>> 2eca4da (Ra-ajustement du composant AddCustomer,ReviewForm et SecurityBackend)
-=======
-						.requestMatchers(HttpMethod.POST, "/login", "http://localhost:3000/**",
-								"/event")
->>>>>>> 1ca6e02 (clean code)
-						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/client", "/client/clientphoto").permitAll()
-<<<<<<< HEAD
-						.requestMatchers(HttpMethod.GET, "/prestataires").permitAll()
-=======
-						.requestMatchers("/websocket/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/prestataires/{fileName}").permitAll()
-						.requestMatchers(HttpMethod.POST, "/prestataires/reviews").permitAll()
-						.requestMatchers(HttpMethod.GET, "/client/**").permitAll()
-						.requestMatchers(HttpMethod.GET, "/event/**").permitAll()
->>>>>>> 1ca6e02 (clean code)
-						.anyRequest().authenticated())
-				.exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
-				.addFilterBefore(authenticationFilter,
-						UsernamePasswordAuthenticationFilter.class)
-				.httpBasic(withDefaults())
-				.build();
-=======
 	// Add this row
 	http.csrf().disable().cors().and()
 	.authorizeHttpRequests().anyRequest().permitAll();
 	return http.build();
->>>>>>> 2494790 (Acception DE DEMANDE)
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> a9816e1 (mise mineur acceptation Demande)
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
-=======
-	// Moins de security
-	// @Bean
-	// SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
-	// // Add this row
-	// http.csrf().disable().cors().and()
-	// .authorizeHttpRequests().anyRequest().permitAll();
-	// return http.build();
-	// }
-
-<<<<<<< HEAD
->>>>>>> 4375bcb (Redefinition du chemin pour le stockage de la photo automatiquement)
-=======
->>>>>>> 93092c5 (mise a jour secu)
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
@@ -536,37 +101,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
-	
-	
-	
-	
-	// @Bean
-	// public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-	// 	http
-	// 			.authorizeHttpRequests()
-	// 			.requestMatchers("/", "/ws/**")
-	// 			.permitAll()
-	// 			.and()
-	// 			.authorizeHttpRequests()
-	// 			.anyRequest().authenticated()
-	// 			.and()
-	// 			.formLogin()
-	// 			.and()
-	// 			.logout(logout -> logout.logoutSuccessUrl("/"));
-	// 	return http.build();
-	// }
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
-
->>>>>>> 8e0880c (Backend updated)
-=======
-
->>>>>>> 27aa8ab (Revision du projet dans le github)
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 			throws Exception {

@@ -34,7 +34,7 @@ const ReviewForm = () => {
     console.log(emailClient);
     try {
       const response = await fetch(SERVER_URL + "prestataires/reviews", {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded",
         },
@@ -55,8 +55,8 @@ const ReviewForm = () => {
       setEmailClient("");
       setComment("");
       setNote("");
-        alert("La revue a été soumise avec succès.");
-        window.location.href = "/profile";
+      alert("La revue a été soumise avec succès.");
+      window.location.href = "/profile";
     } catch (error) {
       console.error("Erreur lors de la soumission de la revue", error);
       setSubmissionError(
@@ -72,12 +72,12 @@ const ReviewForm = () => {
   };
 
   const handleClose = () => {
-      setOpen(false);
-      window.location.href = "/profile";
+    setOpen(false);
+    window.location.href = "/profile";
   };
 
   return (
-      <>
+    <>
       {/* <Button className="profile-card__button button--orange" variant="contained" onClick={handleOpen}>
         <CommentBankTwoToneIcon /> Noter les prestations
       </Button> */}

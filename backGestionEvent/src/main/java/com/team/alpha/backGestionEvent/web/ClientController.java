@@ -31,22 +31,11 @@ public class ClientController {
     @Autowired
     private UserRepository userRepository;
 
-<<<<<<< HEAD
-=======
     @Autowired
     private FileDataRepository fileDataRepository;
 
     private final String FOLDER_PATH = System.getProperty("user.dir") + "/src/assets/";
 
-<<<<<<< HEAD
-    @GetMapping
-    public Iterable<Client> getAllClients() {
-        return clientService.getAllClients();
-    }
-
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     @GetMapping("/mail")
     public Client getClientByMail(@RequestParam String mail) {
         return clientService.getClientByMail(mail).get();

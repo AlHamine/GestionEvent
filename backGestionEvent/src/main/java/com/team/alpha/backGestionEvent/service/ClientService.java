@@ -31,48 +31,18 @@ public class ClientService {
 
     @Autowired
     private UserService userService;
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
-// Nouveau service provider
-=======
 
     @Autowired
     private FileDataRepository fileDataRepository;
 
     // Nouveau service provider
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     @Autowired
->>>>>>> cfe2644 (Update Logout et Login maintien des user , create event)
-=======
-// Nouveau service provider
-    @Autowired
->>>>>>> 8e0880c (Backend updated)
-=======
-// Nouveau service provider
-    @Autowired
->>>>>>> 27aa8ab (Revision du projet dans le github)
     public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    public Optional<Client> getClientByMail(String mail) {
-       return clientRepository.findByMail(mail);
-=======
-    public Iterable<Client> getAllClients() {
-        return clientRepository.findAll();
-    }
-
-=======
->>>>>>> bbedf2c (Modification pour assurer l'ajout de l'avis du client apres le service de prestation)
     public Optional<Client> getClientByMail(String mail) {
         return clientRepository.findByMail(mail);
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
 
     }
 
@@ -85,12 +55,8 @@ public class ClientService {
         return clientRepository.save(client);
 
     }
-<<<<<<< HEAD
-// Deuxieme Methode
-=======
 
     // Deuxieme Methode
->>>>>>> d21b587 (Redefinir les entites pour gerer l'insertions des photos de profils.)
     @Transactional
     public Client createClient(String nom, String prenom, String mail, String photo, String password) throws Exception {
         // Créez un nouvel utilisateur en utilisant le service UserService
