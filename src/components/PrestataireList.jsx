@@ -8,6 +8,8 @@ import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import CardMedia from "@mui/material/CardMedia";
 import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
+import RatingStars from "./RatingStars.jsx";
+
 export default function PrestataireList() {
   const [prestataires, setPrestataires] = useState([]);
   useEffect(() => {
@@ -61,6 +63,15 @@ const tabImage = [
               </Typography>
               <Typography variant="body2" color="text.secondary">
                 service : {prestataire.service}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {prestataire.note ? (
+                  <div>
+                    <RatingStars rating={prestataire.note} />
+                  </div>
+                ) : (
+                  ""
+                )}
               </Typography>
               
             </CardContent>
