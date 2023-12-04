@@ -264,7 +264,9 @@ function EventList() {
                     <CardMedia
                       component="img"
                       height="200"
-                      image={tabImage[Math.floor(Math.random() * tabImage.length)]}
+                      image={
+                        tabImage[Math.floor(Math.random() * tabImage.length)]
+                      }
                       alt={selectedEvent.nomEvent}
                     />
                   </th>
