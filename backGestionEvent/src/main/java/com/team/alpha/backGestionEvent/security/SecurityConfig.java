@@ -60,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.requestMatchers(HttpMethod.POST, "/client",
 								"/client/clientphoto")
 						.permitAll()
-						.requestMatchers(HttpMethod.POST, "/messages")
-						.permitAll()
-						.requestMatchers(HttpMethod.GET, "/messages")
-						.permitAll()
+						// .requestMatchers(HttpMethod.POST, "/messages/{mail}")
+						// .permitAll()
+						// .requestMatchers(HttpMethod.GET, "/messages/**")
+						// .permitAll()
 
 						.requestMatchers("/websocket/**").permitAll()
 						.requestMatchers(HttpMethod.GET, "/prestataires/**")

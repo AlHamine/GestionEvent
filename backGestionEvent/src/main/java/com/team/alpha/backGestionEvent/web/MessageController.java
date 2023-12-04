@@ -4,15 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.Date;
 import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Message;
 import com.team.alpha.backGestionEvent.model.User;
+import com.team.alpha.backGestionEvent.repository.ClientRepository;
+import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
 import com.team.alpha.backGestionEvent.repository.UserRepository;
 import com.team.alpha.backGestionEvent.service.MessageService;
 
@@ -23,26 +26,29 @@ public class MessageController {
     private MessageService mService;
 
     @Autowired
-    private UserRepository userRepository;
+    private PrestataireRepository pRepository;
+    @Autowired
+    private ClientRepository cRepository;
 
-    @GetMapping("/mail")
-    public List<Message> getClientByMail(@RequestParam String mail) {
+    @GetMapping("/{mail}")
+    public List<Message> getClientByMail(@PathVariable String mail) {
         return mService.getMessagesBySourceMail(mail);
     }
-    @PostMapping("/mail")
-    public Message createClient(@RequestBody Message m,@RequestParam String mail) throws Exception {
-         User existe = userRepository.findByMail(mail).get();
-        if (existe != null) {
+
+    @PostMapping("/{mail}")
+    public Message envoyerMessage(@RequestBody Message m, @PathVariable String mail) throws Exception {
+
+        if (pRepository.findByMail(mail).isPresent() || cRepository.findByMail(mail).isPresent()) {
+            m.setTimestamp(new Date());
             return mService.Sauvegarder(m);
         }
 
         return null;
     }
 
-    @GetMapping("/source/dest")
-    public List<Message> dialogue(@RequestParam String source, @RequestParam String dest) {
-        User existe = userRepository.findByMail(dest).get();
-        if (existe != null) {
+    @GetMapping("/{source}/{dest}")
+    public List<Message> dialogue(@PathVariable String source, @PathVariable String dest) {
+        if (pRepository.findByMail(dest).isPresent() || cRepository.findByMail(dest).isPresent()) {
             return mService.dialogue(source, dest);
         }
         return null;

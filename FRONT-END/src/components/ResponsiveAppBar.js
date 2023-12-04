@@ -33,6 +33,8 @@ import {
 import Logout from "./Logout";
 import EventListByClient from "./EventListByClient";
 import ChatComponent from "./Chat.js";
+import MessageComponent from "./Message.js";
+import NotifComponent from "./Notif.js";
 
 const pages = ["Evenements", "myEvents", "Prestataires", "Propos"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -119,7 +121,6 @@ function ResponsiveAppBar() {
                 </Button>
               </Link>
             </Typography>
-            
 
             <Box
               sx={{
@@ -159,8 +160,7 @@ function ResponsiveAppBar() {
                       Mes Evenements
                     </Link>
                   </Button>
-                    ) :
-                page === "Propos" ? (
+                ) : page === "Propos" ? (
                   <Button color="success">
                     <Link
                       to="/propos"
@@ -171,7 +171,7 @@ function ResponsiveAppBar() {
                       A Propos
                     </Link>
                   </Button>
-                )   :(
+                ) : (
                   <Button
                     key={page}
                     // onClick={handleCloseNavMenu}
@@ -265,16 +265,19 @@ function ResponsiveAppBar() {
       >
         <DialogTitle>
           <div
-            style={{
-              // position: "absolute",
-              // left: "35%",
-            }}
+            style={
+              {
+                // position: "absolute",
+                // left: "35%",
+              }
+            }
           >
             Nouveaux messages
-            <ChatComponent/>
+            <MessageComponent />
+            {/* <ChatComponent/> */}
           </div>
         </DialogTitle>
-        <DialogContent>
+        {/* <DialogContent>
           <Stack spacing={2} sx={{ maxWidth: 600, marginTop: "30px" }}>
             <SnackbarContent message="I love snacks." action={action} />
             <SnackbarContent
@@ -295,9 +298,10 @@ function ResponsiveAppBar() {
               action={action}
             />
           </Stack>
-        </DialogContent>
+        </DialogContent> */}
         <DialogActions>
           <Button onClick={handleClose}>Annuler</Button>
+
           {/* <Button onClick={handleSave}>Enregistrer</Button> */}
         </DialogActions>
       </Dialog>
@@ -336,7 +340,8 @@ function ResponsiveAppBar() {
         </DialogTitle>
         <DialogContent>
           <Stack spacing={2} sx={{ maxWidth: 600, marginTop: "30px" }}>
-            <SnackbarContent message="I love snacks." action={action} />
+            <NotifComponent />
+            {/* <SnackbarContent message="I love snacks." action={action} />
             <SnackbarContent
               message={
                 "I love candy. I love cookies. I love cupcakes. \
@@ -352,8 +357,7 @@ function ResponsiveAppBar() {
                 "I love candy. I love cookies. I love cupcakes. \
                  I love cheesecake. I love chocolate."
               }
-              action={action}
-            />
+              action={action} />*/}
           </Stack>
         </DialogContent>
         <DialogActions>
@@ -379,3 +383,26 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
+  // bubbleStyles={{
+  //       text: {
+  //         fontSize: 30
+  //       },
+  //       chatbubble: {
+  //         borderRadius: 70,
+  //         padding: 40
+  //       },
+  //       userChatbubble: {  // Styles for user's (sender's) bubble
+  //         borderRadius: 70,
+  //         padding: 40,
+  //         background: '#2196F3', // Blue color
+  //         color: 'white',       // Text color
+  //         float: 'left'         // Align to the left
+  //       },
+  //       recipientChatbubble: { // Styles for recipient's bubble
+  //         borderRadius: 70,
+  //         padding: 40,
+  //         background: '#CCCCCC', // Gray color
+  //         color: 'black',        // Text color
+  //         float: 'right'         // Align to the right
+  //       }
+  //     }}

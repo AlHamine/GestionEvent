@@ -215,23 +215,7 @@ function Login({ setEstAuthentifie }) {
   // };
 
   if (isAuthenticated) {
-    // console.log("client".toLowerCase() == sessionStorage.getItem("role"));
-    if (sessionStorage.getItem("role") === "client") {
-      return (
-        <div>
-          <EventList />
-          {/* <Footer /> */}
-          {/* <ChatComponent /> */}
-        </div>
-      );
-    } else
-      return (
-        <div>
-          <DemandeList />
-          {/* <Footer /> */}
-          {/* <ChatComponent /> */}
-        </div>
-      );
+    window.location.href = "/"; // Vous pouvez utiliser React Router pour la navigation
   } else {
     return (
       <div>
