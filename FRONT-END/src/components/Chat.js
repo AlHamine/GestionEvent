@@ -57,7 +57,7 @@ const ChatComponent = () => {
       // setMessages((prevMessages) => [...prevMessages, JSON.stringify(chatMessage)]);
       setMessages((prevMessages) => [
         ...prevMessages,
-        JSON.stringify(chatMessage),
+      chatMessage,
       ]);
       setMessage("");
     } else {

@@ -261,7 +261,7 @@ function ResponsiveAppBar() {
         fullWidth
         maxWidth="sm"
         // sx={{ width: "100%", position: "absolute", right: 0, height: "100%" }}
-        sx={{ position: "absolute", right: 80, top: 8 }}
+        // sx={{ position: "absolute", right: 80, top: 8 }}
       >
         <DialogTitle>
           <div
@@ -322,7 +322,7 @@ function ResponsiveAppBar() {
         fullWidth
         maxWidth="sm"
         // sx={{ width: "100%", position: "absolute", right: 0, height: "100%" }}
-        sx={{ position: "absolute", right: 80, top: 8 }}
+        // sx={{ position: "absolute", right: 80, top: 8 }}
       >
         <DialogTitle>
           <div
