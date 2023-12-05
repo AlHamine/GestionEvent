@@ -107,16 +107,15 @@ function EventListByClient() {
   };
 
   const addEvent = (event) => {
-    // event.prestataires = selectedPrestataires;
+    const token = sessionStorage.getItem("jwt");
     fetch(SERVER_URL + "event", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Authorization: token },
       body: JSON.stringify(event),
     })
       .then((response) => {
         if (response.ok) {
           fetchEvents();
-          // setSelectedPrestataires([]); // Clear selected prestataires after adding the event
         } else {
           alert("Something went wrong");
         }
@@ -393,7 +392,7 @@ function EventListByClient() {
               <CardMedia
                 component="img"
                 height="200"
-                image={tabImage[Math.floor(Math.random() * tabImage.length)]}
+                image={tabImage[Math.floor(Math.random() * tabImage.length)]} // Remplacez par l'URL de l'image de la voiture
                 alt={event.nomEvent}
               />
               <CardContent>
@@ -526,6 +525,7 @@ function EventListByClient() {
                                           message={
                                             prest.note ? (
                                               <div>
+                                                Note :{" "}
                                                 <RatingStars
                                                   rating={prest.note}
                                                 />
@@ -635,19 +635,6 @@ function EventListByClient() {
                                         />
                                         <SnackbarContent
                                           message={`Service : ${prest.service}`}
-                                        />
-                                        <SnackbarContent
-                                          message={
-                                            prest.note ? (
-                                              <div>
-                                                <RatingStars
-                                                  rating={prest.note}
-                                                />
-                                              </div>
-                                            ) : (
-                                              ""
-                                            )
-                                          }
                                         />
 
                                         {/* <Button

@@ -4,9 +4,9 @@ import { SERVER_URL } from "../constants.js";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import UpdatePrestataire from "./UpdatePrestataire.jsx";
+import UpdateCustomer from "./UpdateCustomer.jsx";
 
 const Profile = () => {
-  // Selection de le photo en fonction de la role
   let im = "";
   if (sessionStorage.getItem("role") == "client")
     im = `${SERVER_URL}` + `client/${sessionStorage.getItem("photo")}`;
@@ -26,7 +26,7 @@ const Profile = () => {
               alt="profile card"
             />
           </div>
-          {/* Affichage des details */}
+
           <div className="profile-card__cnt js-profile-cnt">
             <div className="profile-card__name">
               {sessionStorage.getItem("p")} {sessionStorage.getItem("n")}
@@ -158,20 +158,23 @@ const Profile = () => {
                 </span>
               </a>
             </div>
-            {/* Les bouttons */}
+
             <div className="profile-card-ctr">
               {/* <button className="profile-card__button button--blue js-message-btn">
-                Message
-              </button> */}
+              Message
+            </button> */}
               {sessionStorage.getItem("role") === "client" && (
-                <button
-                  className="profile-card__button button--orange"
-                  onClick={() => {
-                    window.location.href = "/review";
-                  }}
-                >
-                  Noter les prestations
-                </button>
+                <>
+                  <button
+                    className="profile-card__button button--orange"
+                    onClick={() => {
+                      window.location.href = "/review";
+                    }}
+                  >
+                    Noter les prestations
+                  </button>
+                  <UpdateCustomer />
+                </>
               )}
 
               {sessionStorage.getItem("role") === "prestataire" && (

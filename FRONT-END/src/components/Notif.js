@@ -85,7 +85,7 @@ const NotifComponent = () => {
                 // style={msg.source === mail ? style2 : style1}
                 primary={
                   <Typography variant="subtitle1" gutterBottom>
-                    {msg.dest || "Unknown User"}
+                    {msg.source || "Unknown User"}
                   </Typography>
                 }
                 secondary={`${msg.message}\n\n${toDateFr(msg.timestamp)}`}
