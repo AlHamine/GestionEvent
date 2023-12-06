@@ -39,7 +39,7 @@ public class Prestataire {
     private String role = "prestataire";
     // @ManyToOne
     // @JoinColumn(name = "evenement")
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(mappedBy = "prestataires")
     private List<Evenement> evenement;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "prestataire")
@@ -164,5 +164,10 @@ public class Prestataire {
     public void suprimerDemande(Demande d) {
         if (!this.requetes.contains(d))
             this.requetes.remove(d);
+    }
+    
+    public void suprimerEvenement(Evenement d) {
+        if (!this.evenement.contains(d))
+            this.evenement.remove(d);
     }
 }

@@ -115,7 +115,7 @@ function EventListByClient() {
   const deleteEvent = (id) => {
     if (window.confirm("Are you sure to delete ?")) {
       const token = sessionStorage.getItem("jwt");
-      fetch(SERVER_URL + `event/${id}`, {
+      fetch(SERVER_URL + `api/evenements/${id}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json", Authorization: token },
       })

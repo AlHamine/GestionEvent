@@ -12,7 +12,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import "./ChatInterface.css";
-
+import SendIcon from "@mui/icons-material/Send";
 const MessagePerso = ({destinataire}) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
@@ -144,7 +144,6 @@ function toDateFr(dateISO) {
       )}
 
       <div style={{ display: "flex", alignItems: "center" }}>
-        
         <TextField
           id="message"
           label="Message"
@@ -152,7 +151,11 @@ function toDateFr(dateISO) {
           value={message}
           onChange={handleMessageChange}
         />
-        <Button variant="contained" onClick={sendMessage}>
+        <Button
+          variant="contained"
+          endIcon={<SendIcon />}
+          onClick={sendMessage}
+        >
           Envoyer
         </Button>
       </div>

@@ -11,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 // import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -38,7 +39,12 @@ public class Evenement {
     @JsonIgnore
     // @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
     // (cascade = CascadeType.MERGE)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(
+        name = "evenement_prestataire",
+        joinColumns = @JoinColumn(name = "evenement_id"),
+        inverseJoinColumns = @JoinColumn(name = "prestataire_id")
+    )
     private List<Prestataire> prestataires;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "evenement")
@@ -85,6 +91,12 @@ public class Evenement {
         return prestataires;
     }
 
+    public void viderListePrestataire() {
+        for (Prestataire p : this.prestataires) {
+            p.suprimerEvenement(this);
+        }
+        this.prestataires.clear();
+    }
     public void ajouterPrestataire(Prestataire p) {
         if (!this.prestataires.contains(p))
             this.prestataires.add(p);

@@ -108,6 +108,7 @@ public class GestionEventApplication implements CommandLineRunner {
 
 		erepository.saveAll(Arrays.asList(ev1, ev2, ev3, ev4, ev5, ev6, ev7, ev8, ev9)); // Sauvegarder les Evenements
 		Demande d1 = new Demande(c2, p3, ev4);
+		// Demande d2 = new Demande(c1, p1, ev1);
 		Demande d2 = new Demande(c1, p1, ev1);
 		dRepository.saveAll(Arrays.asList(d1, d2));
 		// Envoyer l-email

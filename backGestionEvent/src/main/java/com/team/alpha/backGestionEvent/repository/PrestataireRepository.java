@@ -21,10 +21,10 @@ import com.team.alpha.backGestionEvent.model.Prestataire;
 public interface PrestataireRepository extends CrudRepository<Prestataire, Long> {
     Optional<Prestataire> findByMail(String mail);
 
-    @Query(value = "SELECT * FROM prestataire EXCEPT (SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId) ", nativeQuery = true)
+    @Query(value = "SELECT * FROM prestataire EXCEPT (SELECT p.* FROM prestataire p,evenement_prestataire where prestataire_id=p.idp and evenement_id= :evenementId) ", nativeQuery = true)
     List<Prestataire> findPrestatairesNotInEvenement(@Param("evenementId") Long idEvent);
 
-    @Query(value = "SELECT p.* FROM prestataire p,prestataire_evenement where prestataire_idp=p.idp and evenement_id_event = :evenementId", nativeQuery = true)
+    @Query(value = "SELECT p.* FROM prestataire p,evenement_prestataire where prestataire_id=p.idp and evenement_id= :evenementId", nativeQuery = true)
     List<Prestataire> findPrestatairesByEvenement(@Param("evenementId") Long idEvent);
 
 }
