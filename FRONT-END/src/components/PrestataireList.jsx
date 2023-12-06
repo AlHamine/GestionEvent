@@ -16,10 +16,18 @@ import Footer from "./Footer.js";
 import CardMedia from "@mui/material/CardMedia";
 import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
 import RatingStars from "./RatingStars.jsx";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
 
+import Box from "@mui/material/Box";
+import Input from "@mui/material/Input";
 export default function PrestataireList() {
   const [prestataires, setPrestataires] = useState([]);
   const [recomment, setComment] = useState([]);
+  const [searchTerm, setSearchTerm] = useState(""); 
+  const [selectedValue, setSelectedValue] = useState("");
   useEffect(() => {
     fetchPrestataires();
   }, []);
@@ -30,6 +38,13 @@ export default function PrestataireList() {
       .then((data) => setPrestataires(data))
       .catch((err) => console.error(err));
   };
+    const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    };
+    const handleClickSelect = (event) => {
+    setSelectedValue(event.target.value);
+  };
+
   const fetchComments = (id) => {
     fetch(SERVER_URL + `prestataires/reviews/${id}`)
       .then((response) => response.json())
@@ -60,8 +75,59 @@ export default function PrestataireList() {
       ) : (
         <ResponsiveAppBarNotConnected />
       )}
+      <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Input
+              color="primary"
+              disabled={false}
+              placeholder="Rechercher un service"
+              size="md"
+              variant="solid"
+              onChange={handleSearchChange}
+              sx={{ marginRight: 2, marginLeft: 2 }}
+              endAdornment={
+                <IconButton
+                  color="primary"
+                  size="small"
+                  icon={<SearchIcon />}
+                />
+              }
+            />
+
+            <Select
+              color="primary"
+              placeholder="Trier par événement ..."
+              size="sm"
+              value={selectedValue}
+              onChange={handleClickSelect}
+              // sx={{ marginRight: "auto", flexShrink: 0 }}
+              defaultValue="Tous les prestataires"
+              sx={{
+                marginRight: "auto",
+                flexShrink: 0,
+                maxWidth: "3000px",
+                maxHeight: "30px",
+              }}
+            >
+              <MenuItem value="">Tous les prestataires</MenuItem>
+              {prestataires.map((event) => (
+                <MenuItem key={event.service} value={event.service}>
+                  {event.service}
+                </MenuItem>
+              ))}
+            </Select>
+          </Box>
       <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {prestataires.map((prestataire) => (
+        {prestataires.filter((event) =>
+          event.service.toLowerCase().includes(searchTerm.toLowerCase())
+        ).filter((event) =>
+          event.service.toLowerCase().includes(selectedValue.toLowerCase())
+        ).map((prestataire) => (
           <Card key={prestataire.id} style={{ margin: "16px", width: 300 }}>
             <CardMedia
               component="img"

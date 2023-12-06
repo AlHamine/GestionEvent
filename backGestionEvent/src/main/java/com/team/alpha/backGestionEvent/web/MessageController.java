@@ -8,15 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Date;
-import com.team.alpha.backGestionEvent.model.Client;
 import com.team.alpha.backGestionEvent.model.Message;
-import com.team.alpha.backGestionEvent.model.User;
 import com.team.alpha.backGestionEvent.repository.ClientRepository;
 import com.team.alpha.backGestionEvent.repository.PrestataireRepository;
-import com.team.alpha.backGestionEvent.repository.UserRepository;
 import com.team.alpha.backGestionEvent.service.MessageService;
 
 @RestController
