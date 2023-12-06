@@ -13,10 +13,14 @@ import Button from "@mui/material/Button";
 import DataArrayIcon from "@mui/icons-material/DataArray";
 import AirlinesIcon from "@mui/icons-material/Airlines";
 
-function Footer() {
-  // console.log(typeof (n) + " " + n);
+function FooterMain() {
+  const styleFooter = { position: "fixed", bottom: 0, width: "100%" };
+  const styleFooter2 = { width: "100%" };
+  var n = Number(sessionStorage.getItem("nbEvent"));
+  if (n === 0) n = Number(sessionStorage.getItem("nbEvent"));
+
   return (
-    <footer className="footer2" >
+    <footer className="footer2" style={n <= 3 ? styleFooter : styleFooter2}>
       {/* Liaison avec la single page ie avec les id a savoir veux, prest,event,propos */}
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
@@ -149,4 +153,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterMain;

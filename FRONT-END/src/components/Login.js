@@ -176,9 +176,12 @@ function Login({ setEstAuthentifie }) {
   // :
   // console.log(sessionStorage.getItem("role") === "client");
   if (sessionStorage.getItem("role") === "client") {
-    fetch(SERVER_URL + `client/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
+    fetch(
+      SERVER_URL + `client/mail?mail=${sessionStorage.getItem("UserMail")}`,
+      {
+        headers: { "Content-Type": "application/json", Authorization: token },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         sessionStorage.setItem("idClient", data.idc);
@@ -187,11 +190,15 @@ function Login({ setEstAuthentifie }) {
         sessionStorage.setItem("photo", data.photo);
       })
       .catch((err) => console.error(err))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(gmail));
   } else {
-    fetch(SERVER_URL + `prestataires/mail?mail=${gmail}`, {
-      headers: { "Content-Type": "application/json", Authorization: token },
-    })
+    fetch(
+      SERVER_URL +
+        `prestataires/mail?mail=${sessionStorage.getItem("UserMail")}`,
+      {
+        headers: { "Content-Type": "application/json", Authorization: token },
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         sessionStorage.setItem("idPrestataire", data.idp);
@@ -204,15 +211,7 @@ function Login({ setEstAuthentifie }) {
       .catch((err) => console.log(err));
   }
 
-  const onLogout = () => {
-    sessionStorage.removeItem("jwt");
-    setAuth(false);
-  };
 
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  // const handleChangeCustomer = () => {
-  //   <CreatePrestataire />;
-  // };
 
   if (isAuthenticated) {
     window.location.href = "/"; // Vous pouvez utiliser React Router pour la navigation

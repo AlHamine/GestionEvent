@@ -28,6 +28,7 @@ import ResponsiveAppBarNotConnected from "./ResponsiveAppBarNotConnected.js";
 import Checkbox from "@mui/material/Checkbox";
 import FavoriteBorder from "@mui/icons-material/FavoriteBorder";
 import Favorite from "@mui/icons-material/Favorite";
+import FooterMain from "./FooterMain.js";
 
 function EventList() {
   const [events, setEvents] = useState([]);
@@ -293,7 +294,7 @@ function EventList() {
           </DialogActions>
         </Dialog>
       )}
-      <Footer />
+      <Footer/>
     </React.Fragment>
   );
 }

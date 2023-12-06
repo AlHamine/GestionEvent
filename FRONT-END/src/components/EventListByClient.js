@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { DataGrid } from "@mui/x-data-grid";
+import { DataGrid, GridDeleteIcon } from "@mui/x-data-grid";
 import { SERVER_URL } from "../constants.js";
 import "../index.css";
 import "./UserProfile.css";
@@ -24,11 +24,13 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  Snackbar,
 } from "@mui/material";
 import Button from "@mui/material/Button";
 import ResponsiveAppBar from "./ResponsiveAppBar.js";
 import Footer from "./Footer.js";
 import RatingStars from "./RatingStars.jsx";
+import FooterMain from "./FooterMain.js";
 
 function EventListByClient() {
   const [events, setEvents] = useState([]);
@@ -37,6 +39,7 @@ function EventListByClient() {
   const [open, setOpen] = useState(false);
   const [open2, setOpen2] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [open4, setOpen4] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // Ajoutez cet état pour le terme de recherche
   const [selectedValue, setSelectedValue] = useState("");
   const [cliked, setClick] = useState(false);
@@ -90,6 +93,7 @@ function EventListByClient() {
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
+
   useEffect(() => {
     fetchEvents();
   }, []);
@@ -101,11 +105,32 @@ function EventListByClient() {
     })
       .then((response) => response.json())
       .then((data) => setEvents(data));
+    var compteur = 0;
+    sessionStorage.removeItem("nbEvent");
+    events.forEach((element) => { compteur++; });
+    sessionStorage.setItem("nbEvent", compteur);
     // .catch((err) => console.error(err));
-    // console.log(token);
-    sessionStorage.setItem("nbEvent", events.length);
+    console.log(events);
   };
-
+  const deleteEvent = (id) => {
+    if (window.confirm("Are you sure to delete ?")) {
+      const token = sessionStorage.getItem("jwt");
+      fetch(SERVER_URL + `event/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json", Authorization: token },
+      })
+        .then((response) => {
+          if (response.ok) {
+            fetchEvents();
+            window.location.href = "/myevents";
+            setOpen4(true);
+          } else {
+            alert("Some thing is wrong !!!!");
+          }
+        })
+        .catch((Err) => console.error(Err));
+    }
+    };
   const addEvent = (event) => {
     const token = sessionStorage.getItem("jwt");
     fetch(SERVER_URL + "event", {
@@ -324,6 +349,7 @@ function EventListByClient() {
   return (
     <React.Fragment>
       <ResponsiveAppBar />
+      {/* {fetchEvents()} */}
       <Stack mt={2} mb={2}>
         <AddEvent addEvent={addEvent} />
 
@@ -469,6 +495,14 @@ function EventListByClient() {
                         }}
                       >
                         Voir mes prestataires
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        color="error"
+                        startIcon={<GridDeleteIcon />}
+                        onClick={()=>{deleteEvent(selectedEvent.idEvent)}}
+                      >
+                        Annuler l'evenement
                       </Button>
                       {estSelected && (
                         <Dialog
@@ -690,7 +724,13 @@ function EventListByClient() {
           </DialogActions>
         </Dialog>
       )}
-      <Footer />
+      <Snackbar
+        open={open4}
+        autoHideDuration={2000}
+        onClose={() => setOpen4(false)}
+        message="Evenement suprime avec succes"
+      />
+      <FooterMain />
     </React.Fragment>
   );
 }

@@ -35,6 +35,15 @@ public class EventController {
         return eService.getAllClientsByOrg(id);
     }
 
+    @DeleteMapping("/{id}")
+    public Boolean delEvent(@PathVariable Long id) {
+        Evenement evenement = eService.getEvenementById(id);
+        if (evenement != null) {
+            eService.suprimerEvent(evenement);
+            return true;
+        }
+        return false;
+}
     @PostMapping
     public Evenement createClient(@RequestBody Evenement E) throws Exception {
         return eService.createEvent(E);

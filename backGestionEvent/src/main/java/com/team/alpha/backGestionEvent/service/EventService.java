@@ -34,6 +34,10 @@ public class EventService {
         E.ajouterPrestataire(prestataire);
         eRepository.save(E);
     }
+    public void suprimerEvent(Evenement E) {
+        eRepository.delete(E);
+    }
+
 
     public void suprimmerPrestataire(Evenement E, Prestataire prestataire) {
 

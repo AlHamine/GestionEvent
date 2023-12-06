@@ -37,7 +37,7 @@ import MessageComponent from "./Message.js";
 import NotifComponent from "./Notif.js";
 
 const pages = ["Evenements", "myEvents", "Prestataires", "Propos"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Logout"];
 
 function ResponsiveAppBar() {
   // const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -87,8 +87,7 @@ function ResponsiveAppBar() {
   let im = "";
   if (sessionStorage.getItem("role") == "client")
     im = `${SERVER_URL}` + `client/${sessionStorage.getItem("photo")}`;
-  else im =
-    `${SERVER_URL}` + `prestataires/${sessionStorage.getItem("photo")}`;
+  else im = `${SERVER_URL}` + `prestataires/${sessionStorage.getItem("photo")}`;
   return (
     <div>
       <AppBar position="static">
@@ -150,16 +149,29 @@ function ResponsiveAppBar() {
                     </Link>
                   </Button>
                 ) : page === "myEvents" ? (
-                  <Button color="success">
-                    <Link
-                      to="/myevents"
-                      key={page}
-                      style={{ color: "white", textDecoration: "none" }}
-                      sx={{ my: 2, color: "white", display: "block" }}
-                    >
-                      Mes Evenements
-                    </Link>
-                  </Button>
+                  sessionStorage.getItem("role") === "client" ? (
+                    <Button color="success">
+                      <Link
+                        to="/myevents"
+                        key={page}
+                        style={{ color: "white", textDecoration: "none" }}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        Mes Evenements
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button color="success">
+                      <Link
+                        to="/"
+                        key={page}
+                        style={{ color: "white", textDecoration: "none" }}
+                        sx={{ my: 2, color: "white", display: "block" }}
+                      >
+                        Mes Demandes
+                      </Link>
+                    </Button>
+                  )
                 ) : page === "Propos" ? (
                   <Button color="success">
                     <Link
@@ -205,7 +217,7 @@ function ResponsiveAppBar() {
             </IconButton>
 
             {/* flexGrow: 0  */}
-            <Box sx={{ marginRight: "1px" }}>
+            <Box sx={{ marginRight: "-15%" }}>
               <Tooltip title="Open settings">
                 <IconButton
                   onClick={handleOpenUserMenu}
@@ -237,7 +249,12 @@ function ResponsiveAppBar() {
                         to="/profile"
                         style={{ textDecoration: "none", color: "black" }}
                       >
-                        Profile
+                        <button
+                          className="profile-card__button button--blue js-message-btn "
+                          variant="contained"
+                        >
+                          Profile
+                        </button>
                       </Link>
                     ) : setting === "Logout" ? (
                       <Logout />
@@ -245,7 +262,7 @@ function ResponsiveAppBar() {
                       //   : setting === "Dashboard" ? (
                       // <EventListByClient />
                       //   )
-                      <Typography textAlign="center">{setting}</Typography>
+                      <Typography textAlign="left">{setting}</Typography>
                     )}
                   </MenuItem>
                 ))}
@@ -383,26 +400,26 @@ function ResponsiveAppBar() {
   );
 }
 export default ResponsiveAppBar;
-  // bubbleStyles={{
-  //       text: {
-  //         fontSize: 30
-  //       },
-  //       chatbubble: {
-  //         borderRadius: 70,
-  //         padding: 40
-  //       },
-  //       userChatbubble: {  // Styles for user's (sender's) bubble
-  //         borderRadius: 70,
-  //         padding: 40,
-  //         background: '#2196F3', // Blue color
-  //         color: 'white',       // Text color
-  //         float: 'left'         // Align to the left
-  //       },
-  //       recipientChatbubble: { // Styles for recipient's bubble
-  //         borderRadius: 70,
-  //         padding: 40,
-  //         background: '#CCCCCC', // Gray color
-  //         color: 'black',        // Text color
-  //         float: 'right'         // Align to the right
-  //       }
-  //     }}
+// bubbleStyles={{
+//       text: {
+//         fontSize: 30
+//       },
+//       chatbubble: {
+//         borderRadius: 70,
+//         padding: 40
+//       },
+//       userChatbubble: {  // Styles for user's (sender's) bubble
+//         borderRadius: 70,
+//         padding: 40,
+//         background: '#2196F3', // Blue color
+//         color: 'white',       // Text color
+//         float: 'left'         // Align to the left
+//       },
+//       recipientChatbubble: { // Styles for recipient's bubble
+//         borderRadius: 70,
+//         padding: 40,
+//         background: '#CCCCCC', // Gray color
+//         color: 'black',        // Text color
+//         float: 'right'         // Align to the right
+//       }
+//     }}

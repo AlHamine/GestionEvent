@@ -11,18 +11,16 @@ import {
   Typography,
   CircularProgress,
 } from "@mui/material";
-import SendIcon from "@mui/icons-material/Send";
-
 import "./ChatInterface.css";
 
-const MessageComponent = () => {
+const MessagePerso = ({destinataire}) => {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
-  const [mail, setMail] = useState("");
+  // const [mail, setMail] = useState("");
 
-  const handleMailChange = (e) => {
-    setMail(e.target.value);
-  };
+  // const handleMailChange = (e) => {
+  //   setMail(e.target.value);
+  // };
 
   const handleMessageChange = (e) => {
     setMessage(e.target.value);
@@ -56,7 +54,8 @@ const MessageComponent = () => {
   const fetchMessages = () => {
     const token = sessionStorage.getItem("jwt");
     fetch(
-      SERVER_URL + `messages/${sessionStorage.getItem("UserMail")}/${mail}`,
+      SERVER_URL +
+        `messages/${sessionStorage.getItem("UserMail")}/${destinataire}`,
       {
         headers: { Authorization: token },
       }
@@ -77,20 +76,19 @@ const MessageComponent = () => {
   const sendMessage = () => {
     const bataxal = {
       source: sessionStorage.getItem("UserMail"),
-      dest: mail,
+      dest: destinataire,
       message: message,
     };
     const token = sessionStorage.getItem("jwt");
-    fetch(SERVER_URL + `messages/${mail}`, {
+    fetch(SERVER_URL + `messages/${destinataire}`, {
       method: "POST",
       headers: { "Content-Type": "application/json", Authorization: token },
       body: JSON.stringify(bataxal),
     })
       .then((response) => {
         if (response.ok) {
-          setMessage("");
           fetchMessages();
-          
+          setMessage("");
         } else {
           alert("Something went wrong");
         }
@@ -131,7 +129,7 @@ function toDateFr(dateISO) {
                 <Avatar>{msg.dest ? msg.dest.charAt(0) : ""}</Avatar>
               </ListItemAvatar>
               <ListItemText
-                style={msg.source === mail ? style2 : style1}
+                style={msg.source === destinataire ? style2 : style1}
                 primary={
                   <Typography variant="subtitle1" gutterBottom>
                     {msg.dest || "Unknown User"}
@@ -146,13 +144,7 @@ function toDateFr(dateISO) {
       )}
 
       <div style={{ display: "flex", alignItems: "center" }}>
-        <TextField
-          id="mail"
-          label="Mail"
-          variant="standard"
-          value={mail}
-          onChange={handleMailChange}
-        />
+        
         <TextField
           id="message"
           label="Message"
@@ -160,15 +152,11 @@ function toDateFr(dateISO) {
           value={message}
           onChange={handleMessageChange}
         />
-        <Button
-          variant="contained"
-          endIcon={<SendIcon />}
-           onClick={sendMessage}
-        >
+        <Button variant="contained" onClick={sendMessage}>
           Envoyer
         </Button>
       </div>
     </div>
   );
 };
-export default MessageComponent;
+export default MessagePerso;
