@@ -14,11 +14,10 @@ import DataArrayIcon from "@mui/icons-material/DataArray";
 import AirlinesIcon from "@mui/icons-material/Airlines";
 
 function Footer() {
+  // console.log(typeof (n) + " " + n);
   return (
-    <footer
-      className="footer2"
-      // style={{ position: "fixed", bottom: 0, width: "100%" }}
-    >
+    <footer className="footer2" >
+      {/* Liaison avec la single page ie avec les id a savoir veux, prest,event,propos */}
       <div>
         <AppBar position="relative" sx={{ textAlign: "center" }}>
           <Container maxWidth="xl">
@@ -49,22 +48,22 @@ function Footer() {
                   </th>
                   <th></th>
                   <th>
-                    <a style={{ color: "white" }} href="/#veux">
+                    <a style={{ color: "white" }} href="/propos/#veux">
                       Je veux...
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#propos">
+                    <a style={{ color: "white" }} href="/propos/#propos">
                       À PROPOS DE NOUS
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#event">
+                    <a style={{ color: "white" }} href="/propos/#event">
                       L'événement
                     </a>
                   </th>
                   <th>
-                    <a style={{ color: "white" }} href="/#prest">
+                    <a style={{ color: "white" }} href="/propos/#prest">
                       Préstation
                     </a>
                   </th>

@@ -1,0 +1,7 @@
+# Pour afficher  la photo lors de l'ajout du prestataire
+<CardMedia
+	component="img"
+        height="200"
+        image={prest.photo ? "http://localhost:8080/prestataires/"+prest.photo : "https://animations-innovantes.fr/wp-content/uploads/2019/02/Social-Wall-Digital.jpg" }
+        alt={prest.nom}
+/>

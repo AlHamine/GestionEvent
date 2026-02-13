@@ -13,7 +13,10 @@ function Logouter() {
 
   return (
     <div>
-      <button onClick={handleLogout}>
+      <button
+        className="profile-card__button button--orange"
+        onClick={handleLogout}
+      >
         <Logout color="warning"></Logout>
         Déconnexion
       </button>

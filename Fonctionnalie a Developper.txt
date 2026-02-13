@@ -1,0 +1,21 @@
+**Fonctionnalités principales du projet :**
+
+1. **Création d'événements** : Les clients ont la possibilité de créer de nouveaux événements en fournissant des informations essentielles telles que le nom de l'événement, la date, la description, le lieu, etc. Cette fonctionnalité permet aux clients de planifier et d'organiser leurs événements.
+
+2. **Ajout de prestataires** : Après avoir créé un événement, les clients ont la possibilité d'ajouter des prestataires en fonction des besoins de l'événement. Les prestataires sont des fournisseurs de services liés à l'événement, tels que des traiteurs, des photographes, des musiciens, etc.
+
+3. **Demandes de prestation aux prestataires** : Une fois que les prestataires ont été ajoutés à un événement, ils recevront des demandes de prestation dans leurs interfaces. Ces demandes contiennent des informations sur l'événement, les services requis et d'autres détails pertinents. Les prestataires peuvent examiner ces demandes et choisir d'y répondre.
+
+4. **Communication entre les clients et les prestataires** : Les prestataires ont la possibilité de communiquer avec le client qui a créé l'événement. Cela peut inclure des discussions sur les détails de la prestation, la négociation des conditions, les questions et réponses, etc.
+
+**Possibles composants techniques du projet :**
+
+- **Base de données** : Le projet nécessitera une base de données pour stocker les informations sur les événements, les clients, les prestataires, les demandes de prestation et d'autres données associées.
+
+- **Interface utilisateur** : Une interface utilisateur conviviale sera nécessaire pour que les clients puissent créer des événements, ajouter des prestataires, et pour que les prestataires puissent gérer les demandes de prestation.
+
+- **Système de messagerie ou de communication** : Pour permettre la communication entre les clients et les prestataires, un système de messagerie ou de communication intégré peut être requis.
+
+- **Authentification et autorisation** : Pour protéger les données et les fonctionnalités sensibles, un système d'authentification et d'autorisation sera nécessaire pour les clients et les prestataires.
+
+- **Notifications** : Les notifications par e-mail, SMS ou d'autres moyens peuvent être nécessaires pour informer les clients et les prestataires des nouvelles demandes de prestation, des réponses, etc.

@@ -11,7 +11,7 @@ import Footer from "./Footer.js";
 function Propos() {
   
   return (
-    <div>
+    <div id="veux">
       <ResponsiveAppBar/>  
       <div
         style={{
@@ -56,7 +56,7 @@ function Propos() {
       >
         <div style={{ flex: 1, marginLeft: "30px" }}>
           {/* Contenu texte à gauche */}
-          <h1
+          <h1 id="propos"
             style={{ color: "#8171df", textAlign: "center", marginTop: "40px" }}
           >
             À PROPOS DE NOUS
@@ -139,7 +139,7 @@ function Propos() {
       >
         <div style={{ flex: 1, backgroundColor: "#fff" }}>
           {/* Contenu texte à gauche */}
-          <h1
+          <h1 id="prest"
             style={{
               color: "blue",
               textAlign: "center",
@@ -149,7 +149,7 @@ function Propos() {
           >
             Préstation
           </h1>
-          <div
+          <div id="event"
             style={{ lineHeight: "2", color: "#747379", marginLeft: "30px" }}
           >
             <div

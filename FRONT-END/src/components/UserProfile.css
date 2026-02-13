@@ -8,7 +8,7 @@ html {
 * {
     box-sizing: border-box;
 }
-
+/* Pour gerer le corps de la page */
 body {
     font-family: "Quicksand", sans-serif;
     color: #1640D6;
@@ -328,6 +328,7 @@ a:hover {
 .profile-card__button.button--blue:hover {
     box-shadow: 0px 7px 30px rgba(19, 127, 212, 0.75);
 }
+/* Pour mettre dans les bouttons la couleur  orange */
 
 .profile-card__button.button--orange {
     background: linear-gradient(45deg, #d5135a, #f05924);
